@@ -1,0 +1,33 @@
+{
+    "location": [55.879706, -4.291199],
+    "shared": true,
+    "filesize" : {
+        "max" : 120,
+        "except" : [
+                "*.html",
+                "*js/*",
+                "*css/*",
+                "*scripts/*",
+                "*styles/*"
+        ]
+    },
+    "blogs" : [
+            "blog/"
+    ],
+    "templates" : {
+        "splash.md": "center.html",
+        "*.md": "md.html"
+     },
+    "listview" : [
+            "contents/plants/index.html",
+            "contents/trail/index.html",
+            "contents/plants/economic/index.html"
+    ],
+    "theme" : "jqm",
+    "uiTheme" : "w",
+    "email": "tim.niblett@cilogi.com",
+    "permissions" : {
+        "2" : ["tim.niblett@cilogi.com", "tim@timniblett.net"],
+        "3" : ["tim@timniblett.net"]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "id": 101,
+    "title": "Demo Page",
+    "images": ["images/page101.jpg"],
+    "pageLinks": [
+        { "type": "page", "value": "1"  },
+        { "type": "page", "value": "2"  },
+        { "type": "page", "value": "3"  },
+        { "type": "page", "value": "4"  },
+        { "type": "map", "value": "map1"}
+    ]
+}
