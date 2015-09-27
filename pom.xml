@@ -6,8 +6,8 @@
     <description>Data-structure for online guides</description>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cilogi</groupId>
-    <artifactId>cilogi-guide</artifactId>
-    <version>1.5.3</version>
+    <artifactId>guide</artifactId>
+    <version>1.5.4</version>
     <packaging>jar</packaging>
     <url>https://github.com/cilogi/cilogi-guide</url>
     <developers>

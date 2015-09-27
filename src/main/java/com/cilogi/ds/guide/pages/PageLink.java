@@ -207,6 +207,10 @@ public class PageLink implements Serializable {
 
     private PageLink() {}
 
+    public PageLink(int pageIndex) {
+        this(Type.page, Integer.toString(pageIndex));
+    }
+
     public PageLink(@NonNull Type type, @NonNull String value) {
         this.type = type;
         this.value = value;
