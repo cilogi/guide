@@ -104,4 +104,10 @@ public class TestGuide {
         IGuide back = Pickle.unpickle(data, GuideJson.class);
         assertEquals(back, guide);
     }
+
+    @Test
+    public void testFail() throws IOException, ClassNotFoundException {
+        GuideJson guide = GuideJson.fromJSON(IOUtil.loadStringUTF8(getClass().getResource("demo-fail.json")));
+        assertEquals("demo-guide", guide.getName());
+    }
 }

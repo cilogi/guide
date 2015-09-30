@@ -1,0 +1,74 @@
+{"name": "demo-guide", "guideSpecVersion": "1", "config": {
+    "title": "Demo Guide",
+    "description": "",
+    "shared": false,
+    "blogs": ["blogs/"],
+    "theme": "jqm",
+    "analyticsKey": "",
+    "copyright": "",
+    "attribution": "",
+    "uiTheme": "w",
+    "email": "",
+    "showKeypad": true,
+    "listview": [],
+    "permissions": {
+        "permissions": {}
+    },
+    "templates": {},
+    "compile": {
+        "isCompress": false,
+        "isOffline": false,
+        "offline": false,
+        "compress": false
+    },
+    "filesize": {
+        "max": 120,
+        "except": ["*.html", "scripts/*", "styles/*"]
+    },
+    "imageDisplay": "image-display:contain",
+    "fileSize": {
+        "max": 120,
+        "except": ["*.html", "scripts/*", "styles/*"]
+    }
+}, "title": "Demo Guide", "owner": "tim@timniblett.net", "servingVersion": "1", "versions": ["1"], "link": {
+    "linkType": "Online",
+    "userID": 0,
+    "url": "",
+    "userName": "tim@timniblett.net",
+    "valid": true
+}, "diagrams": {
+    "markers": [
+        {
+            "id": "default",
+            "icon": "fa-star",
+            "iconColor": "white",
+            "color": "green",
+            "theme": "",
+            "shape": "square"
+        }
+    ],
+    "diagrams": []
+}, "images": [], "audioClips": [], "pages": [
+    {
+        "id": 0,
+        "title": "Home Page",
+        "guideName": "demo-guide",
+        "image": null,
+        "text": "Hello",
+        "pageLinks": [],
+        "images": [],
+        "metaData": {},
+        "etag": "8b1a9953c4611296a827abf8c47804d7",
+        "gcsURL": "/gcs/demo-guide/contents/pages/0.json"
+    }
+], "tours": [], "galleries": [], "etags": {}, "listings": [], "shop": {
+    "storeCurrency": "GBP",
+    "skus": []
+}, "editors": [
+    {
+        "id": "tim@timniblett.netdemo-guide",
+        "role": "owner",
+        "email": "tim@timniblett.net",
+        "guide": "demo-guide"
+    }
+], "configName": "config.json", "deployed": true}
