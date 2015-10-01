@@ -60,6 +60,7 @@ public class Page implements Serializable, Comparable<Page> {
     @JsonDeserialize(as=HashMultimap.class)
     private Multimap<String,Object> metaData;
     private String etag; // etag for the text
+    private String digest;
     private transient String text;
 
     public static Page parse(String s) throws IOException {
