@@ -25,7 +25,7 @@
         ]
     },
     "pages": [
-        {"id": 1, "title": "Page Title", "guideName" : "sample-guide", "imageName": "image1"}
+        {"id": 1, "title": "Page Title", "guideName" : "sample-guide", "images": ["image1"]}
     ],
     "listings": {
         "title": "title",

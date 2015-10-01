@@ -62,6 +62,8 @@ public interface IGuide extends Serializable {
     public List<Page> getPages();
     public void setPages(List<Page> pages);
 
+    public Map<String,String> getPageDigests();
+
     public Diagrams getDiagrams();
     public void setDiagrams(Diagrams maps);
 

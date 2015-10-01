@@ -80,6 +80,9 @@ public class GuideJson implements Serializable, IGuide {
     private List<Page> pages;
 
     @Getter @Setter
+    private Map<String,String> pageDigests;
+
+    @Getter @Setter
     private Diagrams diagrams;
 
     @Getter @Setter
@@ -120,6 +123,7 @@ public class GuideJson implements Serializable, IGuide {
         servingVersion = DEFAULT_VERSION;
         config = new Config();
         pages = new ArrayList<>();
+        pageDigests = new HashMap<>();
         diagrams = new Diagrams();
         images = new HashSet<>();
         audioClips = new HashSet<>();
@@ -148,6 +152,7 @@ public class GuideJson implements Serializable, IGuide {
         this.servingVersion = guide.getServingVersion();
         this.versions = Sets.newHashSet(guide.getVersions());
         this.pages = new ArrayList<>(guide.getPages());
+        this.pageDigests = new HashMap<>(guide.getPageDigests());
         this.diagrams = new Diagrams(guide.getDiagrams());
         this.images = new HashSet<>(guide.getImages());
         this.audioClips = new HashSet<>(guide.getAudioClips());

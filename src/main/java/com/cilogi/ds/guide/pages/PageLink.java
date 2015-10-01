@@ -216,6 +216,12 @@ public class PageLink implements Serializable {
         this.value = value;
     }
 
+    public PageLink(@NonNull PageLink link) {
+        this.guideName = link.guideName;
+        this.type = link.type;
+        this.value = link.value;
+    }
+
     public PageLink setGuideName(String guideName) {
         this.guideName = guideName;
         return this;

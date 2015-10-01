@@ -58,4 +58,8 @@ public class LatLng implements Serializable {
         this.lat = lat;
         this.lng = lng;
     }
+
+    public LatLng(LatLng ll) {
+        this(ll.lat, ll.lng);
+    }
 }
