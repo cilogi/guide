@@ -9,7 +9,7 @@
     <artifactId>guide</artifactId>
     <version>1.5.5</version>
     <packaging>jar</packaging>
-    <url>https://github.com/cilogi/cilogi-guide</url>
+    <url>https://github.com/cilogi/guide</url>
     <developers>
         <developer>
             <name>Tim Niblett</name>
@@ -48,14 +48,14 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.cilogi</groupId>
+            <groupId>com.cilogi</groupId>
             <artifactId>cilogi-base</artifactId>
-            <version>v1.0.2</version>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.github.cilogi</groupId>
+            <groupId>com.cilogi</groupId>
             <artifactId>qr</artifactId>
-            <version>v1.0.1</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
