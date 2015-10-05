@@ -22,6 +22,7 @@ package com.cilogi.ds.guide.pages;
 
 import com.cilogi.util.MimeTypes;
 import com.cilogi.util.path.PathUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.collect.Lists;
 import lombok.Data;
@@ -203,6 +204,7 @@ public class PageLink implements Serializable {
 
     private String guideName; // null means current guide
     private Type type;
+    private String title;
     private String value;
 
     private PageLink() {}
@@ -227,6 +229,7 @@ public class PageLink implements Serializable {
         return this;
     }
 
+    @JsonIgnore
     public boolean isExternalGuide() {
         return guideName != null;
     }
