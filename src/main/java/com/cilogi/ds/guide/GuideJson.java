@@ -219,6 +219,10 @@ public class GuideJson implements Serializable, IGuide {
         pages.add(page);
     }
 
+    public synchronized void appendPage(@NonNull Page page) {
+        pages.add(page);
+    }
+
     public String toJSONString(boolean isSafe) {
         try {
             GuideMapper mapper = new GuideMapper();

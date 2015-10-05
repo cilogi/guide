@@ -44,7 +44,7 @@ public class PageLink implements Serializable {
     static final Logger LOG = LoggerFactory.getLogger(PageLink.class);
     private static final long serialVersionUID = -4942800222362467736L;
 
-    static final Pattern EMBEDDED_LINK_PATTERN = Pattern.compile("!?\\[[^\\]]*\\]\\s*\\(([^\\)]*)\\)");
+    static final Pattern EMBEDDED_LINK_PATTERN = Pattern.compile("!?\\[([^\\]]*)\\]\\s*\\(([^\\)]*)\\)");
     static final Pattern EXTERNAL_GUIDE_PATTERN = Pattern.compile("\\s*(?:\\{([^\\}]+)\\}/)?(.+)\\s*");
 
     public static enum Type {
@@ -84,11 +84,14 @@ public class PageLink implements Serializable {
     }
 
     public static List<PageLink> pageLinks(@NonNull String text) {
-        List<String> links = links(text);
+        List<LinkInfo> links = links(text);
         List<PageLink> out = Lists.newArrayList();
-        for (String link: links) {
-            PageLink pageLink = text2link(link);
-            if (link != null) {
+        for (LinkInfo link: links) {
+            PageLink pageLink = text2link(link.getUrl());
+            if (pageLink != null) {
+                if (pageLink.type == Type.url) {
+                    pageLink.setTitle(link.getAlt());
+                }
                 out.add(pageLink);
             } else {
                 LOG.warn("Can't parse " + link + " as a page link");
@@ -110,35 +113,45 @@ public class PageLink implements Serializable {
 
 
     public static List<PageLink> iPageLinks(@NonNull String text) {
-        List<String> links = links(text);
+        List<LinkInfo> links = links(text);
         List<PageLink> out = Lists.newArrayList();
-        for (String link: links) {
-            String name = PathUtil.name(link);
-            if (MimeTypes.isImageMimeType(MimeTypes.getMimeTypeFromPath(link))) {
-                out.add(new PageLink(image, name));
-            } else if (MimeTypes.isAudioMimeType(MimeTypes.getMimeTypeFromPath(link))) {
-                out.add(new PageLink(audio, name));
+        for (LinkInfo link: links) {
+            String url = link.getUrl();
+            String name = PathUtil.name(url);
+            if (MimeTypes.isImageMimeType(MimeTypes.getMimeTypeFromPath(url))) {
+                PageLink pageLink = new PageLink(image, name);
+                pageLink.setTitle(link.getAlt());
+                out.add(pageLink);
+            } else if (MimeTypes.isAudioMimeType(MimeTypes.getMimeTypeFromPath(url))) {
+                PageLink pageLink = new PageLink(audio, name);
+                pageLink.setTitle(link.getAlt());
+                out.add(pageLink);
             } else {
-                Matcher m = EXTERNAL_GUIDE_PATTERN.matcher(link);
+                Matcher m = EXTERNAL_GUIDE_PATTERN.matcher(url);
                 boolean ok = m.matches();
                 int count = m.groupCount();
                 String guideName = m.group(1);
                 String local = m.group(2);
                 Type type = iPath(local);
 
-                String value =  (type == url) ? local : ( type.stripExtension() ? PathUtil.changeExtension(name, "") : name);
-                out.add(new PageLink(type, value).setGuideName(guideName));
+                String value;
+                if (type == Type.url) {
+                    value = local;
+                } else {
+                    value = type.stripExtension() ? PathUtil.changeExtension(name, "") : name;
+                }
+                PageLink pageLink = new PageLink(new PageLink(type, value));
+                out.add(pageLink.setGuideName(guideName).setTitle(link.getAlt()));
             }
-
         }
         return out;
     }
 
-    public static List<String> links(@NonNull String text) {
-        List<String> out = Lists.newArrayList();
+    public static List<LinkInfo> links(@NonNull String text) {
+        List<LinkInfo> out = Lists.newArrayList();
         Matcher m = EMBEDDED_LINK_PATTERN.matcher(text);
         while (m.find()) {
-            out.add(m.group(1));
+            out.add(new LinkInfo(m.group(1), m.group(2)));
         }
         return out;
     }
@@ -245,6 +258,23 @@ public class PageLink implements Serializable {
             return path + "." + extension;
         } else {
             return path.substring(0, idx) + "." + extension;
+        }
+    }
+
+    public PageLink setTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
+
+    @Data
+    private static class LinkInfo {
+        private String alt;
+        private String url;
+        LinkInfo() {}
+        LinkInfo(String alt, String url) {
+            this.alt = alt;
+            this.url = url;
         }
     }
 }
