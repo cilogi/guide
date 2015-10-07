@@ -40,6 +40,7 @@ import lombok.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 
@@ -127,7 +128,7 @@ public class GuideJson implements Serializable, IGuide {
         servingVersion = DEFAULT_VERSION;
         config = new Config();
         pages = new ArrayList<>();
-        pageDigests = new HashMap<>();
+        pageDigests = new ConcurrentHashMap<>();
         diagrams = new Diagrams();
         images = Sets.newConcurrentHashSet();
         audioClips = Sets.newConcurrentHashSet();
@@ -157,7 +158,7 @@ public class GuideJson implements Serializable, IGuide {
         this.servingVersion = guide.getServingVersion();
         this.versions = Sets.newHashSet(guide.getVersions());
         this.pages = new ArrayList<>(guide.getPages());
-        this.pageDigests = new HashMap<>(guide.getPageDigests());
+        this.pageDigests = new ConcurrentHashMap<>(guide.getPageDigests());
         this.diagrams = new Diagrams(guide.getDiagrams());
         this.images = Sets.newConcurrentHashSet(guide.getImages());
         this.audioClips = Sets.newConcurrentHashSet(guide.getAudioClips());
@@ -199,8 +200,7 @@ public class GuideJson implements Serializable, IGuide {
     }
 
     public GuideJson safe() {
-        GuideJson copy = new GuideJson(this);
-        return copy;
+        return new GuideJson(this);
     }
 
     public String toJSONString() {
