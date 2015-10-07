@@ -97,9 +97,10 @@ public interface IGuide extends Serializable {
     public String toJSONString();
 
     public Page findPage(int pageId);
+
     public void updatePage(Page page);
 
-
+    public int getSequenceIndex();
 
     public String toJSONString(boolean isSafe);
 

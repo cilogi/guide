@@ -29,6 +29,7 @@ import com.cilogi.ds.guide.media.GuideImage;
 import com.cilogi.ds.guide.pages.Page;
 import com.cilogi.ds.guide.shop.Shop;
 import com.cilogi.ds.guide.tours.Tour;
+import com.cilogi.util.path.PathUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -106,6 +107,9 @@ public class GuideJson implements Serializable, IGuide {
     @Getter @Setter
     private Shop shop;
 
+    @Getter @Setter
+    private int sequenceIndex;
+
     public static GuideJson fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -125,12 +129,13 @@ public class GuideJson implements Serializable, IGuide {
         pages = new ArrayList<>();
         pageDigests = new HashMap<>();
         diagrams = new Diagrams();
-        images = new HashSet<>();
-        audioClips = new HashSet<>();
+        images = Sets.newConcurrentHashSet();
+        audioClips = Sets.newConcurrentHashSet();
         tours = new ArrayList<>();
         galleries = new ArrayList<>();
         listings = new ArrayList<>();
         etags = new java.util.HashMap<>();
+        sequenceIndex = 1;
     }
 
     public GuideJson(@NonNull String name, @NonNull String owner) {
@@ -154,8 +159,8 @@ public class GuideJson implements Serializable, IGuide {
         this.pages = new ArrayList<>(guide.getPages());
         this.pageDigests = new HashMap<>(guide.getPageDigests());
         this.diagrams = new Diagrams(guide.getDiagrams());
-        this.images = new HashSet<>(guide.getImages());
-        this.audioClips = new HashSet<>(guide.getAudioClips());
+        this.images = Sets.newConcurrentHashSet(guide.getImages());
+        this.audioClips = Sets.newConcurrentHashSet(guide.getAudioClips());
         this.tours = new ArrayList<>(guide.getTours());
         this.galleries = new ArrayList<>(guide.getGalleries());
         this.listings = new ArrayList<>(guide.getListings());
@@ -167,6 +172,7 @@ public class GuideJson implements Serializable, IGuide {
         }
 
         this.shop = (guide.getShop() == null) ? null : new Shop(guide.getShop());
+        this.sequenceIndex = guide.getSequenceIndex();
     }
 
     /**
@@ -217,6 +223,30 @@ public class GuideJson implements Serializable, IGuide {
            pages.remove(already);
         }
         pages.add(page);
+    }
+
+    public synchronized boolean setImageDigest(String imageName, String digest) {
+        String imageId = PathUtil.name(imageName);
+        Set<GuideImage> images = getImages();
+        for (GuideImage image : images) {
+            if (imageId.equals(image.getId())) {
+                image.setDigest(digest);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public synchronized boolean setAudioDigest(String audioName, String digest) {
+        String imageId = PathUtil.name(audioName);
+        Set<GuideAudio> audios = getAudioClips();
+        for (GuideAudio audio : audios) {
+            if (imageId.equals(audio.getId())) {
+                audio.setDigest(digest);
+                return true;
+            }
+        }
+        return false;
     }
 
     public synchronized void appendPage(@NonNull Page page) {
