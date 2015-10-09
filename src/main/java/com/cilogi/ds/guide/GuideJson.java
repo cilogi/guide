@@ -225,12 +225,15 @@ public class GuideJson implements Serializable, IGuide {
         pages.add(page);
     }
 
-    public synchronized boolean setImageDigest(String imageName, String digest) {
+    public synchronized boolean setImageDigest(String imageName, int width, int height, String digest) {
         String imageId = PathUtil.name(imageName);
         Set<GuideImage> images = getImages();
         for (GuideImage image : images) {
             if (imageId.equals(image.getId())) {
-                image.setDigest(digest);
+                image.setDigest(digest)
+                     .setWidth(width)
+                     .setHeight(height)
+                     .setUrl(imageName);
                 return true;
             }
         }
@@ -238,11 +241,12 @@ public class GuideJson implements Serializable, IGuide {
     }
 
     public synchronized boolean setAudioDigest(String audioName, String digest) {
-        String imageId = PathUtil.name(audioName);
+        String audioId = PathUtil.name(audioName);
         Set<GuideAudio> audios = getAudioClips();
         for (GuideAudio audio : audios) {
-            if (imageId.equals(audio.getId())) {
-                audio.setDigest(digest);
+            if (audioId.equals(audio.getId())) {
+                audio.setDigest(digest)
+                     .setUrl(audioName);
                 return true;
             }
         }

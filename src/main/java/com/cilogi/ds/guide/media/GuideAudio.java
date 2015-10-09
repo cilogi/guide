@@ -45,6 +45,7 @@ public class GuideAudio implements Serializable {
     private static final long serialVersionUID = -3642718837956551455L;
 
     private String id;
+    private String url;
     private String title;
     private String description;
     private int duration;

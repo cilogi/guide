@@ -45,6 +45,7 @@ public class GuideImage implements Serializable {
     private static final long serialVersionUID = -8735763701383324241L;
 
     private String id;
+    private String url;
     private String guideName;
     private String title;
     private String description;
