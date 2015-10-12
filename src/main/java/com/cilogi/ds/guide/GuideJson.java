@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide;
 
+import com.cilogi.ds.guide.compile.CompileInfo;
 import com.cilogi.ds.guide.diagrams.Diagrams;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.galleries.Gallery;
@@ -111,6 +112,9 @@ public class GuideJson implements Serializable, IGuide {
     @Getter @Setter
     private int sequenceIndex;
 
+    @Getter @Setter
+    private CompileInfo compileInfo;
+
     public static GuideJson fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -174,6 +178,7 @@ public class GuideJson implements Serializable, IGuide {
 
         this.shop = (guide.getShop() == null) ? null : new Shop(guide.getShop());
         this.sequenceIndex = guide.getSequenceIndex();
+        this.compileInfo = (guide.getCompileInfo() == null) ? null : new CompileInfo(guide.getCompileInfo());
     }
 
     /**

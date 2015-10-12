@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide;
 
+import com.cilogi.ds.guide.compile.CompileInfo;
 import com.cilogi.ds.guide.diagrams.Diagrams;
 import com.cilogi.ds.guide.galleries.Gallery;
 import com.cilogi.ds.guide.links.Link;
@@ -101,6 +102,8 @@ public interface IGuide extends Serializable {
     public void updatePage(Page page);
 
     public int getSequenceIndex();
+
+    public CompileInfo getCompileInfo();
 
     public String toJSONString(boolean isSafe);
 

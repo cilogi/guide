@@ -444,5 +444,8 @@
                 }
             ]
         }
-    ]
+    ],
+    "compileInfo": {
+        "user": "user", "tag": "tag", "token": "token"
+    }
 }
