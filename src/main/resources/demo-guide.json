@@ -445,7 +445,7 @@
             ]
         }
     ],
-    "compileInfo": {
+    "compileAuth": {
         "user": "user", "tag": "tag", "token": "token"
     }
 }

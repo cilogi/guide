@@ -46,15 +46,15 @@ public class TestCompileInfo {
 
     @Test
     public void testCopy() throws IOException {
-        CompileInfo info = new CompileInfo()
+        CompileAuth info = new CompileAuth()
                 .setTag("tag")
                 .setUser("user")
                 .setToken("token");
 
-        CompileInfo copy = new CompileInfo(info);
+        CompileAuth copy = new CompileAuth(info);
         assertEquals(info, copy);
 
-        CompileInfo json = new GuideMapper().readValue(new GuideMapper().writeValueAsString(copy), CompileInfo.class);
+        CompileAuth json = new GuideMapper().readValue(new GuideMapper().writeValueAsString(copy), CompileAuth.class);
         assertEquals(info, json);
     }
 }

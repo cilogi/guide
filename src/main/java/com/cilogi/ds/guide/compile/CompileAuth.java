@@ -22,8 +22,6 @@ package com.cilogi.ds.guide.compile;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,18 +31,18 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Accessors(chain=true)
-public class CompileInfo implements Serializable {
+public class CompileAuth implements Serializable {
     @SuppressWarnings("unused")
-    static final Logger LOG = LoggerFactory.getLogger(CompileInfo.class);
+    static final Logger LOG = LoggerFactory.getLogger(CompileAuth.class);
     private static final long serialVersionUID = -1280464684850425442L;
 
     private String user;
     private String token;
     private String tag;
 
-    public CompileInfo() {}
+    public CompileAuth() {}
 
-    public CompileInfo(CompileInfo info) {
+    public CompileAuth(CompileAuth info) {
         this.user = info.user;
         this.token = info.token;
         this.tag = info.tag;
