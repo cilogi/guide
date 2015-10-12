@@ -38,6 +38,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.google.common.collect.Sets;
 import lombok.*;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
@@ -230,19 +231,21 @@ public class GuideJson implements Serializable, IGuide {
         pages.add(page);
     }
 
-    public synchronized boolean setImageDigest(String imageName, int width, int height, String digest) {
+    public synchronized GuideImage guideImageFor(String imageName) {
         String imageId = PathUtil.name(imageName);
         Set<GuideImage> images = getImages();
         for (GuideImage image : images) {
             if (imageId.equals(image.getId())) {
-                image.setDigest(digest)
-                     .setWidth(width)
-                     .setHeight(height)
-                     .setUrl(imageName);
-                return true;
+                return image;
             }
         }
-        return false;
+        return null;
+    }
+
+    public synchronized void setGuideImageDigest(GuideImage guideImage, int width, int height, String digest) {
+        guideImage.setDigest(digest)
+                  .setWidth(width)
+                  .setHeight(height);
     }
 
     public synchronized boolean setAudioDigest(String audioName, String digest) {
