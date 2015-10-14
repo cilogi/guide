@@ -242,6 +242,17 @@ public class GuideJson implements Serializable, IGuide {
         return null;
     }
 
+    public synchronized GuideAudio guideAudioFor(String audioName) {
+        String audioId = PathUtil.name(audioName);
+        Set<GuideAudio> audioClips = getAudioClips();
+        for (GuideAudio audioClip : audioClips) {
+            if (audioId.equals(audioClip.getId())) {
+                return audioClip;
+            }
+        }
+        return null;
+    }
+
     public synchronized void setGuideImageDigest(GuideImage guideImage, int width, int height, String digest) {
         guideImage.setDigest(digest)
                   .setWidth(width)
