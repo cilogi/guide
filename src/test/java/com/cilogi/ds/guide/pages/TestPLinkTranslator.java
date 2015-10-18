@@ -73,10 +73,9 @@ public class TestPLinkTranslator {
     public void testNoPath() {
         PLinkTranslator translator = new PLinkTranslator();
         try {
-            translator.translate("../../ref1", "hello.txt");
-            fail("Should be null pointer exception");
+            assertEquals("../../ref1", translator.translate("../../ref1", "hello.txt"));
         } catch (Exception e) {
-            // ok
+            fail("Should be null exception");
         }
     }
 

@@ -64,7 +64,7 @@ public class PLinkTranslator {
 
         String path = new PathBetween(sourcePath, href).computeFullPathForTo();
 
-        if (oracle.pathExists(path)) {
+        if (oracle.pathExists(path) || path == null) {
             // leave the reference alone if it actually points to something
             return href + hash;
         } else {
