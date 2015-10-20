@@ -30,10 +30,10 @@ import javax.vecmath.Point2d;
 import java.io.IOException;
 
 
-public class Point2dSerializer extends JsonSerializer<Point2d> {
+class Point2dSerializer extends JsonSerializer<Point2d> {
     static final Logger LOG = LoggerFactory.getLogger(Point2dSerializer.class);
 
-    public Point2dSerializer() {
+    Point2dSerializer() {
     }
 
     public void serialize(Point2d p, JsonGenerator gen, SerializerProvider provider)

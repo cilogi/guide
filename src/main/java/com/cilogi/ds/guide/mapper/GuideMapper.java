@@ -39,10 +39,16 @@ public class GuideMapper extends ObjectMapper {
     public GuideMapper() {
         SimpleModule module = new SimpleModule();
         module.addSerializer(BigDecimal.class, new ToStringSerializer());
+
         module.addSerializer(Point2d.class, new Point2dSerializer());
         module.addDeserializer(Point2d.class, new Point2dDeserializer());
+
         module.addSerializer(LatLng.class, new LatLngSerializer());
         module.addDeserializer(LatLng.class, new LatLngDeserializer());
+
+        module.addSerializer(Location.class, new LocationSerializer());
+        module.addDeserializer(Location.class, new LocationDeserializer());
+
         registerModule(module);
         registerModule(new GuavaModule());
         setVisibility(getVisibilityChecker().withFieldVisibility(JsonAutoDetect.Visibility.ANY));

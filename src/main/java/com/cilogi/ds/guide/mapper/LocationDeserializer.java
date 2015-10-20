@@ -1,6 +1,6 @@
 // Copyright (c) 2015 Cilogi. All Rights Reserved.
 //
-// File:        LatLngDeserializer.java  (26/02/15)
+// File:        LocationDeserializer.java  (20/10/15)
 // Author:      tim
 //
 // Copyright in the whole and every part of this source file belongs to
@@ -24,21 +24,38 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.NumericNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.vecmath.Point2d;
 import java.io.IOException;
 
 
-class LatLngDeserializer extends JsonDeserializer<LatLng> {
+public class LocationDeserializer  extends JsonDeserializer<Location> {
+    @SuppressWarnings("unused")
+    static final Logger LOG = LoggerFactory.getLogger(LocationDeserializer.class);
 
-    LatLngDeserializer() {}
+    public LocationDeserializer() {
+
+    }
 
     @Override
-    public LatLng deserialize(JsonParser jp, DeserializationContext _any)
+    public Location deserialize(JsonParser jp, DeserializationContext _any)
             throws IOException {
         TreeNode node = jp.getCodec().readTree(jp);
-        double lat = ((NumericNode) node.get(0)).doubleValue();
-        double lng = ((NumericNode) node.get(1)).doubleValue();
-        return new LatLng(lat, lng);
+        if (node.size() == 3) {
+            String image = ((JsonNode) node.get(0)).asText();
+            double x = ((NumericNode) node.get(1)).doubleValue();
+            double y = ((NumericNode) node.get(2)).doubleValue();
+            return new Location(image, x, y);
+        } else if (node.size() == 2) {
+            double x = ((NumericNode) node.get(0)).doubleValue();
+            double y = ((NumericNode) node.get(1)).doubleValue();
+            return new Location(x, y);
+        } else {
+            return null;
+        }
     }
 }

@@ -32,10 +32,10 @@ import javax.vecmath.Point2d;
 import java.io.IOException;
 
 
-public class Point2dDeserializer extends JsonDeserializer<Point2d> {
+class Point2dDeserializer extends JsonDeserializer<Point2d> {
     static final Logger LOG = LoggerFactory.getLogger(Point2dDeserializer.class);
 
-    public Point2dDeserializer() {
+    Point2dDeserializer() {
     }
 
     @Override

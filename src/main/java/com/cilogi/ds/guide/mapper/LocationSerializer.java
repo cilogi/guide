@@ -1,6 +1,6 @@
 // Copyright (c) 2015 Cilogi. All Rights Reserved.
 //
-// File:        LatLngDeserializer.java  (26/02/15)
+// File:        LocationSerializer.java  (20/10/15)
 // Author:      tim
 //
 // Copyright in the whole and every part of this source file belongs to
@@ -20,25 +20,31 @@
 
 package com.cilogi.ds.guide.mapper;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.TreeNode;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.node.NumericNode;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 
-class LatLngDeserializer extends JsonDeserializer<LatLng> {
+public class LocationSerializer  extends JsonSerializer<Location> {
+    @SuppressWarnings("unused")
+    static final Logger LOG = LoggerFactory.getLogger(LocationSerializer.class);
 
-    LatLngDeserializer() {}
+    public LocationSerializer() {
 
-    @Override
-    public LatLng deserialize(JsonParser jp, DeserializationContext _any)
+    }
+
+    public void serialize(Location location, JsonGenerator gen, SerializerProvider provider)
             throws IOException {
-        TreeNode node = jp.getCodec().readTree(jp);
-        double lat = ((NumericNode) node.get(0)).doubleValue();
-        double lng = ((NumericNode) node.get(1)).doubleValue();
-        return new LatLng(lat, lng);
+        gen.writeStartArray();
+        if (location.getImage() != null) {
+            gen.writeString(location.getImage());
+        }
+        gen.writeNumber(location.getX());
+        gen.writeNumber(location.getY());
+        gen.writeEndArray();
     }
 }
