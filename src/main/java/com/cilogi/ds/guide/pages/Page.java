@@ -181,6 +181,16 @@ public class Page implements Serializable, Comparable<Page> {
         this.text = text;
     }
 
+    @JsonIgnore
+    public LatLng getLatLng() {
+        Location loc = getLocation();
+        return (loc == null) ? null : loc.asLatLng();
+    }
+
+    public void setLatLng(LatLng latLng) {
+        setLocation(new Location(latLng.getLat(), latLng.getLng()));
+    }
+
     public static String computeEtag(String text) {
         return (text == null) ? null : Digest.digestHex(text, Digest.Algorithm.MD5);
     }
