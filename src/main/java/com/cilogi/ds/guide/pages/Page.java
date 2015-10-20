@@ -22,6 +22,7 @@ package com.cilogi.ds.guide.pages;
 
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.LatLng;
+import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.ds.guide.tours.PageRef;
 import com.cilogi.util.Digest;
 import com.cilogi.util.MetaUtil;
@@ -55,7 +56,7 @@ public class Page implements Serializable, Comparable<Page> {
     private String guideName;
     private List<String> images;
     private String url;
-    private LatLng latlng;
+    private Location location;
     private List<PageLink> pageLinks;
     @JsonDeserialize(as=HashMultimap.class)
     private Multimap<String,Object> metaData;
