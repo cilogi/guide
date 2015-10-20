@@ -83,4 +83,17 @@ public class Location {
     public LatLng asLatLng() {
         return new LatLng(x, y);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("Location(");
+        if (getImage() != null) {
+            builder.append(getImage()).append(",");
+        }
+        builder.append(x)
+            .append(",")
+            .append(y)
+            .append(")");
+        return builder.toString();
+    }
 }
