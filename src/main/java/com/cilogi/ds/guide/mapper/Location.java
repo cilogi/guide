@@ -40,6 +40,24 @@ public class Location {
     private final double x;
     private final double y;
 
+
+    public static Location parseComma(String s) {
+        String[] sub = s.trim().split(",");
+        if (sub.length == 3) {
+            return new Location(sub[0].trim(), Double.parseDouble(sub[1]), Double.parseDouble(sub[2]));
+        } else if (sub.length == 2) {
+            try {
+                return new Location(Double.parseDouble(sub[0]), Double.parseDouble(sub[1]));
+            } catch (NumberFormatException e) {
+                LOG.info("Can't parse " + s + " as latlng");
+                return null;
+            }
+        } else {
+            LOG.info("Can't parse " + s + " as location");
+            return null;
+        }
+    }
+
     @JsonCreator
     public Location(@JsonProperty("image") String image, @JsonProperty("x") double x, @JsonProperty("y") double y) {
         this.image = image;
