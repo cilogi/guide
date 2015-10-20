@@ -41,7 +41,7 @@ public class Location {
     private final double y;
 
 
-    public static Location parseComma(String s) {
+    public static Location parse(String s) {
         String[] sub = s.trim().split(",");
         if (sub.length == 3) {
             return new Location(sub[0].trim(), Double.parseDouble(sub[1]), Double.parseDouble(sub[2]));

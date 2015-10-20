@@ -43,7 +43,7 @@ public class TestLocation {
 
     @Test
     public void testParseAsLatLng() {
-        Location val = Location.parseComma("55.882611,-4.289905");
+        Location val = Location.parse("55.882611,-4.289905");
         assertNotNull(val);
         assertEquals(val.getX(), 55.882611, 1e-8);
         assertEquals(val.getY(), -4.289905, 1e-8);
@@ -51,7 +51,7 @@ public class TestLocation {
 
     @Test
     public void testParseAsLocation() {
-        Location val = Location.parseComma("fred.jpg , 45, 55");
+        Location val = Location.parse("fred.jpg , 45, 55");
         assertNotNull(val);
         assertEquals("fred.jpg", val.getImage());
         assertEquals(val.getX(), 45, 1e-8);
