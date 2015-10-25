@@ -70,4 +70,9 @@ public class TourStop implements Serializable {
     public PageRef getPageRef() {
         return new PageRef(id);
     }
+
+    @JsonIgnore
+    public void setPageRef(@NonNull PageRef ref) {
+        setId(ref.toId());
+    }
 }

@@ -20,8 +20,9 @@
 
 package com.cilogi.ds.guide;
 
-import com.cilogi.ds.guide.links.Link;
-import com.cilogi.ds.guide.links.LinkType;
+
+import com.cilogi.ds.guide.tours.PageRef;
+import com.cilogi.ds.guide.tours.Tour;
 import com.cilogi.util.IOUtil;
 import com.cilogi.util.Pickle;
 import com.google.common.collect.Sets;
@@ -34,8 +35,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class TestGuide {
     @SuppressWarnings({"unused"})
@@ -109,5 +109,32 @@ public class TestGuide {
     public void testFail() throws IOException, ClassNotFoundException {
         GuideJson guide = GuideJson.fromJSON(IOUtil.loadStringUTF8(getClass().getResource("demo-fail.json")));
         assertEquals("demo-guide", guide.getName());
+    }
+
+    @Test
+    public void testExportTour() throws IOException, ClassNotFoundException {
+        GuideJson guide = GuideJson.fromJSON(IOUtil.loadStringUTF8(getClass().getResource("/demo-guide.json")));
+        assertEquals("demo-guide", guide.getName());
+        Tour tour = guide.findTour("botanics-trail");
+        assertNotNull(tour);
+        Tour export = guide.exportTour("botanics-trail");
+        assertEquals(4, export.getStops().size());
+        assertEquals("demo-guide/204", export.getStops().get(0).getId());
+    }
+
+    @Test
+    public void testImportTour() throws IOException, ClassNotFoundException {
+        GuideJson guide = GuideJson.fromJSON(IOUtil.loadStringUTF8(getClass().getResource("/demo-guide.json")));
+        assertEquals("demo-guide", guide.getName());
+        Tour tour = guide.findTour("botanics-trail");
+        Tour copy = new Tour(tour);
+        copy.setId("copy");
+        copy.getStops().get(0).setPageRef(new PageRef("other_guide", 204));
+        copy.getStops().get(1).setPageRef(new PageRef("demo-guide", 1));
+
+        Tour imported = guide.importTour(copy);
+        assertEquals(2, guide.getTours().size());
+        assertEquals(new PageRef("other_guide", 204), imported.getStops().get(0).getPageRef());
+        assertEquals(new PageRef("", 1), imported.getStops().get(1).getPageRef());
     }
 }

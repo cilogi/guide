@@ -415,17 +415,17 @@
             "title": "The Botanics Trail",
             "stops": [
                 {
-                    "id": "demo-guide/204",
+                    "id": "204",
                     "intro": "The tour starts at the Curator's House. The complete tour will take about 90 minutes"
                 },
                 {
-                    "id": "demo-guide/1"
+                    "id": "1"
                 },
                 {
-                    "id": "demo-guide/2"
+                    "id": "2"
                 },
                 {
-                    "id": "demo-guide/3",
+                    "id": "3",
                     "intro": "This is where the tour ends.  We hope you've enjoyed it"
                 }
             ]

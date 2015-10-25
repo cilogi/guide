@@ -29,7 +29,9 @@ import com.cilogi.ds.guide.media.GuideAudio;
 import com.cilogi.ds.guide.media.GuideImage;
 import com.cilogi.ds.guide.pages.Page;
 import com.cilogi.ds.guide.shop.Shop;
+import com.cilogi.ds.guide.tours.PageRef;
 import com.cilogi.ds.guide.tours.Tour;
+import com.cilogi.ds.guide.tours.TourStop;
 import com.cilogi.util.path.PathUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -38,7 +40,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.google.common.collect.Sets;
 import lombok.*;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
@@ -144,7 +145,7 @@ public class GuideJson implements Serializable, IGuide {
         sequenceIndex = 1;
     }
 
-    public GuideJson(@NonNull String name, @NonNull String owner) {
+    public GuideJson(@NonNull String name, String owner) {
         this();
         this.name = name;
         setTitle(name);
@@ -211,6 +212,70 @@ public class GuideJson implements Serializable, IGuide {
 
     public String toJSONString() {
        return toJSONString(false);
+    }
+
+    public Set<String> tourNames() {
+        List<Tour> tours = getTours();
+        Set<String> names = new HashSet<>();
+        for (Tour tour : tours) {
+            names.add(tour.getId());
+        }
+        return names;
+    }
+
+    /**
+     * Export named tour
+     * @param name  The name of the tour
+     * @return  null if there is no tour of that name, else the tour with stops prefixed with the guide
+     * name, so that the tour can be imported without change into other guides.
+     */
+    public Tour exportTour(@NonNull String name) {
+        Tour tour = findTour(name);
+        if (tour == null) {
+            return null;
+        } else {
+            Tour out = new Tour(tour);
+            for (TourStop stop : out.getStops()) {
+                PageRef pageRef = stop.getPageRef();
+                if (!pageRef.isExternal()) {
+                    stop.setPageRef(new PageRef(getName(), pageRef.getPageIndex()));
+                }
+            }
+            return out;
+        }
+    }
+
+    /**
+     * Import tour into guide
+     * @param tourToImport The tour
+     * @return  The imported tour, where stops that are in this guide get converted to be local
+     */
+    public Tour importTour(@NonNull Tour tourToImport) {
+        Tour tour = new Tour(tourToImport);
+
+        Tour current = findTour(tour.getId());
+        if (current != null) {
+            getTours().remove(current);
+        }
+
+        String guideName = getName();
+        for (TourStop stop : tour.getStops()) {
+            PageRef ref = stop.getPageRef();
+            if (ref.isExternal() && guideName.equals(ref.getGuideName())) {
+                stop.setPageRef(new PageRef("", ref.getPageIndex()));
+            }
+        }
+        getTours().add(tour);
+        return tour;
+    }
+
+    public Tour findTour(@NonNull String name) {
+        for (Tour tour : tours) {
+            if (name.equals(tour.getId())) {
+                return tour;
+            }
+        }
+        return null;
     }
 
     public Page findPage(int pageId) {

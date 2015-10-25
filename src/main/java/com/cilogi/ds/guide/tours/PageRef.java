@@ -41,7 +41,7 @@ public class PageRef implements Serializable {
 
     private PageRef() {
         guideName = "";
-        pageIndex = 0;
+        pageIndex = -1;
     }
 
     public PageRef(@NonNull String address) {
@@ -57,7 +57,7 @@ public class PageRef implements Serializable {
             }
         } else {
             guideName = "";
-            pageIndex = 0;
+            pageIndex = -1;
         }
     }
 
@@ -69,6 +69,16 @@ public class PageRef implements Serializable {
     @JsonIgnore
     public boolean isCompatibleGuide(@NonNull String name) {
         return "".equals(guideName) || guideName.equals(name);
+    }
+
+    @JsonIgnore
+    public boolean isValid() {
+        return getPageIndex() != -1;
+    }
+
+    @JsonIgnore
+    public boolean isExternal() {
+        return !"".equals(getGuideName());
     }
 
     public String toId() {
