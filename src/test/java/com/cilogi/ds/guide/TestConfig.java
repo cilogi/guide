@@ -31,6 +31,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class TestConfig {
     static final Logger LOG = LoggerFactory.getLogger(TestConfig.class);
@@ -50,7 +51,7 @@ public class TestConfig {
         String out = config.toJSONString();
         Config back = Config.fromJSON(out);
         assertEquals(config, back);
-        assertFalse(config.isShared());
+        assertTrue(config.isShared());
     }
 
     @Test
