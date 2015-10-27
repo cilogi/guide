@@ -94,7 +94,7 @@ public class Config implements Serializable {
     public Config() {
         title = "";
         description = "";
-        shared = false;
+        shared = true;
         blogs = Lists.newArrayList("blogs/");
         theme = "jqm";
         analyticsKey = "";
