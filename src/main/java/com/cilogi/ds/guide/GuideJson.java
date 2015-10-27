@@ -197,6 +197,12 @@ public class GuideJson implements Serializable, IGuide {
         return servingVersion != null;
     }
 
+    @JsonIgnore
+    public boolean isShared() {
+        Config config = getConfig();
+        return (config == null) ? false : config.isShared();
+    }
+
     public String getTitle() {
         return (title == null) ? name : title;
     }
