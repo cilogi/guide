@@ -293,6 +293,16 @@ public class GuideJson implements Serializable, IGuide {
         return null;
     }
 
+    public GuideImage findImage(@NonNull String name) {
+        Set<GuideImage> images = getImages();
+        for (GuideImage image : images) {
+            if (name.equals(image.getId())) {
+                return image;
+            }
+        }
+        return null;
+    }
+
     public void updatePage(@NonNull Page page) {
         int id = page.getId();
         Page already = findPage(id);
