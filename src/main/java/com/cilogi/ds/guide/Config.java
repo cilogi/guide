@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide;
 
+import com.cilogi.ds.guide.diagrams.MapDescription;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.LatLng;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -75,7 +76,7 @@ public class Config implements Serializable {
     /* List of URLs for which you want list view */
     private List<String> listview;
     /* Create a default map containing all the geo-located items */
-    private boolean defaultMap;
+    private MapDescription mapDescription;
 
     /* Permissions */
     private Permissions permissions;
@@ -112,6 +113,7 @@ public class Config implements Serializable {
         compile = new Compile();
         filesize = new FileSize();
         imageDisplay = IMAGE_DISPLAY_CONTAIN;
+        mapDescription = null;
     }
 
     public Config(Config config) {
@@ -134,6 +136,7 @@ public class Config implements Serializable {
         this.compile = new Compile(config.compile);
         this.filesize = new FileSize(config.filesize);
         this.imageDisplay = config.imageDisplay;
+        this.mapDescription = config.mapDescription;
     }
 
     @Data

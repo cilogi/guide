@@ -28,6 +28,12 @@
         "filesize": {
             "max": 120,
             "except": ["*.html", "scripts/*", "styles/*"]
+        },
+        "mapDescription": {
+            "title": "title",
+            "tl": [55, 44],
+            "br": [77, 66],
+            "center": [66,55]
         }
     },
     "shop": {
