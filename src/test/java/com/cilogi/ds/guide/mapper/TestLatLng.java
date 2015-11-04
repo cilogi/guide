@@ -26,6 +26,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class TestLatLng {
@@ -47,5 +51,19 @@ public class TestLatLng {
         assertNotNull(val);
         assertEquals(val.getLat(), 55.882611, 1e-8);
         assertEquals(val.getLng(), -4.289905, 1e-8);
+    }
+
+    @Test
+    public void testBounds() {
+        List<LatLng> list = Arrays.asList(
+                new LatLng[]{new LatLng(55, -4), new LatLng(57, -6)}
+        );
+        LatLng.Bounds bounds = LatLng.bounds(list);
+        LatLng tl = bounds.getTl();
+        LatLng br = bounds.getBr();
+        assertEquals(57, tl.getLat(), 1e-8);
+        assertEquals(-6, tl.getLng(), 1e-8);
+        assertEquals(55, br.getLat(), 1e-8);
+        assertEquals(-4, br.getLng(), 1e-8);
     }
 }
