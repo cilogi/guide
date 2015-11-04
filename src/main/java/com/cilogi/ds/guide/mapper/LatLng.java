@@ -73,6 +73,10 @@ public class LatLng implements Serializable {
         this(ll.lat, ll.lng);
     }
 
+    public boolean isInfinite() {
+        return Double.isInfinite(lat) || Double.isInfinite(lng);
+    }
+
 
     public static class Bounds {
         @Getter
