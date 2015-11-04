@@ -37,7 +37,7 @@ import java.io.Serializable;
 import java.util.*;
 
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Data
 public class Config implements Serializable {
     @SuppressWarnings("unused")
@@ -74,6 +74,9 @@ public class Config implements Serializable {
     private boolean showKeypad;
     /* List of URLs for which you want list view */
     private List<String> listview;
+    /* Create a default map containing all the geo-located items */
+    private boolean defaultMap;
+
     /* Permissions */
     private Permissions permissions;
     private Map<String,String> templates;
