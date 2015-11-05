@@ -2,6 +2,7 @@
     "guideSpecVersion": "1",
     "name": "demo-guide",
     "title": "Demo Guide",
+    "mapTitle": "Map Title",
     "owner": "tim@timniblett.net",
     "servingVersion": "1",
     "latlng": [55.879813,-4.291162],

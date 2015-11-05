@@ -48,6 +48,7 @@ public class Config implements Serializable {
     public static String IMAGE_DISPLAY_COVER = "image-display:cover";
     public static String IMAGE_DISPLAY_CONTAIN = "image-display:contain";
 
+    /** Title of the map */
     private String title;
     /** Description of the guide.  Goes to its meta-data. */
     private String description;
@@ -69,6 +70,8 @@ public class Config implements Serializable {
     private String uiTheme;
     /* Email address to contact */
     private String email;
+    /* Heading on map popups */
+    private String mapTitle;
     /* Tour to use by default (can be null) */
     private String defaultTour;
     /* Provide keypad access to items by index 8? */
@@ -137,6 +140,7 @@ public class Config implements Serializable {
         this.filesize = new FileSize(config.filesize);
         this.imageDisplay = config.imageDisplay;
         this.mapDescription = config.mapDescription;
+        this.mapTitle = config.mapTitle;
     }
 
     @Data
