@@ -73,6 +73,14 @@ public class Shop implements Serializable {
         return this;
     }
 
+    public boolean addSkuIfNew(@NonNull Sku sku) {
+        if (!skus.contains(sku)) {
+            addSku(sku);
+            return true;
+        }
+        return false;
+    }
+
     public Sku getSku(@NonNull String id) {
         for (Sku sku: skus) {
             if (id.equals(sku.getId())) {
