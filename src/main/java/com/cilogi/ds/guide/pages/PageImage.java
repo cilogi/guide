@@ -20,15 +20,35 @@
 
 package com.cilogi.ds.guide.pages;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 
-public class PageImage {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Data
+public class PageImage implements Serializable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(PageImage.class);
 
-    public PageImage() {
+    private String src;
+    private String alt;
 
+    private PageImage() {}
+
+    public PageImage(@NonNull String src) {
+        this(src, null);
+    }
+
+    /**
+     * Constructor.
+     * @param src  Non null image src
+     * @param alt  Image title, can be null
+     */
+    public PageImage(@NonNull String src, String alt) {
+        this.src = src;
+        this.alt = alt;
     }
 }

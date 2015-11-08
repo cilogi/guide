@@ -33,11 +33,11 @@ import javax.vecmath.Point2d;
 import java.io.IOException;
 
 
-public class LocationDeserializer  extends JsonDeserializer<Location> {
+class LocationDeserializer  extends JsonDeserializer<Location> {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(LocationDeserializer.class);
 
-    public LocationDeserializer() {
+    LocationDeserializer() {
 
     }
 

@@ -54,7 +54,7 @@ public class Page implements Serializable, Comparable<Page> {
     private int id;
     private String title;
     private String guideName;
-    private List<String> images;
+    private List<PageImage> images;
     private String url;
     private Location location;
     private List<PageLink> pageLinks;
@@ -125,17 +125,21 @@ public class Page implements Serializable, Comparable<Page> {
 
     @JsonIgnore
     public String getImage() {
-        return (images == null || images.size() == 0) ? null : images.get(0);
+        return (images == null || images.size() == 0) ? null : images.get(0).getSrc();
     }
 
     public void setImage(@NonNull String image) {
+        setPageImage(new PageImage(image));
+    }
+
+    public void setPageImage(@NonNull PageImage pageImage) {
         if (images == null) {
             images = new ArrayList<>();
         }
         if (images.size() == 0) {
-            images.add(image);
+            images.add(pageImage);
         } else {
-            images.set(0, image);
+            images.set(0, pageImage);
         }
     }
 
@@ -143,7 +147,14 @@ public class Page implements Serializable, Comparable<Page> {
         if (images == null) {
             images = new ArrayList<>();
         }
-        images.add(image);
+        images.add(new PageImage(image));
+    }
+
+    public void addPageImage(@NonNull PageImage pageImage) {
+        if (images == null) {
+            images = new ArrayList<>();
+        }
+        images.add(pageImage);
     }
 
     public Page addTags(@NonNull Set<String> tags) {

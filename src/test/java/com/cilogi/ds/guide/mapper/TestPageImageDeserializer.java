@@ -20,11 +20,14 @@
 
 package com.cilogi.ds.guide.mapper;
 
+import com.cilogi.ds.guide.pages.PageImage;
 import org.junit.Before;
 import org.junit.Test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -42,7 +45,18 @@ public class TestPageImageDeserializer {
     }
 
     @Test
-    public void testDummy() {
+    public void testString() throws IOException {
+        String src = "\"src\"";
+        GuideMapper mapper = new GuideMapper();
+        PageImage img = mapper.readValue(src, PageImage.class);
+        assertEquals(new PageImage("src"), img);
+    }
 
+    @Test
+    public void testObject() throws IOException {
+        String src = "{\"src\": \"src\",\"alt\":\"alt\"}";
+        GuideMapper mapper = new GuideMapper();
+        PageImage img = mapper.readValue(src, PageImage.class);
+        assertEquals(new PageImage("src", "alt"), img);
     }
 }

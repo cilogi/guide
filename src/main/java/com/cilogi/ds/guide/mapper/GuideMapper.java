@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.mapper;
 
+import com.cilogi.ds.guide.pages.PageImage;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,6 +49,8 @@ public class GuideMapper extends ObjectMapper {
 
         module.addSerializer(Location.class, new LocationSerializer());
         module.addDeserializer(Location.class, new LocationDeserializer());
+
+        module.addDeserializer(PageImage.class, new PageImageDeserializer());
 
         registerModule(module);
         registerModule(new GuavaModule());

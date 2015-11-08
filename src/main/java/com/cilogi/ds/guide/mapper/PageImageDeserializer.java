@@ -20,15 +20,46 @@
 
 package com.cilogi.ds.guide.mapper;
 
+import com.cilogi.ds.guide.pages.PageImage;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.TreeNode;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.deser.ResolvableDeserializer;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.node.NumericNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 
-public class PageImageDeserializer {
+/** A page image can either be a string or an object with a string
+ *  and a pair of
+ */
+public class PageImageDeserializer extends JsonDeserializer<PageImage> {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(PageImageDeserializer.class);
+    private static final long serialVersionUID = -1934993567686395338L;
 
-    public PageImageDeserializer() {
 
+    PageImageDeserializer() {}
+
+    @Override
+    public PageImage deserialize(JsonParser jp, DeserializationContext ctx)
+            throws IOException {
+        TreeNode node = jp.getCodec().readTree(jp);
+        if (node.isValueNode()) {
+            String src = ((JsonNode) node).asText();
+            return new PageImage(src, null);
+        } else {
+            String src = ((JsonNode) node.get("src")).asText(); // must ecist or its an error
+            JsonNode altNode = (JsonNode)node.get("alt");  // can be omitted
+            String alt = null;
+            if (altNode != null) {
+                alt = altNode.asText();
+            }
+            return new PageImage(src, alt);
+        }
     }
 }

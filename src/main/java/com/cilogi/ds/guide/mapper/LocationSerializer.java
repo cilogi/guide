@@ -29,11 +29,11 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 
-public class LocationSerializer  extends JsonSerializer<Location> {
+class LocationSerializer  extends JsonSerializer<Location> {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(LocationSerializer.class);
 
-    public LocationSerializer() {
+    LocationSerializer() {
 
     }
 
