@@ -61,6 +61,16 @@ public class GuideAudio implements Serializable {
         this.id = id;
     }
 
+    public GuideAudio(@NonNull GuideAudio audio) {
+        id = audio.id;
+        url = audio.url;
+        title = audio.title;
+        description = audio.description;
+        duration = audio.duration;
+        digest = audio.digest;
+        metaData = HashMultimap.create(audio.metaData);
+    }
+
     public Set<String> getTags() {
         Collection<Object> tags = getMetaData().get("tag");
         Set<String> out = Sets.newHashSet();

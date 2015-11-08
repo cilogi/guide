@@ -69,6 +69,18 @@ public class GuideImage implements Serializable {
         this.height = height;
     }
 
+    public GuideImage(@NonNull GuideImage image) {
+        id = image.id;
+        url = image.url;
+        guideName = image.guideName;
+        title = image.title;
+        description = image.description;
+        width = image.width;
+        height = image.height;
+        digest = image.digest;
+        metaData = HashMultimap.create(image.metaData);
+    }
+
     public Set<String> getTags() {
         Collection<Object> tags = getMetaData().get("tag");
         Set<String> out = Sets.newHashSet();
