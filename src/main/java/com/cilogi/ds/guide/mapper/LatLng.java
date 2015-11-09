@@ -85,7 +85,7 @@ public class LatLng implements Serializable {
     public static class Bounds {
         private final LatLng tl;
         private final LatLng br;
-        Bounds() {
+        public Bounds() {
             this(new LatLng(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY),
                  new LatLng(Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY));
         }
