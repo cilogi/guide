@@ -92,6 +92,9 @@ public class Config implements Serializable {
      */
     private String imageDisplay;
 
+    /* Bounds of the site (can be null) */
+    private LatLng.Bounds bounds;
+
     public static Config fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
