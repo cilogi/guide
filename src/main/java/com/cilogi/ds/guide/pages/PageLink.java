@@ -66,10 +66,10 @@ public class PageLink implements Serializable {
             this.path = path;
             this.stripExtension = stripExtension;
         }
-        String prefix() {
+        public String prefix() {
             return prefix;
         }
-        String path() {
+        public String path() {
             return path;
         }
         boolean stripExtension() {
