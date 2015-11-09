@@ -106,14 +106,13 @@ public class LatLng implements Serializable {
         }
         Bounds scale(double fraction) {
             Preconditions.checkArgument(fraction > 0, "Fraction must be greater than 0, not " + fraction);
-            double latDiff = tl.lat - br.lat;
+            double latDiff = br.lat - tl.lat;
             double lngDiff = br.lng - tl.lng;
-            assert latDiff >= 0.0 && lngDiff >= 0.0;
             latDiff *= (fraction - 1.0);
             lngDiff *= (fraction - 1.0);
 
-            return new Bounds(new LatLng(tl.lat + latDiff/2.0, tl.lng - lngDiff/2.0),
-                              new LatLng(br.lat - latDiff/2.0, br.lng + lngDiff/2.0));
+            return new Bounds(new LatLng(tl.lat - latDiff/2.0, tl.lng - lngDiff/2.0),
+                              new LatLng(br.lat + latDiff/2.0, br.lng + lngDiff/2.0));
         }
     }
 }

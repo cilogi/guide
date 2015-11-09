@@ -76,5 +76,7 @@ public class TestLatLng {
         LatLng.Bounds bb = b.scale(2.0);
         assertEquals(58, bb.getTl().getLat(), 1e-8);
         assertEquals(54, bb.getBr().getLat(), 1e-8);
+        assertEquals(-7, bb.getTl().getLng(), 1e-8);
+        assertEquals(-3, bb.getBr().getLng(), 1e-8);
     }
 }
