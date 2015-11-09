@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.mapper;
 
+import com.google.common.base.Preconditions;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
@@ -62,6 +63,10 @@ public class LatLng implements Serializable {
         return bounds;
     }
 
+    public static Bounds scale(Bounds b, double fraction) {
+        return b.scale(fraction);
+    }
+
     private LatLng() {}
 
     public LatLng(double lat, double lng) {
@@ -84,8 +89,12 @@ public class LatLng implements Serializable {
         @Getter
         private LatLng br;
         Bounds() {
-            tl = new LatLng(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
-            br = new LatLng(Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY);
+            this(new LatLng(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY),
+                 new LatLng(Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY));
+        }
+        Bounds(LatLng tl, LatLng br) {
+            this.tl = tl;
+            this.br = br;
         }
         public LatLng center() {
             return new LatLng(tl.lat + (br.lat - tl.lat)/2.0, tl.lng + (br.lng - tl.lng)/2.0);
@@ -98,6 +107,18 @@ public class LatLng implements Serializable {
             if (point.lat < br.lat) br.lat = point.lat;
             if (point.lng > br.lng) br.lng = point.lng;
             return this;
+        }
+
+        Bounds scale(double fraction) {
+            Preconditions.checkArgument(fraction > 0, "Fraction must be greater than 0, not " + fraction);
+            double latDiff = tl.lat - br.lat;
+            double lngDiff = br.lng - tl.lng;
+            assert latDiff >= 0.0 && lngDiff >= 0.0;
+            latDiff *= (fraction - 1.0);
+            lngDiff *= (fraction - 1.0);
+
+            return new Bounds(new LatLng(tl.lat + latDiff/2.0, tl.lng - lngDiff/2.0),
+                              new LatLng(br.lat - latDiff/2.0, br.lng + lngDiff/2.0));
         }
     }
 }

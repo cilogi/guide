@@ -66,4 +66,15 @@ public class TestLatLng {
         assertEquals(55, br.getLat(), 1e-8);
         assertEquals(-4, br.getLng(), 1e-8);
     }
+
+    @Test
+    public void testBoundsScale() {
+        List<LatLng> list = Arrays.asList(
+                new LatLng[]{new LatLng(55, -4), new LatLng(57, -6)}
+        );
+        LatLng.Bounds b = LatLng.bounds(list);
+        LatLng.Bounds bb = b.scale(2.0);
+        assertEquals(58, bb.getTl().getLat(), 1e-8);
+        assertEquals(54, bb.getBr().getLat(), 1e-8);
+    }
 }
