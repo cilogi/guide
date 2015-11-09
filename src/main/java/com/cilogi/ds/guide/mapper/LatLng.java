@@ -21,9 +21,7 @@
 package com.cilogi.ds.guide.mapper;
 
 import com.google.common.base.Preconditions;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +29,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @EqualsAndHashCode
+@ToString
 public class LatLng implements Serializable {
     static final Logger LOG = LoggerFactory.getLogger(LatLng.class);
     private static final long serialVersionUID = 6843840948228234483L;
@@ -82,12 +81,10 @@ public class LatLng implements Serializable {
         return Double.isInfinite(lat) || Double.isInfinite(lng);
     }
 
-
+    @Data
     public static class Bounds {
-        @Getter
-        private LatLng tl;
-        @Getter
-        private LatLng br;
+        private final LatLng tl;
+        private final LatLng br;
         Bounds() {
             this(new LatLng(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY),
                  new LatLng(Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY));
@@ -99,7 +96,6 @@ public class LatLng implements Serializable {
         public LatLng center() {
             return new LatLng(tl.lat + (br.lat - tl.lat)/2.0, tl.lng + (br.lng - tl.lng)/2.0);
         }
-
         Bounds expand(@NonNull LatLng point) {
             if (point.lat > tl.lat) tl.lat = point.lat;
             if (point.lng < tl.lng) tl.lng = point.lng;
@@ -108,7 +104,6 @@ public class LatLng implements Serializable {
             if (point.lng > br.lng) br.lng = point.lng;
             return this;
         }
-
         Bounds scale(double fraction) {
             Preconditions.checkArgument(fraction > 0, "Fraction must be greater than 0, not " + fraction);
             double latDiff = tl.lat - br.lat;
