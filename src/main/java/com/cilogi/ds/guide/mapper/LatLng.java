@@ -93,10 +93,6 @@ public class LatLng implements Serializable {
             this.tl = tl;
             this.br = br;
         }
-        public Bounds(Bounds b) {
-            this.tl = b.tl;
-            this.br = b.br;
-        }
         public LatLng center() {
             return new LatLng(tl.lat + (br.lat - tl.lat)/2.0, tl.lng + (br.lng - tl.lng)/2.0);
         }

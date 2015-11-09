@@ -120,6 +120,7 @@ public class Config implements Serializable {
         filesize = new FileSize();
         imageDisplay = IMAGE_DISPLAY_CONTAIN;
         mapDescription = null;
+        bounds = null;
     }
 
     public Config(Config config) {
@@ -144,6 +145,7 @@ public class Config implements Serializable {
         this.imageDisplay = config.imageDisplay;
         this.mapDescription = config.mapDescription;
         this.mapTitle = config.mapTitle;
+        this.bounds = config.bounds;
     }
 
     @Data
