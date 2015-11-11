@@ -28,6 +28,7 @@ import com.cilogi.ds.guide.listings.Listing;
 import com.cilogi.ds.guide.media.GuideAudio;
 import com.cilogi.ds.guide.media.GuideImage;
 import com.cilogi.ds.guide.pages.Page;
+import com.cilogi.ds.guide.pages.PageImage;
 import com.cilogi.ds.guide.shop.Shop;
 import com.cilogi.ds.guide.tours.PageRef;
 import com.cilogi.ds.guide.tours.Tour;
@@ -355,6 +356,35 @@ public class GuideJson implements Serializable, IGuide {
 
     public synchronized void appendPage(@NonNull Page page) {
         pages.add(page);
+    }
+
+    /**
+     * If a page image has some alt text and the GuideImage does not have
+     * a title set then set the title from the alt text.
+     */
+    public synchronized void synchronizeGuideImagesWithPageImages() {
+        for (Page page : getPages()) {
+            List<PageImage> images = page.getImages();
+            for (PageImage image : images) {
+                String src = PathUtil.name(image.getSrc());
+                String alt = image.getAlt();
+
+                GuideImage guideImage = findImage(src);
+                if (guideImage == null) {
+                    LOG.warning("Can't find image " + src);
+                    continue;
+                }
+                String existingTitle = guideImage.getTitle();
+                if (alt != null) {
+                    if (existingTitle == null || existingTitle.trim().equals("")) {
+                        guideImage.setTitle(alt);
+                    }
+                } else {
+                    assert alt == null;
+                    image.setAlt(existingTitle);
+                }
+            }
+        }
     }
 
     public String toJSONString(boolean isSafe) {
