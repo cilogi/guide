@@ -112,6 +112,9 @@ public class GuideJson implements Serializable, IGuide {
     @Getter @Setter
     private Shop shop;
 
+    @JsonIgnore @Getter @Setter
+    private Date deleted = null;
+
     @Getter @Setter
     private int sequenceIndex;
 
