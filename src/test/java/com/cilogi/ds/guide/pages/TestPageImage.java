@@ -49,6 +49,7 @@ public class TestPageImage {
     }
 
     @Test
+    @SuppressWarnings({"unchecked"})
     public void testReadNormally() throws IOException, ClassNotFoundException {
         ArrayList<PageImage> pages = Lists.newArrayList(new PageImage("src0", "alt0"), new PageImage("src1", "alt1"));
 

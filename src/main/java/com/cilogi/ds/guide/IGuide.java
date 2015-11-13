@@ -20,7 +20,6 @@
 
 package com.cilogi.ds.guide;
 
-import com.cilogi.ds.guide.compile.CompileAuth;
 import com.cilogi.ds.guide.diagrams.Diagrams;
 import com.cilogi.ds.guide.galleries.Gallery;
 import com.cilogi.ds.guide.listings.Listing;
@@ -50,15 +49,6 @@ public interface IGuide extends Serializable {
     public String getTitle();
     public void setTitle(String title);
 
-    public String getOwner();
-    public void setOwner(String owner);
-
-    public String getServingVersion();
-    public void setServingVersion(String s);
-
-    public Set<String> getVersions();
-    public void setVersions(Set<String> versions);
-
     public List<Page> getPages();
     public void setPages(List<Page> pages);
 
@@ -80,30 +70,20 @@ public interface IGuide extends Serializable {
     public void setAudioClips(Set<GuideAudio> guideAudioClips);
 
     public Map<String, byte[]> getEtags();
-    public void  setEtags(Map<String, byte[]> etags);
+    public void setEtags(Map<String, byte[]> etags);
 
     public Shop getShop();
     public void setShop(Shop shop);
 
     public boolean isValidState();
 
-    public boolean isDeployed();
-
     public List<Listing> getListings();
     public void setListings(List<Listing> listings);
-
-    public IGuide safe();
-
-    public String toJSONString();
 
     public Page findPage(int pageId);
 
     public void updatePage(Page page);
 
-    public int getSequenceIndex();
-
-    public CompileAuth getCompileAuth();
-
-    public String toJSONString(boolean isSafe);
+    public String toJSONString();
 
 }

@@ -45,7 +45,7 @@ public class TestIGuide {
 
     @Test
     public void testJson() throws IOException {
-        IGuide guide = new GuideJson("demo", "tim");
+        IGuide guide = new GuideJson("demo");
         GuideMapper mapper = new GuideMapper();
         String s = mapper.writeValueAsString(guide);
         assertNotNull(s);

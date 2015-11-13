@@ -20,7 +20,6 @@
 
 package com.cilogi.ds.guide;
 
-import com.cilogi.ds.guide.compile.CompileAuth;
 import com.cilogi.ds.guide.diagrams.Diagrams;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.galleries.Gallery;
@@ -55,71 +54,41 @@ import java.util.logging.Logger;
 public class GuideJson implements Serializable, IGuide {
     @SuppressWarnings("unused")
     static final Logger LOG = Logger.getLogger(GuideJson.class.getName());
-
     private static final long serialVersionUID = -9153256781053121634L;
 
     private static final String CONFIG_NAME = "config.json";
     private static final String DEFAULT_VERSION = "1";
     private static final String DEFAULT_GUIDE_SPEC_VERSION = "3";
 
-    @Getter
+
     private java.lang.String name;
 
-    @Getter
-    private String guideSpecVersion;
+    private final String guideSpecVersion;
 
-    @Getter @Setter
     private Config config;
 
     private String title;
 
-    @Getter @Setter
-    private java.lang.String owner;
-
-    @Getter @Setter
-    private String servingVersion;
-
-    @Getter @Setter
-    private java.util.Set<String> versions;
-
-    @Getter @Setter
     private List<Page> pages;
 
-    @Getter @Setter
     private Map<String,String> pageDigests;
 
-    @Getter @Setter
     private Diagrams diagrams;
 
-    @Getter @Setter
     private Set<GuideImage> images;
 
-    @Getter @Setter
     private Set<GuideAudio> audioClips;
 
-    @Getter @Setter
     private List<Tour> tours;
 
-    @Getter @Setter
     private List<Gallery> galleries;
 
-    @Getter @Setter
     private List<Listing> listings;
 
-    @Getter @Setter
     private Map<String,byte[]> etags;
 
-    @Getter @Setter
     private Shop shop;
 
-    @JsonIgnore @Getter @Setter
-    private Date deleted = null;
-
-    @Getter @Setter
-    private int sequenceIndex;
-
-    @Getter @Setter
-    private CompileAuth compileAuth;
 
     public static GuideJson fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
@@ -134,8 +103,6 @@ public class GuideJson implements Serializable, IGuide {
     public GuideJson() {
         title = "";
         guideSpecVersion = DEFAULT_GUIDE_SPEC_VERSION;
-        versions = Sets.newHashSet(DEFAULT_VERSION);
-        servingVersion = DEFAULT_VERSION;
         config = new Config();
         pages = new ArrayList<>();
         pageDigests = new ConcurrentHashMap<>();
@@ -146,14 +113,12 @@ public class GuideJson implements Serializable, IGuide {
         galleries = new ArrayList<>();
         listings = new ArrayList<>();
         etags = new java.util.HashMap<>();
-        sequenceIndex = 1;
     }
 
-    public GuideJson(@NonNull String name, String owner) {
+    public GuideJson(@NonNull String name) {
         this();
         this.name = name;
         setTitle(name);
-        this.owner = owner;
     }
 
     /**
@@ -164,9 +129,6 @@ public class GuideJson implements Serializable, IGuide {
         this.guideSpecVersion = guide.getGuideSpecVersion();
         this.name = guide.getName();
         this.title = guide.getTitle();
-        this.owner = guide.getOwner();
-        this.servingVersion = guide.getServingVersion();
-        this.versions = Sets.newHashSet(guide.getVersions());
         this.pages = new ArrayList<>(guide.getPages());
         this.pageDigests = new ConcurrentHashMap<>(guide.getPageDigests());
         this.diagrams = new Diagrams(guide.getDiagrams());
@@ -183,8 +145,6 @@ public class GuideJson implements Serializable, IGuide {
         }
 
         this.shop = (guide.getShop() == null) ? null : new Shop(guide.getShop());
-        this.sequenceIndex = guide.getSequenceIndex();
-        this.compileAuth = (guide.getCompileAuth() == null) ? null : new CompileAuth(guide.getCompileAuth());
     }
 
     /**
@@ -193,18 +153,7 @@ public class GuideJson implements Serializable, IGuide {
      */
     @JsonIgnore
     public boolean isValidState() {
-        return name.length() > 0 && owner != null;
-    }
-
-    @JsonIgnore
-    public boolean isDeployed() {
-        return servingVersion != null;
-    }
-
-    @JsonIgnore
-    public boolean isShared() {
-        Config config = getConfig();
-        return (config == null) ? false : config.isShared();
+        return name.length() > 0;
     }
 
     public String getTitle() {
@@ -218,10 +167,6 @@ public class GuideJson implements Serializable, IGuide {
 
     public GuideJson safe() {
         return new GuideJson(this);
-    }
-
-    public String toJSONString() {
-       return toJSONString(false);
     }
 
     public Set<String> tourNames() {
@@ -390,10 +335,10 @@ public class GuideJson implements Serializable, IGuide {
         }
     }
 
-    public String toJSONString(boolean isSafe) {
+    public String toJSONString() {
         try {
             GuideMapper mapper = new GuideMapper();
-            return mapper.writeValueAsString(isSafe? safe() : this);
+            return mapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {
             LOG.severe("Can't convert Guide " + this + " to JSON string");
             return "{}";

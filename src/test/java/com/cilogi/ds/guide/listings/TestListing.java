@@ -53,7 +53,7 @@ public class TestListing {
 
     @Test
     public void testMatch() {
-        IGuide guide = new GuideJson("guide", "tim");
+        IGuide guide = new GuideJson("guide");
         guide.setPages(Lists.newArrayList(
                 new Page("guide", 1).addTags(ImmutableSet.of("one", "car:mercedes", "red:color")),
                 new Page("guide", 2).addTags(ImmutableSet.of("two", "car:audi", "blue:color")),

@@ -64,17 +64,14 @@ public class TestGuide {
 
     @Test
     public void testPublicJSONString() {
-        IGuide guide = new GuideJson("test", "tim@timniblett.net");
-        String s = guide.toJSONString(true);
+        IGuide guide = new GuideJson("test");
+        String s = guide.toJSONString();
         assertFalse(s.contains("secret"));
     }
 
     @Test
     public void testCopy() {
-        IGuide guide = new GuideJson("test", "tim@timniblett.net");
-        guide.setServingVersion("99");
-        guide.setVersions(Sets.newHashSet("one", "two", "99"));
-
+        IGuide guide = new GuideJson("test");
         IGuide copy = new GuideJson(guide);
         assertEquals(copy, guide);
     }
@@ -99,7 +96,7 @@ public class TestGuide {
 
     @Test
     public void testSerializable() throws IOException, ClassNotFoundException {
-        IGuide guide = new GuideJson("test", "test@example.com");
+        IGuide guide = new GuideJson("test");
         byte[] data = Pickle.pickle(guide);
         IGuide back = Pickle.unpickle(data, GuideJson.class);
         assertEquals(back, guide);
