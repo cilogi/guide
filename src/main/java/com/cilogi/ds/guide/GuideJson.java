@@ -156,6 +156,11 @@ public class GuideJson implements Serializable, IGuide {
         return name.length() > 0;
     }
 
+    @JsonIgnore
+    public boolean isShared() {
+        return config != null && config.isShared();
+    }
+
     public String getTitle() {
         return (title == null) ? name : title;
     }
@@ -163,10 +168,6 @@ public class GuideJson implements Serializable, IGuide {
     public void setTitle(@NonNull String name) {
         title = name;
         getConfig().setTitle(name);
-    }
-
-    public GuideJson safe() {
-        return new GuideJson(this);
     }
 
     public Set<String> tourNames() {
@@ -259,6 +260,10 @@ public class GuideJson implements Serializable, IGuide {
            pages.remove(already);
         }
         pages.add(page);
+    }
+
+    public void setPageDigest(int pageId, @NonNull String digest) {
+        getPageDigests().put(Integer.toString(pageId), digest);
     }
 
     public synchronized GuideImage guideImageFor(String imageName) {
