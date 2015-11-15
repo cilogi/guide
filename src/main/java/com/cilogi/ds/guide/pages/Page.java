@@ -69,6 +69,7 @@ public class Page implements Serializable, Comparable<Page> {
     }
 
     public Page() {
+        images = new ArrayList<>();
         pageLinks = new ArrayList<>();
         metaData = HashMultimap.create();
         guideName = "";
