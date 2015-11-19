@@ -81,6 +81,18 @@ public class Page implements Serializable, Comparable<Page> {
         this.id = id;
     }
 
+    public void copyFrom(Page page) {
+        title = page.title;
+        guideName = page.guideName;
+        images = new ArrayList<>(page.images);
+        url = page.url;
+        location = page.location;
+        pageLinks = new ArrayList<>(page.pageLinks);
+        metaData = HashMultimap.create(page.metaData);
+        etag = page.etag;
+        text = page.text;
+    }
+
     public Page copy() {
         try {
             return parse(toJSONString());

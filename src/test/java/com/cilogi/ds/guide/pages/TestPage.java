@@ -141,6 +141,15 @@ public class TestPage {
         assertEquals(page, copy);
     }
 
+    @Test
+    public void testCopyFrom() {
+        Page page = page();
+        Page copy = new Page();
+        copy.setId(page.getId());
+        copy.copyFrom(page);
+        assertEquals(page, copy);
+    }
+
     private Page page() {
         HashMultimap<String,Object> map = HashMultimap.create();
         map.put("tag", "a");
