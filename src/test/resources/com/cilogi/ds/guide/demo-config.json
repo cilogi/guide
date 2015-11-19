@@ -29,5 +29,8 @@
     "permissions" : {
         "2" : ["tim.niblett@cilogi.com", "tim@timniblett.net"],
         "3" : ["tim@timniblett.net"]
+    },
+    "metaData": {
+        "meta": ["meta"]
     }
 }

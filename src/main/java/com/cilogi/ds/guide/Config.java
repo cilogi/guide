@@ -26,8 +26,11 @@ import com.cilogi.ds.guide.mapper.LatLng;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 import lombok.Data;
 import lombok.NonNull;
 import org.slf4j.Logger;
@@ -95,6 +98,9 @@ public class Config implements Serializable {
     /* Bounds of the site (can be null) */
     private LatLng.Bounds bounds;
 
+    @JsonDeserialize(as=HashMultimap.class)
+    private Multimap<String,Object> metaData;
+
     public static Config fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
@@ -121,6 +127,7 @@ public class Config implements Serializable {
         imageDisplay = IMAGE_DISPLAY_CONTAIN;
         mapDescription = null;
         bounds = null;
+        metaData = HashMultimap.create();
     }
 
     public Config(Config config) {
@@ -146,6 +153,7 @@ public class Config implements Serializable {
         this.mapDescription = config.mapDescription;
         this.mapTitle = config.mapTitle;
         this.bounds = config.bounds;
+        this.metaData = HashMultimap.create(config.getMetaData());
     }
 
     @Data
