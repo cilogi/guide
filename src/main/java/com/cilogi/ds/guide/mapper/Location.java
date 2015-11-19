@@ -29,12 +29,15 @@ import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
+
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Location {
+public class Location implements Serializable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Location.class);
+    private static final long serialVersionUID = -1360618319992666383L;
 
     private final String image;
     private final double x;

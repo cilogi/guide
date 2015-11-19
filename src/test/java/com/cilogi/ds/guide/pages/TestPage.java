@@ -21,6 +21,7 @@
 package com.cilogi.ds.guide.pages;
 
 import com.cilogi.ds.guide.mapper.GuideMapper;
+import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.util.Digest;
 import com.cilogi.util.IOUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,6 +38,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 public class TestPage {
+    @SuppressWarnings({"unused"})
     static final Logger LOG = LoggerFactory.getLogger(TestPage.class);
 
 
@@ -132,12 +134,28 @@ public class TestPage {
         assertEquals("images/page101.jpg", page.getImage());
     }
 
+    @Test
+    public void testCopy() {
+        Page page = page();
+        Page copy = page.copy();
+        assertEquals(page, copy);
+    }
+
     private Page page() {
+        HashMultimap<String,Object> map = HashMultimap.create();
+        map.put("tag", "a");
+        map.put("marker", "cafe");
+
         Page page = new Page();
         page.setId(1);
         page.setTitle("Title");
         page.setGuideName("demo-guide");
-        page.setImage("foo.png");
+        page.setImages(Lists.newArrayList(new PageImage("a.png"), new PageImage("b.png", "b")));
+        page.setUrl("url");
+        page.setLocation(new Location(1,2));
+        page.setPageLinks(Lists.newArrayList(new PageLink(1), new PageLink(2)));
+        page.setMetaData(map);
+        page.setEtag("etag");
         page.setText("This is a long piece of text");
         return page;
     }
