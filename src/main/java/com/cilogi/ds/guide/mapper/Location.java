@@ -44,13 +44,14 @@ public class Location implements Serializable {
     private final double y;
 
 
-    public static Location parse(String s) {
+    public static Location parse(@NonNull String input) {
+        String s = input.replaceAll("\\[|\\]|\"", "");
         String[] sub = s.trim().split(",");
         if (sub.length == 3) {
-            return new Location(sub[0].trim(), Double.parseDouble(sub[1]), Double.parseDouble(sub[2]));
+            return new Location(sub[0].trim(), Double.parseDouble(sub[1].trim()), Double.parseDouble(sub[2].trim()));
         } else if (sub.length == 2) {
             try {
-                return new Location(Double.parseDouble(sub[0]), Double.parseDouble(sub[1]));
+                return new Location(Double.parseDouble(sub[0].trim()), Double.parseDouble(sub[1].trim()));
             } catch (NumberFormatException e) {
                 LOG.info("Can't parse " + s + " as latlng");
                 return null;
