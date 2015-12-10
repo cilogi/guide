@@ -24,6 +24,7 @@ import com.cilogi.ds.guide.diagrams.Diagrams;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.galleries.Gallery;
 import com.cilogi.ds.guide.listings.Listing;
+import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.ds.guide.media.GuideAudio;
 import com.cilogi.ds.guide.media.GuideImage;
 import com.cilogi.ds.guide.pages.Page;
@@ -356,6 +357,9 @@ public class GuideJson implements Serializable, IGuide {
                             break;
                         }
                     }
+                }
+                if (getConfig().getLatlng() != null) {
+                    tour.setLocation(new Location(getConfig().getLatlng()));
                 }
             }
         }
