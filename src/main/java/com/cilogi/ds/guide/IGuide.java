@@ -49,6 +49,9 @@ public interface IGuide extends Serializable {
     public String getTitle();
     public void setTitle(String title);
 
+    public String getDescription();
+    public void setDescription(String description);
+
     public List<Page> getPages();
     public void setPages(List<Page> pages);
 

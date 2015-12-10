@@ -69,6 +69,8 @@ public class GuideJson implements Serializable, IGuide {
 
     private String title;
 
+    private String description;
+
     private List<Page> pages;
 
     private Map<String,String> pageDigests;
@@ -102,6 +104,7 @@ public class GuideJson implements Serializable, IGuide {
 
     public GuideJson() {
         title = "";
+        description = "";
         guideSpecVersion = DEFAULT_GUIDE_SPEC_VERSION;
         config = new Config();
         pages = new ArrayList<>();
@@ -129,6 +132,7 @@ public class GuideJson implements Serializable, IGuide {
         this.guideSpecVersion = guide.getGuideSpecVersion();
         this.name = guide.getName();
         this.title = guide.getTitle();
+        this.description = guide.getDescription();
         this.pages = new ArrayList<>(guide.getPages());
         this.pageDigests = new ConcurrentHashMap<>(guide.getPageDigests());
         this.diagrams = new Diagrams(guide.getDiagrams());

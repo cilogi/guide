@@ -2,6 +2,7 @@
     "guideSpecVersion": "1",
     "name": "demo-guide",
     "title": "Demo Guide",
+    "descirption": "What is the point of this guide?",
     "mapTitle": "Map Title",
     "owner": "tim@timniblett.net",
     "servingVersion": "1",
