@@ -55,6 +55,14 @@ public class TourStop implements Serializable {
         this.intro = intro;
     }
 
+    public void makePublic(@NonNull String guideName) {
+        PageRef pageRef = getPageRef();
+        if (!pageRef.isExternal()) {
+            PageRef publicRef = new PageRef(guideName, getPageIndex());
+            setId(publicRef.toId());
+        }
+    }
+
     @JsonIgnore
     public int getPageIndex() {
         return getPageRef().getPageIndex();

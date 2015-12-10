@@ -29,6 +29,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.SetMultimap;
 import lombok.Data;
+import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -88,6 +89,12 @@ public class Tour implements Serializable {
         this.title = title;
         this.stops = stops;
         this.metaData = HashMultimap.create();
+    }
+
+    public void makePublic(@NonNull String guideName) {
+        for (TourStop stop: stops) {
+            stop.makePublic(guideName);
+        }
     }
 
     @JsonIgnore

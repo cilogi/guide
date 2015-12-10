@@ -344,6 +344,30 @@ public class GuideJson implements Serializable, IGuide {
         }
     }
 
+    public synchronized void setTourLocations() {
+        for (Tour tour : getTours()) {
+            if (tour.getLocation() == null) {
+                for (TourStop stop : tour.getStops()) {
+                    PageRef ref = stop.getPageRef();
+                    if (ref.isCompatibleGuide(getName())) {
+                        Page page = findPage(ref.getPageIndex());
+                        if (page != null && page.getLocation() != null && page.getLocation().isLatLng()) {
+                            tour.setLocation(page.getLocation());
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void makeToursPublic() {
+        String guideName = getName();
+        for (Tour tour : getTours()) {
+            tour.makePublic(guideName);
+        }
+    }
+
     public String toJSONString() {
         try {
             GuideMapper mapper = new GuideMapper();
