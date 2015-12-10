@@ -21,6 +21,7 @@
 package com.cilogi.ds.guide.tours;
 
 import com.cilogi.ds.guide.mapper.GuideMapper;
+import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.util.MetaUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -47,6 +48,7 @@ public class Tour implements Serializable {
     private String title;
     private String background;
     private String description;
+    private Location location;
     private List<TourStop> stops;
     private SetMultimap<String,Object> metaData;
 
@@ -73,6 +75,7 @@ public class Tour implements Serializable {
         this.title = t.title;
         this.background = t.background;
         this.description = t.description;
+        this.location = t.location;
         this.stops = new ArrayList<>();
         for (TourStop stop : t.stops) {
             this.stops.add(new TourStop(stop));

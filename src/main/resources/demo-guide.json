@@ -424,6 +424,7 @@
         {
             "id": "botanics-trail",
             "title": "The Botanics Trail",
+            "location": [55.884759, -4.294045],
             "stops": [
                 {
                     "id": "204",
