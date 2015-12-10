@@ -358,7 +358,7 @@ public class GuideJson implements Serializable, IGuide {
                         }
                     }
                 }
-                if (getConfig().getLatlng() != null) {
+                if (tour.getLocation() == null && getConfig().getLatlng() != null) {
                     tour.setLocation(new Location(getConfig().getLatlng()));
                 }
             }
