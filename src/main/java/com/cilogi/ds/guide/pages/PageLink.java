@@ -183,14 +183,14 @@ public class PageLink implements Serializable {
         Type type = pageLink.getType();
         String link = pageLink.getValue();
         switch (type) {
-            case audio:    return "media/audios/" + name(link);
-            case image:    return "media/images/" + name(link);
-            case listing:  return "listings/" + clean(link, extension);
-            case map:      return "diagrams/" + clean(link, extension);
-            case page:     return "contents/pages/" + clean(link, extension);
-            case thumb:    return "media/thumbs/" + name(link);
-            case tour:     return "tours/" + clean(link, extension);
-            case gallery:     return "galleries/" + clean(link, extension);
+            case audio:    return type.path() + name(link);
+            case image:    return type.path() + name(link);
+            case listing:  return type.path() + clean(link, extension);
+            case map:      return type.path() + clean(link, extension);
+            case page:     return type.path() + clean(link, extension);
+            case thumb:    return type.path() + name(link);
+            case tour:     return type.path() + clean(link, extension);
+            case gallery:  return type.path() + clean(link, extension);
             case url:
             default:      return link;
         }
