@@ -72,6 +72,7 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.7</version>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
@@ -86,6 +87,7 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -110,6 +112,12 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-guava</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+          <groupId>org.hjson</groupId>
+          <artifactId>hjson</artifactId>
+          <version>1.1.2</version>
         </dependency>
     </dependencies>
 

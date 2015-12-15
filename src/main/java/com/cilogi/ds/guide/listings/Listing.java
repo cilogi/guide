@@ -33,6 +33,7 @@ import com.google.common.collect.SetMultimap;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.experimental.Accessors;
+import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,7 +80,7 @@ public class Listing implements Serializable {
     @SuppressWarnings({"unused"})
     public static Listing fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(data, Listing.class);
+        return mapper.readValue(JsonValue.readHjson(data).toString(), Listing.class);
     }
 
 

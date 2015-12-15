@@ -33,6 +33,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import lombok.Data;
 import lombok.NonNull;
+import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -104,7 +105,7 @@ public class Config implements Serializable {
     public static Config fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        return mapper.readValue(data, Config.class);
+        return mapper.readValue(JsonValue.readHjson(data).toString(), Config.class);
     }
 
     public Config() {

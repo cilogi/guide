@@ -24,6 +24,7 @@ import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NonNull;
+import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +46,7 @@ public class Shop implements Serializable {
 
     public static Shop fromJSONString(@NonNull String s) {
         try {
-            return new GuideMapper().readValue(s, Shop.class);
+            return new GuideMapper().readValue(JsonValue.readHjson(s).toString(), Shop.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

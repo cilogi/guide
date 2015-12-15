@@ -30,6 +30,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.SetMultimap;
 import lombok.Data;
 import lombok.NonNull;
+import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,7 +63,7 @@ public class Diagram implements Serializable {
 
     public static Diagram fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(data, Diagram.class);
+        return mapper.readValue(JsonValue.readHjson(data).toString(), Diagram.class);
     }
 
     public Diagram() {

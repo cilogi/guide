@@ -36,6 +36,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import lombok.Data;
 import lombok.NonNull;
+import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,7 +66,7 @@ public class Page implements Serializable, Comparable<Page> {
 
     public static Page parse(String s) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(s, Page.class);
+        return mapper.readValue(JsonValue.readHjson(s).toString(), Page.class);
     }
 
     public Page() {

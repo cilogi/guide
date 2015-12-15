@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.collect.Lists;
 import lombok.Data;
 import lombok.NonNull;
+import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +46,7 @@ public class Diagrams implements Serializable {
 
     public static Diagrams parse(String s) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(s, Diagrams.class);
+        return mapper.readValue(JsonValue.readHjson(s).toString(), Diagrams.class);
     }
 
     public Diagrams() {

@@ -30,6 +30,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.SetMultimap;
 import lombok.Data;
 import lombok.NonNull;
+import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,7 +56,7 @@ public class Tour implements Serializable {
 
     public static Tour fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(data, Tour.class);
+        return mapper.readValue(JsonValue.readHjson(data).toString(), Tour.class);
     }
 
     public static List<Tour> copy(List<Tour> list) {

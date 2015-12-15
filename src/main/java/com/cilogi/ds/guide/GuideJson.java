@@ -40,6 +40,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.google.common.collect.Sets;
 import lombok.*;
+import org.hjson.JsonValue;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -96,7 +97,7 @@ public class GuideJson implements Serializable, IGuide {
     public static GuideJson fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        return mapper.readValue(data, GuideJson.class);
+        return mapper.readValue(JsonValue.readHjson(data).toString(), GuideJson.class);
     }
 
     public  String getConfigName() {
