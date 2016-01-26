@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.tours;
 
+import com.cilogi.ds.guide.mapper.Location;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -36,9 +37,12 @@ public class TourStop implements Serializable {
     static final Logger LOG = LoggerFactory.getLogger(TourStop.class);
     private static final long serialVersionUID = 7365232721304149894L;
 
+    private static final String NO_REF_GUIDE = "stop";  // the name of the guide used as a null placeholder
+
     private String id;       // reference to the page, containing guide and index
     private String intro; // extra material to add at the front of a page, can be null
     private String title; // alternative title for the stop, can be null
+    private Location location; // if the page ref is local, so there is no location
     private transient String path;  // path of the resource for this stop, can be null
 
     private TourStop() {}
@@ -82,5 +86,10 @@ public class TourStop implements Serializable {
     @JsonIgnore
     public void setPageRef(@NonNull PageRef ref) {
         setId(ref.toId());
+    }
+
+    @JsonIgnore
+    public boolean isNoRef() {
+        return NO_REF_GUIDE.equals(getGuideName());
     }
 }

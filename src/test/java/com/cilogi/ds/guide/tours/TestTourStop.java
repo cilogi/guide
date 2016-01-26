@@ -21,6 +21,7 @@
 package com.cilogi.ds.guide.tours;
 
 import com.cilogi.ds.guide.mapper.GuideMapper;
+import com.cilogi.ds.guide.mapper.Location;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,6 +48,7 @@ public class TestTourStop {
     @Test
     public void testJson() throws IOException {
         TourStop stop = new TourStop("guide/1", "intro");
+        stop.setLocation(new Location(1, 2));
         stop.setTitle("title");
         stop.setPath("path");
         String s = new GuideMapper().writeValueAsString(stop);

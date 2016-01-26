@@ -431,7 +431,8 @@
                     "intro": "The tour starts at the Curator's House. The complete tour will take about 90 minutes"
                 },
                 {
-                    "id": "1"
+                    "id": "1",
+                    "location": [55.884760, -4.29405]
                 },
                 {
                     "id": "2"
