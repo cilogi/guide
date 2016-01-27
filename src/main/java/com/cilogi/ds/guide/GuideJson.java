@@ -38,6 +38,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import lombok.*;
 import org.hjson.JsonValue;
@@ -62,6 +63,9 @@ public class GuideJson implements Serializable, IGuide {
     private static final String DEFAULT_VERSION = "1";
     private static final String DEFAULT_GUIDE_SPEC_VERSION = "3";
 
+    private static final Set<String> LOCAL_GUIDES = ImmutableSet.of(
+            "stop"
+    );
 
     private java.lang.String name;
 
@@ -93,6 +97,9 @@ public class GuideJson implements Serializable, IGuide {
 
     private Shop shop;
 
+    public static Set<String> localGuides() {
+        return LOCAL_GUIDES;
+    }
 
     public static GuideJson fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
