@@ -23,6 +23,8 @@ package com.cilogi.ds.guide.tours;
 import com.cilogi.ds.guide.mapper.Location;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.SetMultimap;
 import lombok.Data;
 import lombok.NonNull;
 import org.slf4j.Logger;
@@ -43,18 +45,25 @@ public class TourStop implements Serializable {
     private String intro; // extra material to add at the front of a page, can be null
     private String title; // alternative title for the stop, can be null
     private Location location; // if the page ref is local, so there is no location
+    private SetMultimap<String,Object> metaData;
+
     private transient String path;  // path of the resource for this stop, can be null
 
-    private TourStop() {}
+    private TourStop() {
+        metaData = HashMultimap.create();
+    }
 
     public TourStop(@NonNull TourStop s) {
+        this();
         this.id = s.id;
         this.intro = s.intro;
         this.title = s.title;
         this.path = s.path;
+        this.location = s.location;
     }
 
     public TourStop(@NonNull String id, String intro) {
+        this();
         this.id = id;
         this.intro = intro;
     }
