@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.tours;
 
+import com.cilogi.ds.guide.GuideJson;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.util.MetaUtil;
@@ -97,6 +98,26 @@ public class Tour implements Serializable {
             stop.makePublic(guideName);
         }
         return this;
+    }
+
+    public void makeLocalStopsUnique() {
+        for (TourStop stop : stops) {
+            PageRef ref = stop.getPageRef();
+            String guideName = ref.getGuideName();
+            if (GuideJson.localGuides().contains(guideName)) {
+                stop.setId(new PageRef(id + "_" + guideName, ref.getPageIndex()).toId());
+            }
+        }
+    }
+
+    public String getUniqueId(TourStop stop) {
+        PageRef ref = stop.getPageRef();
+        String guideName = ref.getGuideName();
+        if (GuideJson.localGuides().contains(guideName)) {
+            return new PageRef(getId() + "_" + guideName, ref.getPageIndex()).toId();
+        } else {
+            return stop.getId();
+        }
     }
 
     @JsonIgnore

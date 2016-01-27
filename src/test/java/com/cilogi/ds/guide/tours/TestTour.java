@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.tours;
 
+import com.cilogi.util.IOUtil;
 import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,5 +63,14 @@ public class TestTour {
         t1.setBackground("background");
         Tour t2 = new Tour(t1);
         assertEquals(t1, t2);
+    }
+
+    @Test
+    public void testMakeLocalStopsUnique() throws IOException {
+        String s = IOUtil.loadStringUTF8(getClass().getResource("remote-tour.json"));
+        Tour tour = Tour.fromJSON(s);
+        tour.makeLocalStopsUnique();
+        TourStop stop = tour.getStops().get(0);
+        assertEquals("local-trail_stop/1", stop.getId());
     }
 }
