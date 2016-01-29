@@ -120,6 +120,17 @@ public class Tour implements Serializable {
         }
     }
 
+    public String stopListAsText(@NonNull String guideName) {
+        StringBuilder sb = new StringBuilder();
+        for (TourStop stop : stops) {
+            TourStop copy = new TourStop(stop);
+            copy.makePublic(guideName);
+            sb.append(' ');
+            sb.append(copy.getId());
+        }
+        return sb.toString();
+    }
+
     @JsonIgnore
     public Integer getIndex() {
         return MetaUtil.getIndex(getMetaData());

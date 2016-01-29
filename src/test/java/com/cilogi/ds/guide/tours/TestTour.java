@@ -73,4 +73,15 @@ public class TestTour {
         TourStop stop = tour.getStops().get(0);
         assertEquals("local-trail_stop/1", stop.getId());
     }
+
+    @Test
+    public void testStopListAsText() {
+        Tour t1 = new Tour("id", "title", Lists.<TourStop>newArrayList(
+                new TourStop("1", "intro1"),
+                new TourStop("guide/2", "intro2")
+        ));
+        String s = t1.stopListAsText("anotherGuide");
+        assertEquals(s, " anotherGuide/1 guide/2");
+    }
+
 }
