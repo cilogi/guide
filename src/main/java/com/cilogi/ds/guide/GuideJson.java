@@ -347,7 +347,6 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
                         guideImage.setTitle(alt);
                     }
                 } else {
-                    assert alt == null;
                     image.setAlt(existingTitle);
                 }
             }
@@ -375,9 +374,13 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
     }
 
     public void makeToursPublic() {
+        makeToursPublic(this);
+    }
+
+    public void makeToursPublic(IPageTitler titler) {
         String guideName = getName();
         for (Tour tour : getTours()) {
-            tour.makePublic(guideName, this);
+            tour.makePublic(guideName, titler);
         }
     }
 
