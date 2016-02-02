@@ -30,6 +30,7 @@ import com.cilogi.ds.guide.media.GuideImage;
 import com.cilogi.ds.guide.pages.Page;
 import com.cilogi.ds.guide.pages.PageImage;
 import com.cilogi.ds.guide.shop.Shop;
+import com.cilogi.ds.guide.tours.IPageTitler;
 import com.cilogi.ds.guide.tours.PageRef;
 import com.cilogi.ds.guide.tours.Tour;
 import com.cilogi.ds.guide.tours.TourStop;
@@ -54,7 +55,7 @@ import java.util.logging.Logger;
 @EqualsAndHashCode
 @ToString
 @Data
-public class GuideJson implements Serializable, IGuide {
+public class GuideJson implements Serializable, IGuide, IPageTitler {
     @SuppressWarnings("unused")
     static final Logger LOG = Logger.getLogger(GuideJson.class.getName());
     private static final long serialVersionUID = -9153256781053121634L;
@@ -376,9 +377,10 @@ public class GuideJson implements Serializable, IGuide {
     public void makeToursPublic() {
         String guideName = getName();
         for (Tour tour : getTours()) {
-            tour.makePublic(guideName);
+            tour.makePublic(guideName, this);
         }
     }
+
 
     public String toJSONString() {
         try {
@@ -388,5 +390,11 @@ public class GuideJson implements Serializable, IGuide {
             LOG.severe("Can't convert Guide " + this + " to JSON string");
             return "{}";
         }
+    }
+
+    @Override
+    public String title(int pageIndex) {
+        Page page = findPage(pageIndex);
+        return (page == null) ? null : page.getTitle();
     }
 }

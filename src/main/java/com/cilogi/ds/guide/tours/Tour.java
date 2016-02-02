@@ -93,9 +93,9 @@ public class Tour implements Serializable {
         this.metaData = HashMultimap.create();
     }
 
-    public Tour makePublic(@NonNull String guideName) {
+    public Tour makePublic(@NonNull String guideName, IPageTitler titler) {
         for (TourStop stop: stops) {
-            stop.makePublic(guideName);
+            stop.makePublic(guideName, titler);
         }
         return this;
     }
