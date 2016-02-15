@@ -64,6 +64,10 @@ public class Config implements Serializable {
     private List<String> blogs;
     /* The theme used by the guide. Only jqm at the moment */
     private String theme;
+    /* The image associated with the guide, must be one of the guide images
+     * and not necessarily the guide's  background image
+     */
+    private String guideImage;
     /* The Google Analytics Key */
     private String analyticsKey;
     /* Who owns copyright */
