@@ -131,7 +131,6 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
     public GuideJson(@NonNull String name) {
         this();
         this.name = name;
-        setTitle(name);
     }
 
     /**
