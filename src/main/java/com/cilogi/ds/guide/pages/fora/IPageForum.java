@@ -26,13 +26,10 @@ import java.util.List;
 
 public interface IPageForum {
 
-    public String getPageId();
+    public String getObjectId();
 
     public List<Topic> getTopics();
 
     public Date getCreated();
 
-    public String getGuideName();
-
-    public String getPageIndex();
 }

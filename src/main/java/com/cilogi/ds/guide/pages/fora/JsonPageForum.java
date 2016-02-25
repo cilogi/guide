@@ -41,7 +41,7 @@ public class JsonPageForum implements IPageForum {
         static final Logger LOG = LoggerFactory.getLogger(JsonPageForum.class);
         private static final long serialVersionUID = -8938034339745991107L;
 
-    private String pageId;
+    private String objectId;
 
     private List<Topic> topics;
 
@@ -51,9 +51,9 @@ public class JsonPageForum implements IPageForum {
         topics = new ArrayList<>();
     }
 
-    public JsonPageForum(@NonNull String pageId) {
+    public JsonPageForum(@NonNull String objectId) {
         this();
-        this.pageId = pageId;
+        this.objectId = objectId;
         created = new Date();
     }
 
@@ -65,29 +65,6 @@ public class JsonPageForum implements IPageForum {
             }
         }
         return null;
-    }
-
-    @Override @JsonIgnore
-    public String getGuideName() {
-        String[] sub = pageId.split("/");
-        return sub[0];
-    }
-
-    @Override @JsonIgnore
-    public String getPageIndex() {
-        String[] sub = pageId.split("/");
-        return join(sub, 1);
-    }
-
-    static String join(String[] sub, int off) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = off; i < sub.length; i++) {
-            sb.append(sub[i]);
-            if (i < sub.length-1) {
-                sb.append("/");
-            }
-        }
-        return sb.toString();
     }
 
 

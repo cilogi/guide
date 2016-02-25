@@ -43,7 +43,7 @@ public class JsonPost implements IPost {
         return new ObjectMapper().readValue(s, JsonPost.class);
     }
 
-    private String pageId;
+    private String objectId;
 
     private String topic;
 
@@ -57,9 +57,9 @@ public class JsonPost implements IPost {
 
     private JsonPost() {}
 
-    public JsonPost(@NonNull String pageId, @NonNull String topic,
+    public JsonPost(@NonNull String objectId, @NonNull String topic,
                     @NonNull String text, @NonNull String author) {
-        this.pageId = pageId;
+        this.objectId = objectId;
         this.topic = topic;
         this.text = text;
         this.author = author;

@@ -24,7 +24,7 @@ import java.util.Date;
 
 public interface IPost {
 
-    public String getPageId();
+    public String getObjectId();
 
     public String getTopic();
 
