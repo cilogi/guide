@@ -36,4 +36,6 @@ public interface IPost {
 
     public boolean isDeleted();
 
+    public boolean isPinned();
+
 }
