@@ -79,6 +79,13 @@ public class JsonPageForum implements IPageForum {
 
     public boolean addTopic(@NonNull Topic topic) {
         if (!hasTopic(topic)) {
+            for (int index = 0; index < topics.size(); index++) {
+                Topic top = topics.get(index);
+                if (!top.isPinned()) {
+                    topics.add(index, topic);
+                    return true;
+                }
+            }
             topics.add(topic);
             return true;
         }

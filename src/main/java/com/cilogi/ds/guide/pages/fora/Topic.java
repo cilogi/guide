@@ -21,7 +21,9 @@
 package com.cilogi.ds.guide.pages.fora;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,8 @@ import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Accessors(chain=true)
+@EqualsAndHashCode
+@ToString
 public class Topic implements Serializable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Topic.class);
@@ -43,6 +47,9 @@ public class Topic implements Serializable {
 
     @Getter
     private List<IPost> posts;
+
+    @Getter
+    private boolean pinned;
 
     private Topic() {
         posts = new ArrayList<>();
@@ -69,5 +76,10 @@ public class Topic implements Serializable {
             return Objects.equals(to.getTitle(), getTitle());
         }
         return false;
+    }
+
+    public Topic pinned(boolean b) {
+        pinned = b;
+        return this;
     }
 }

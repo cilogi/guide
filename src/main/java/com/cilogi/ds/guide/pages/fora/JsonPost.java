@@ -47,6 +47,8 @@ public class JsonPost implements IPost {
 
     private String topic;
 
+    private boolean pinned;
+
     private String text;
 
     private String author;
@@ -65,5 +67,6 @@ public class JsonPost implements IPost {
         this.author = author;
         date = new Date();
         deleted = false;
+        pinned = false;
     }
 }
