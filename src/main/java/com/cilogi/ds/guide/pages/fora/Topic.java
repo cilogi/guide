@@ -42,7 +42,7 @@ public class Topic implements Serializable {
     static final Logger LOG = LoggerFactory.getLogger(Topic.class);
     private static final long serialVersionUID = 8563305975876947630L;
 
-    public static final String ASK_FOR_EDIT_TOPIC = "Edit Requests";
+    private static final String ASK_FOR_EDIT_TOPIC = "Edit Requests";
 
     @Getter
     private String title;
@@ -83,5 +83,9 @@ public class Topic implements Serializable {
     public Topic pinned(boolean b) {
         pinned = b;
         return this;
+    }
+
+    public boolean isAskForEdit() {
+        return ASK_FOR_EDIT_TOPIC.equals(getTitle());
     }
 }
