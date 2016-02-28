@@ -21,7 +21,6 @@
 package com.cilogi.ds.guide.pages.fora;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
@@ -35,7 +34,6 @@ import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Accessors(chain=true)
-@EqualsAndHashCode
 @ToString
 public class Topic implements Serializable {
     @SuppressWarnings("unused")
@@ -43,6 +41,7 @@ public class Topic implements Serializable {
     private static final long serialVersionUID = 8563305975876947630L;
 
     private static final String ASK_FOR_EDIT_TOPIC = "Edit Requests";
+    private static final String USER_MESSAGE_TOPIC = "Messages";
 
     @Getter
     private String title;
@@ -87,5 +86,9 @@ public class Topic implements Serializable {
 
     public boolean isAskForEdit() {
         return ASK_FOR_EDIT_TOPIC.equals(getTitle());
+    }
+
+    public boolean isUserMessages() {
+        return USER_MESSAGE_TOPIC.equals(getTitle());
     }
 }
