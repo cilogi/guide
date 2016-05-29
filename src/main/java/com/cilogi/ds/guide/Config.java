@@ -62,7 +62,7 @@ public class Config implements Serializable {
     private boolean shared;
     /** The blogs (lists of posts, which can be published) for this guide */
     private List<String> blogs;
-    /* The theme used by the guide. Only jqm at the moment */
+    /* The theme used by the guide. Only jqm at the moment.  Can be null in Config */
     private String theme;
     /* The image associated with the guide, must be one of the guide images
      * and not necessarily the guide's  background image
@@ -117,7 +117,7 @@ public class Config implements Serializable {
         description = "";
         shared = true;
         blogs = Lists.newArrayList("blogs/");
-        theme = "jqm";
+        theme = null;
         analyticsKey = "";
         copyright = "";
         attribution = "";
