@@ -28,6 +28,7 @@
     "diagrams": [
         {
             "name": "map1",
+            "listed": true,
             "title": "Gardens & River Walk",
             "markers": [
                 {

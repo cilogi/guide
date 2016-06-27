@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -52,6 +53,16 @@ public class Diagrams implements Serializable {
     public Diagrams() {
         markers = Lists.newArrayList(new Marker("default"));
         diagrams = Lists.newArrayList();
+    }
+
+    public List<Diagram> listed() {
+        List<Diagram> out = new ArrayList<>(diagrams.size());
+        for (Diagram diagram: diagrams) {
+            if (diagram.isListed()) {
+                out.add(diagram);
+            }
+        }
+        return out;
     }
 
     public Diagrams(@NonNull Diagrams diagrams) {

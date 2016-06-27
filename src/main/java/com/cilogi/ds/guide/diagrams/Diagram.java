@@ -58,6 +58,7 @@ public class Diagram implements Serializable {
     private Sizes sizes;
     private boolean showLocation;
     private boolean cluster;
+    private boolean listed;
     private SetMultimap<String,Object> metaData;
 
 

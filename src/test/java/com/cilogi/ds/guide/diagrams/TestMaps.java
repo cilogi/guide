@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestMaps {
     static final Logger LOG = LoggerFactory.getLogger(TestMaps.class);
@@ -48,6 +49,8 @@ public class TestMaps {
         Diagrams maps = Diagrams.parse(spec);
         String out = maps.toJSONString();
         Diagrams back = Diagrams.parse(out);
+        Diagram map1 = back.findDiagram("map1");
+        assertTrue(map1.isListed());
         assertEquals(maps, back);
     }
 }
