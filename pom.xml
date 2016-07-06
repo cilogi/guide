@@ -118,12 +118,6 @@
             <artifactId>jackson-datatype-guava</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-
-        <dependency>
-          <groupId>org.hjson</groupId>
-          <artifactId>hjson</artifactId>
-          <version>1.1.2</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -141,7 +135,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0</version>
+                <version>3.5.1</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>

@@ -36,7 +36,6 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import lombok.Data;
 import lombok.NonNull;
-import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,6 +46,7 @@ import java.util.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Data
+@SuppressWarnings({"unused"})
 public class Page implements Serializable, Comparable<Page> {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Page.class);
@@ -108,7 +108,7 @@ public class Page implements Serializable, Comparable<Page> {
         return getId() - other.getId();
     }
 
-    public void addMeta(@NonNull String key, String val) {
+    public void addMeta(@NonNull String key, Object val) {
         Multimap<String,Object> meta = getMetaData();
         if (meta == null) {
             meta = HashMultimap.create();
