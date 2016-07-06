@@ -80,7 +80,7 @@ public class Listing implements Serializable {
     @SuppressWarnings({"unused"})
     public static Listing fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(JsonValue.readHjson(data).toString(), Listing.class);
+        return mapper.readValueHjson(data, Listing.class);
     }
 
 

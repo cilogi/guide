@@ -105,7 +105,7 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
     public static GuideJson fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        return mapper.readValue(JsonValue.readHjson(data).toString(), GuideJson.class);
+        return mapper.readValueHjson(data, GuideJson.class);
     }
 
     public  String getConfigName() {

@@ -64,7 +64,7 @@ public class Diagram implements Serializable {
 
     public static Diagram fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(JsonValue.readHjson(data).toString(), Diagram.class);
+        return mapper.readValueHjson(data, Diagram.class);
     }
 
     public Diagram() {

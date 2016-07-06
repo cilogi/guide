@@ -41,7 +41,7 @@ public class LogEvent implements Serializable {
 
     public static LogEvent fromJSON(String s) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(s, LogEvent.class);
+        return mapper.readValueHjson(s, LogEvent.class);
     }
 
     public enum Type {

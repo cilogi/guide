@@ -82,7 +82,7 @@ public class Link implements ILink {
 
     public static Link fromJSONString(@NonNull String json) {
         try {
-            return new GuideMapper().readValue(json, Link.class);
+            return new GuideMapper().readValueHjson(json, Link.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

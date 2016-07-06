@@ -50,7 +50,7 @@ public class Gallery implements Serializable {
 
     public static Gallery fromJSON(@NonNull String data) {
         try {
-            return new GuideMapper().readValue(data, Gallery.class);
+            return new GuideMapper().readValueHjson(data, Gallery.class);
         } catch (Exception e) {
             LOG.warn("Can't parse data " + data);
             return null;

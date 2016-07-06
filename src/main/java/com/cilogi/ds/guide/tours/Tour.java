@@ -57,7 +57,7 @@ public class Tour implements Serializable {
 
     public static Tour fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(JsonValue.readHjson(data).toString(), Tour.class);
+        return mapper.readValueHjson(data, Tour.class);
     }
 
     public static List<Tour> copy(List<Tour> list) {

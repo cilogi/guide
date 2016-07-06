@@ -66,7 +66,7 @@ public class Page implements Serializable, Comparable<Page> {
 
     public static Page parse(String s) throws IOException {
         GuideMapper mapper = new GuideMapper();
-        return mapper.readValue(JsonValue.readHjson(s).toString(), Page.class);
+        return mapper.readValueHjson(s, Page.class);
     }
 
     public Page() {

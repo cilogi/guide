@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.pages.fora;
 
+import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
@@ -40,7 +41,7 @@ public class JsonPost implements IPost {
     static final Logger LOG = LoggerFactory.getLogger(JsonPost.class);
 
     public static JsonPost fromJSON(String s) throws IOException {
-        return new ObjectMapper().readValue(s, JsonPost.class);
+        return new GuideMapper().readValueHjson(s, JsonPost.class);
     }
 
     private String objectId;

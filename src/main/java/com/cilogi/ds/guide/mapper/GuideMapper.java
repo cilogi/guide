@@ -27,15 +27,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
+import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.vecmath.Point2d;
+import java.io.IOException;
 import java.math.BigDecimal;
 
 
 public class GuideMapper extends ObjectMapper {
     static final Logger LOG = LoggerFactory.getLogger(GuideMapper.class);
+    private static final long serialVersionUID = -7916375199391568387L;
 
     public GuideMapper() {
         SimpleModule module = new SimpleModule();
@@ -57,4 +60,20 @@ public class GuideMapper extends ObjectMapper {
         setVisibility(getVisibilityChecker().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
         configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
+
+    /**
+     * Make sure we read stuff as Hjson.  Its not quite as efficient,
+     * but makes things much more readable if data is created by hand
+     * @param content  The Hjson content
+     * @param valueType The class value to which we'll convert the Hjson
+     * @param <T>  The type of the conversion class
+     * @return  An instance of the class
+     * @throws IOException  If there is a problem, the Hjson is properly formed, or we can't
+     * create an instance of <code>T</code> from the Hjson data.
+     */
+    public <T> T readValueHjson(String content, Class<T> valueType) throws IOException {
+        String hjson = JsonValue.readHjson(content).toString();
+        return readValue(hjson, valueType);
+    }
+
 }

@@ -46,11 +46,10 @@ public class Shop implements Serializable {
 
     public static Shop fromJSONString(@NonNull String s) {
         try {
-            return new GuideMapper().readValue(JsonValue.readHjson(s).toString(), Shop.class);
+            return new GuideMapper().readValueHjson(s, Shop.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public Shop() {

@@ -109,7 +109,7 @@ public class Config implements Serializable {
     public static Config fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        return mapper.readValue(JsonValue.readHjson(data).toString(), Config.class);
+        return mapper.readValueHjson(data, Config.class);
     }
 
     public Config() {
