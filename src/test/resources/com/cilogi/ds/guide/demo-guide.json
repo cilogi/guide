@@ -36,6 +36,10 @@
             {"title":"Listing B", "description": "description", "tags" : ["one", "two:", ":four"],"metaData": {"tag": ["one","two","three"]}}
         ]
     },
+    "wikiPages": [
+        {"pageIndex": 49970256, "index": 9001},
+        {"name": "Kelvingrove_Art_Gallery_and_Museum", "index": 9002}
+    ],
     "maps" : {
         "markers": [
             {"id" : "green", "color": "green", "icon": "star", "font": "iconic", "theme": "Botanics Trail"},

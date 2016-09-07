@@ -59,6 +59,13 @@ public class TestPageLink {
     }
 
     @Test
+    public void testImage() {
+        PageLink link = new PageLink(PageLink.Type.image, "fred.jpg");
+        String path = PageLink.path(link);
+        assertEquals("media/images/fred.jpg", path);
+    }
+
+    @Test
     public void testXGuideLink() {
         String text = "Hello\n[link]({botanics}/pages/100)\nGoodbye\n";
         List<PageLink> links = PageLink.pageLinks(text);

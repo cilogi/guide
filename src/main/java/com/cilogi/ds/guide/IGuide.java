@@ -28,6 +28,7 @@ import com.cilogi.ds.guide.media.GuideImage;
 import com.cilogi.ds.guide.pages.Page;
 import com.cilogi.ds.guide.shop.Shop;
 import com.cilogi.ds.guide.tours.Tour;
+import com.cilogi.ds.guide.wiki.WikiPageInfo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -82,6 +83,9 @@ public interface IGuide extends Serializable {
 
     public List<Listing> getListings();
     public void setListings(List<Listing> listings);
+
+    public List<WikiPageInfo> getWikiPages();
+    public void setWikiPages(List<WikiPageInfo> wikiPages);
 
     public Page findPage(int pageId);
 

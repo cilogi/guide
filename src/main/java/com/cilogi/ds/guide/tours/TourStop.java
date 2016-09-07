@@ -43,6 +43,7 @@ public class TourStop implements Serializable {
 
     private String id;       // reference to the page, containing guide and index
     private String intro; // extra material to add at the front of a page, can be null
+    private String extro; // extra material to add at the back of a page, can be null
     private String title; // alternative title for the stop, can be null
     private Location location; // if the page ref is local, so there is no location
     private SetMultimap<String,Object> metaData;
@@ -57,15 +58,21 @@ public class TourStop implements Serializable {
         this();
         this.id = s.id;
         this.intro = s.intro;
+        this.extro = s.extro;
         this.title = s.title;
         this.path = s.path;
         this.location = s.location;
     }
 
     public TourStop(@NonNull String id, String intro) {
+        this(id, intro, null);
+    }
+
+    public TourStop(@NonNull String id, String intro, String extro) {
         this();
         this.id = id;
         this.intro = intro;
+        this.extro = extro;
     }
 
     public void makePublic(@NonNull String guideName) {
@@ -109,6 +116,7 @@ public class TourStop implements Serializable {
     }
 
     @JsonIgnore
+    @SuppressWarnings({"unused"})
     public boolean isNoRef() {
         return NO_REF_GUIDE.equals(getGuideName());
     }

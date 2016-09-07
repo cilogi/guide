@@ -34,6 +34,7 @@ import com.cilogi.ds.guide.tours.IPageTitler;
 import com.cilogi.ds.guide.tours.PageRef;
 import com.cilogi.ds.guide.tours.Tour;
 import com.cilogi.ds.guide.tours.TourStop;
+import com.cilogi.ds.guide.wiki.WikiPageInfo;
 import com.cilogi.util.path.PathUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -94,6 +95,8 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
 
     private List<Listing> listings;
 
+    private List<WikiPageInfo> wikiPages;
+
     private Map<String,byte[]> etags;
 
     private Shop shop;
@@ -125,6 +128,7 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         tours = new ArrayList<>();
         galleries = new ArrayList<>();
         listings = new ArrayList<>();
+        wikiPages = new ArrayList<>();
         etags = new java.util.HashMap<>();
     }
 
@@ -150,6 +154,7 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         this.tours = new ArrayList<>(guide.getTours());
         this.galleries = new ArrayList<>(guide.getGalleries());
         this.listings = new ArrayList<>(guide.getListings());
+        this.wikiPages = new ArrayList<>(guide.getWikiPages());
         this.etags = new java.util.HashMap<>(guide.getEtags());
         this.config = (guide.getConfig() == null) ? null : new Config(guide.getConfig());
 
