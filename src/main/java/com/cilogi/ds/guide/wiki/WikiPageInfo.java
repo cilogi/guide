@@ -52,7 +52,15 @@ public class WikiPageInfo {
 
     public WikiPageInfo() {}
 
+    public String pageId() {
+        if (wikiPageIndex > 0) {
+            return Integer.toString(getWikiPageIndex(), 10);
+        } else {
+            return getName();
+        }
+    }
+
     public boolean isValidPage() {
-        return (name != null || wikiPageIndex > 0) && index > 0;
+        return (getName() != null || getWikiPageIndex() > 0) && getIndex() > 0;
     }
 }
