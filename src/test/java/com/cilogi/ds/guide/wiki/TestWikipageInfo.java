@@ -1,6 +1,6 @@
 // Copyright (c) 2016 Cilogi. All Rights Reserved.
 //
-// File:        WikiPages.java  (9/7/16)
+// File:        TestWikipageInfo.java  (9/8/16)
 // Author:      tim
 //
 // Copyright in the whole and every part of this source file belongs to
@@ -20,46 +20,35 @@
 
 package com.cilogi.ds.guide.wiki;
 
-import com.cilogi.ds.guide.mapper.GuideMapper;
-import com.cilogi.ds.guide.pages.PageInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
+import com.cilogi.util.IOUtil;
+import org.junit.Before;
+import org.junit.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown=true)
-public class WikiPages {
+import static org.junit.Assert.*;
+
+public class TestWikiPageInfo {
     @SuppressWarnings("unused")
-    static final Logger LOG = LoggerFactory.getLogger(WikiPages.class);
+    static final Logger LOG = LoggerFactory.getLogger(TestWikiPageInfo.class);
 
-    private List<WikiPageInfo> pageList;
 
-    public static WikiPages parse(String s) throws IOException {
-        GuideMapper mapper = new GuideMapper();
-        return mapper.readValueHjson(s, WikiPages.class);
+    public TestWikiPageInfo() {
     }
 
-    public WikiPages() {
-        pageList = new ArrayList<>();
+    @Before
+    public void setUp() {
+
     }
 
-    public int size() {
-        return pageList.size();
-    }
-
-    public boolean isValidPages() {
-        for (WikiPageInfo info : pageList) {
-            if (!info.isValidPage()) {
-                return false;
-            }
-        }
-        return true;
+    @Test
+    public void testLoad() throws IOException {
+        String s = IOUtil.loadStringUTF8(getClass().getResource("wikiPages.json"));
+        List<WikiPageInfo> infos = WikiPageInfo.getJSON(s);
+        assertEquals(2, infos.size());
     }
 }

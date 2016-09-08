@@ -23,9 +23,14 @@ package com.cilogi.ds.guide.wiki;
 import com.cilogi.geometry.LatLng;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -39,6 +44,11 @@ public class WikiPageInfo {
     private String name;
     private String title;
     private LatLng location;
+
+    public static List<WikiPageInfo> getJSON(String s) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(s, new TypeReference<List<WikiPageInfo>>() {});
+    }
 
     public WikiPageInfo() {}
 
