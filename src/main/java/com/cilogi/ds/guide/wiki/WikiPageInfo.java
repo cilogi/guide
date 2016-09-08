@@ -44,6 +44,7 @@ public class WikiPageInfo {
     private int wikiPageIndex;
     private String name;
     private String title;
+    private String imageCaption;
     private LatLng location;
     private List<String> tags;
 
