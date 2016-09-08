@@ -30,10 +30,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class WikiPageInfo {
     @SuppressWarnings("unused")
@@ -44,13 +45,16 @@ public class WikiPageInfo {
     private String name;
     private String title;
     private LatLng location;
+    private List<String> tags;
 
     public static List<WikiPageInfo> getJSON(String s) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(s, new TypeReference<List<WikiPageInfo>>() {});
     }
 
-    public WikiPageInfo() {}
+    public WikiPageInfo() {
+        tags = new ArrayList<>();
+    }
 
     public String pageId() {
         if (wikiPageIndex > 0) {
@@ -62,5 +66,13 @@ public class WikiPageInfo {
 
     public boolean isValidPage() {
         return (getName() != null || getWikiPageIndex() > 0) && getIndex() > 0;
+    }
+
+    public String toJSONString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (IOException e) {
+            return "{}";
+        }
     }
 }

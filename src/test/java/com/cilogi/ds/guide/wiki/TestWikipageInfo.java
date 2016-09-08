@@ -51,4 +51,11 @@ public class TestWikiPageInfo {
         List<WikiPageInfo> infos = WikiPageInfo.getJSON(s);
         assertEquals(2, infos.size());
     }
+
+    @Test
+    public void testDefault() {
+        WikiPageInfo info = new WikiPageInfo();
+        String s = info.toJSONString();
+        assertEquals("{}", s);
+    }
 }
