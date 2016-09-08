@@ -50,6 +50,9 @@ public class TestWikiPageInfo {
         String s = IOUtil.loadStringUTF8(getClass().getResource("wikiPages.json"));
         List<WikiPageInfo> infos = WikiPageInfo.getJSON(s);
         assertEquals(2, infos.size());
+        for (WikiPageInfo info : infos) {
+            assertTrue(info.isValidPage());
+        }
     }
 
     @Test
