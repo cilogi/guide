@@ -261,6 +261,15 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         return null;
     }
 
+    public Page findPageRef(@NonNull PageRef ref) {
+        for (Page page : pages) {
+            if (ref.equals(page.getPageRef())) {
+                return page;
+            }
+        }
+        return null;
+    }
+
     public GuideImage findImage(@NonNull String name) {
         Set<GuideImage> images = getImages();
         for (GuideImage image : images) {
@@ -272,8 +281,8 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
     }
 
     public void updatePage(@NonNull Page page) {
-        int id = page.getId();
-        Page already = findPage(id);
+        PageRef ref = page.getPageRef();
+        Page already = findPageRef(ref);
         if (already != null) {
            pages.remove(already);
         }
