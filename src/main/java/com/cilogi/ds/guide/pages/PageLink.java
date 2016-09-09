@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -182,17 +183,21 @@ public class PageLink implements Serializable {
     public static String path(@NonNull PageLink pageLink, String extension) {
         Type type = pageLink.getType();
         String link = pageLink.getValue();
-        switch (type) {
-            case audio:    return type.path() + name(link);
-            case image:    return type.path() + name(link);
-            case listing:  return type.path() + clean(link, extension);
-            case map:      return type.path() + clean(link, extension);
-            case page:     return type.path() + clean(link, extension);
-            case thumb:    return type.path() + name(link);
-            case tour:     return type.path() + clean(link, extension);
-            case gallery:  return type.path() + clean(link, extension);
-            case url:
-            default:      return link;
+        if (PathUtil.isExternalURL(link)) {
+            return link;
+        } else {
+            switch (type) {
+                case audio:    return type.path() + name(link);
+                case image:    return type.path() + name(link);
+                case listing:  return type.path() + clean(link, extension);
+                case map:      return type.path() + clean(link, extension);
+                case page:     return type.path() + clean(link, extension);
+                case thumb:    return type.path() + name(link);
+                case tour:     return type.path() + clean(link, extension);
+                case gallery:  return type.path() + clean(link, extension);
+                case url:
+                default:      return link;
+            }
         }
     }
 
