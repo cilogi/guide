@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.github.reinert.jjschema.JsonSchemaGenerator;
 import com.github.reinert.jjschema.SchemaGeneratorBuilder;
 import com.github.reinert.jjschema.exception.TypeException;
+import com.google.common.collect.Multimap;
 import lombok.Data;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,8 +57,22 @@ public class TestSimpleSchema {
 
     }
 
+    @Test
+    public void testMultimap() throws TypeException {
+        JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
+        JsonNode productSchema = v4generator.generateSchema(MultimapTest.class);
+        String s = productSchema.toString();
+        assertEquals(productSchema.toString(), "{\"type\":\"object\",\"properties\":{\"map\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}");
+
+    }
+
     @Data
     static class MapTest {
         Map<String,String> map;
+    }
+
+    @Data
+    static class MultimapTest {
+        Multimap<String,Object> map;
     }
 }
