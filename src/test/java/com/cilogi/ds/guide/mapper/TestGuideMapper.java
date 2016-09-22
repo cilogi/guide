@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.mapper;
 
+import com.cilogi.ds.guide.meta.MetaData;
+import com.google.common.collect.HashMultimap;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,6 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -61,6 +64,45 @@ public class TestGuideMapper {
         String s = new GuideMapper().writeValueAsString(ll);
         LatLng back = new GuideMapper().readValue(s, LatLng.class);
         assertEquals(ll, back);
+
+    }
+
+    @Test
+    public void testHashMultimapRead() {
+        String s = "{\"a\": [\"one\"]}";
+        GuideMapper mapper = new GuideMapper();
+        try {
+            HashMultimap meta = mapper.readValue(s, HashMultimap.class);
+            String back = meta.get("a").iterator().next().toString();
+            assertEquals("one", back);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testMetaDataRead() {
+        String s = "{\"a\": [\"one\"]}";
+        GuideMapper mapper = new GuideMapper();
+        try {
+            MetaData meta = mapper.readValue(s, MetaData.class);
+            String back = meta.getFirstString("a");
+            assertEquals("one", back);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testMetaDataWrite() throws IOException {
+        MetaData meta = new MetaData();
+        meta.put("a", "one").put("a", "two");
+        String s = new GuideMapper().writeValueAsString(meta);
+        MetaData back = new GuideMapper().readValue(s, MetaData.class);
+        assertEquals(meta, back);
+    }
+
+    static class Dummy {
 
     }
 

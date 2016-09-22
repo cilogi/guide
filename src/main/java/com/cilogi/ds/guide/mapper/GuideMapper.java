@@ -41,6 +41,8 @@ public class GuideMapper extends ObjectMapper {
     private static final long serialVersionUID = -7916375199391568387L;
 
     public GuideMapper() {
+        registerModule(new GuavaModule());
+
         SimpleModule module = new SimpleModule();
         module.addSerializer(BigDecimal.class, new ToStringSerializer());
 
@@ -55,8 +57,10 @@ public class GuideMapper extends ObjectMapper {
 
         module.addDeserializer(PageImage.class, new PageImageDeserializer());
 
+        module.setSerializerModifier(new GuideSerializerModifier());
+        module.setDeserializerModifier(new GuideDeserializerModifier());
+
         registerModule(module);
-        registerModule(new GuavaModule());
         setVisibility(getVisibilityChecker().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
         configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
