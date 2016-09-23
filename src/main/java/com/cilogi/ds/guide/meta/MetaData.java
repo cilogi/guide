@@ -21,7 +21,7 @@
 package com.cilogi.ds.guide.meta;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.SetMultimap;
@@ -40,6 +40,7 @@ import java.util.Set;
  */
 @EqualsAndHashCode
 @ToString
+@SuppressWarnings({"unused"})
 public class MetaData implements Serializable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(MetaData.class);
@@ -54,8 +55,8 @@ public class MetaData implements Serializable {
         data = HashMultimap.create();
     }
 
-    MetaData(@NonNull HashMultimap<String,Object> data) {
-        this.data = data;
+    public MetaData(@NonNull SetMultimap<String,Object> data) {
+        this.data = HashMultimap.create(data);
     }
 
     public MetaData(MetaData meta) {
@@ -166,8 +167,8 @@ public class MetaData implements Serializable {
         return false;
     }
 
-
-    SetMultimap<String,Object> getData() {
+    @JsonProperty
+    public SetMultimap<String,Object> getData() {
         return data;
     }
 }

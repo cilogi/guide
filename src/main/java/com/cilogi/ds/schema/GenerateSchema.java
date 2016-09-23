@@ -21,6 +21,7 @@
 package com.cilogi.ds.schema;
 
 import com.cilogi.ds.guide.GuideJson;
+import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.reinert.jjschema.JsonSchemaGenerator;
 import com.github.reinert.jjschema.SchemaGeneratorBuilder;
@@ -39,7 +40,7 @@ public class GenerateSchema {
     public static void main(String[] args) {
         try {
             JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
-            JsonNode productSchema = v4generator.generateSchema(GuideJson.class);
+            JsonNode productSchema = v4generator.generateSchema(MetaData.class);
             System.out.println(productSchema);
         } catch (Exception e) {
             LOG.error("oops", e);

@@ -17,10 +17,7 @@
                     "type": "string"
                 },
                 "metaData": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "type": "object"
                 },
                 "title": {
                     "type": "string"
@@ -170,10 +167,7 @@
                 "type": "string"
             },
             "metaData": {
-                "type": "array",
-                "items": {
-                    "type": "string"
-                }
+                "type": "object"
             },
             "permissions": {
                 "type": "object",
@@ -321,10 +315,7 @@
                             }
                         },
                         "metaData": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
+                            "type": "object"
                         },
                         "name": {
                             "type": "string"
@@ -441,10 +432,7 @@
                     }
                 },
                 "metaData": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "type": "object"
                 },
                 "title": {
                     "type": "string"
@@ -476,10 +464,7 @@
                     "type": "string"
                 },
                 "metaData": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "type": "object"
                 },
                 "title": {
                     "type": "string"
@@ -508,10 +493,7 @@
                     "type": "string"
                 },
                 "metaData": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "type": "object"
                 },
                 "pageIds": {
                     "type": "array",
@@ -586,10 +568,7 @@
                     }
                 },
                 "metaData": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "type": "object"
                 },
                 "pageLinks": {
                     "type": "array",
@@ -720,10 +699,7 @@
                     }
                 },
                 "metaData": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "type": "object"
                 },
                 "stops": {
                     "type": "array",
@@ -754,10 +730,7 @@
                                 }
                             },
                             "metaData": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
+                                "type": "object"
                             },
                             "path": {
                                 "type": "string"
