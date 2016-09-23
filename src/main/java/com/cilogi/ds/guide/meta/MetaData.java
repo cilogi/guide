@@ -49,13 +49,13 @@ public class MetaData implements Serializable {
     private static final String INDEX_KEY = "index";
     private static final long serialVersionUID = 5123700827418471368L;
 
-    private HashMultimap<String,Object> data;
+    private SetMultimap<String,Object> data;
 
     public MetaData() {
         data = HashMultimap.create();
     }
 
-    public MetaData(@NonNull SetMultimap<String,Object> data) {
+    public MetaData(@NonNull Multimap<String,Object> data) {
         this.data = HashMultimap.create(data);
     }
 
@@ -63,8 +63,17 @@ public class MetaData implements Serializable {
         data = (meta == null) ? HashMultimap.<String,Object>create() : HashMultimap.create(meta.data);
     }
 
+    public int size() {
+        return data.size();
+    }
+
     public Set<Object> get(@NonNull String key) {
         return data.get(key);
+    }
+
+    public MetaData removeAll(@NonNull String key) {
+        data.removeAll(key);
+        return this;
     }
 
     public MetaData put(@NonNull String key, Object val) {
@@ -75,6 +84,10 @@ public class MetaData implements Serializable {
     public MetaData putAll(@NonNull Multimap<String,Object> map) {
         data.putAll(map);
         return this;
+    }
+
+    public boolean containsEntry(@NonNull String key, Object value) {
+        return data.containsEntry(key, value);
     }
 
     public Set<String> getString(@NonNull String key) {
