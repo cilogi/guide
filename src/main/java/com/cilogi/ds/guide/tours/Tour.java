@@ -23,15 +23,12 @@ package com.cilogi.ds.guide.tours;
 import com.cilogi.ds.guide.GuideJson;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.Location;
-import com.cilogi.util.MetaUtil;
+import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
-import com.google.common.collect.SetMultimap;
 import lombok.Data;
 import lombok.NonNull;
-import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +39,7 @@ import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@SuppressWarnings({"unused"})
 public class Tour implements Serializable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Tour.class);
@@ -53,7 +51,7 @@ public class Tour implements Serializable {
     private String description;
     private Location location;
     private List<TourStop> stops;
-    private SetMultimap<String,Object> metaData;
+    private MetaData metaData;
 
     public static Tour fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
@@ -70,7 +68,7 @@ public class Tour implements Serializable {
 
     public Tour() {
         stops = new ArrayList<>();
-        metaData = HashMultimap.create();
+        metaData = new MetaData();
     }
 
     public Tour(Tour t) {
@@ -83,14 +81,14 @@ public class Tour implements Serializable {
         for (TourStop stop : t.stops) {
             this.stops.add(new TourStop(stop));
         }
-        this.metaData = HashMultimap.create(t.getMetaData());
+        this.metaData = new MetaData(t.getMetaData());
     }
 
     public Tour(String id, String title, List<TourStop> stops) {
         this.id = id;
         this.title = title;
         this.stops = stops;
-        this.metaData = HashMultimap.create();
+        this.metaData = new MetaData();
     }
 
     public Tour makePublic(@NonNull String guideName, IPageTitler titler) {
@@ -133,11 +131,11 @@ public class Tour implements Serializable {
 
     @JsonIgnore
     public Integer getIndex() {
-        return MetaUtil.getIndex(getMetaData());
+        return getMetaData().getIndex();
     }
 
     public void setIndex(Integer index) {
-        MetaUtil.setIndex(index, getMetaData());
+        getMetaData().setIndex(index);
     }
 
     public String toJSONString() {

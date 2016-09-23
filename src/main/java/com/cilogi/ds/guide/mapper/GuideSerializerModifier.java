@@ -36,6 +36,7 @@ public class GuideSerializerModifier extends BeanSerializerModifier {
 
 
     @Override
+    @SuppressWarnings({"unchecked"})
     public JsonSerializer<?> modifySerializer(SerializationConfig config, BeanDescription beanDesc, JsonSerializer<?> serializer) {
         if (beanDesc.getBeanClass() == MetaData.class) {
             return new MetaDataSerializer((JsonSerializer<Object>) serializer);

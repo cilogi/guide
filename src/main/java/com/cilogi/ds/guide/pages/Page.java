@@ -23,9 +23,9 @@ package com.cilogi.ds.guide.pages;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.LatLng;
 import com.cilogi.ds.guide.mapper.Location;
+import com.cilogi.ds.guide.meta.MetaData;
 import com.cilogi.ds.guide.tours.PageRef;
 import com.cilogi.util.Digest;
-import com.cilogi.util.MetaUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -33,7 +33,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 import lombok.Data;
 import lombok.NonNull;
 import org.slf4j.Logger;
@@ -59,8 +58,7 @@ public class Page implements Serializable, Comparable<Page> {
     private String url;
     private Location location;
     private List<PageLink> pageLinks;
-    @JsonDeserialize(as=HashMultimap.class)
-    private Multimap<String,Object> metaData;
+    private MetaData metaData;
     private String etag; // etag for the text
     private transient String text;
 
@@ -72,7 +70,7 @@ public class Page implements Serializable, Comparable<Page> {
     public Page() {
         images = new ArrayList<>();
         pageLinks = new ArrayList<>();
-        metaData = HashMultimap.create();
+        metaData = new MetaData();
         guideName = "";
     }
 
@@ -89,7 +87,7 @@ public class Page implements Serializable, Comparable<Page> {
         url = page.url;
         location = page.location;
         pageLinks = new ArrayList<>(page.pageLinks);
-        metaData = HashMultimap.create(page.metaData);
+        metaData = new MetaData(page.metaData);
         etag = page.etag;
         text = page.text;
     }
@@ -109,12 +107,7 @@ public class Page implements Serializable, Comparable<Page> {
     }
 
     public void addMeta(@NonNull String key, Object val) {
-        Multimap<String,Object> meta = getMetaData();
-        if (meta == null) {
-            meta = HashMultimap.create();
-        }
-        meta.put(key, val);
-        setMetaData(meta);
+        getMetaData().put(key, val);
     }
 
     @JsonIgnore
@@ -172,7 +165,7 @@ public class Page implements Serializable, Comparable<Page> {
     }
 
     public Page addTags(@NonNull Set<String> tags) {
-        getMetaData().putAll("tag", tags);
+        getMetaData().addTags(tags);
         return this;
     }
 
@@ -186,7 +179,7 @@ public class Page implements Serializable, Comparable<Page> {
     }
 
     public boolean hasTagPattern(@NonNull String tagPattern) {
-        return MetaUtil.hasTagPattern(getMetaData(), tagPattern);
+        return getMetaData().hasTagPattern(tagPattern);
     }
 
     @JsonProperty

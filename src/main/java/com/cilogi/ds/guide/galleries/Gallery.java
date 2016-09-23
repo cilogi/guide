@@ -21,10 +21,8 @@
 package com.cilogi.ds.guide.galleries;
 
 import com.cilogi.ds.guide.mapper.GuideMapper;
+import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.common.base.Charsets;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.SetMultimap;
 import lombok.Data;
 import lombok.NonNull;
 import org.slf4j.Logger;
@@ -46,7 +44,7 @@ public class Gallery implements Serializable {
     private String title;
     private String description;
     private List<GalleryImage> images;
-    private SetMultimap<String,Object> metaData;
+    private MetaData metaData;
 
     public static Gallery fromJSON(@NonNull String data) {
         try {
@@ -61,7 +59,7 @@ public class Gallery implements Serializable {
         title = "";
         description="";
         images = new ArrayList<>();
-        metaData = HashMultimap.create();
+        metaData = new MetaData();
     }
 
     public Gallery(@NonNull String id) {

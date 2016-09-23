@@ -22,7 +22,6 @@ package com.cilogi.ds.guide.meta;
 
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 import com.google.common.collect.SetMultimap;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,6 +47,7 @@ public class TestMetaData {
     }
 
     @Test
+    @SuppressWarnings({"unchecked"})
     public void testJson() throws IOException {
         SetMultimap map = HashMultimap.create();
         map.put("a", 1);

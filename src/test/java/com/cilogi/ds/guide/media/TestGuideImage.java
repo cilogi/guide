@@ -20,16 +20,13 @@
 
 package com.cilogi.ds.guide.media;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.SetMultimap;
+import com.cilogi.ds.guide.meta.MetaData;
 import org.junit.Before;
 import org.junit.Test;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -50,7 +47,7 @@ public class TestGuideImage {
     @Test
     public void testGetTags() {
         GuideImage image = new GuideImage("image.jpg", 128, 128);
-        SetMultimap<String,Object> map = image.getMetaData();
+        MetaData map = image.getMetaData();
         map.put("tag", "one");
         map.put("tag", "two");
         image.setMetaData(map);
@@ -64,11 +61,11 @@ public class TestGuideImage {
     @Test
     public void setTags() {
         GuideImage image = new GuideImage("image.jpg", 128, 128);
-        Collection<String> tags = Lists.newLinkedList();
+        Set<String> tags = new HashSet<>();
         tags.add("one");
         tags.add("two");
         image.setTags(tags);
-        Set<String> back = image.getTags();
+        //Set<String> back = image.getTags();
         assertEquals(2, tags.size());
         assertTrue(tags.contains("one"));
         assertTrue(tags.contains("two"));

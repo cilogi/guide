@@ -22,18 +22,15 @@ package com.cilogi.ds.guide.listings;
 
 import com.cilogi.ds.guide.IGuide;
 import com.cilogi.ds.guide.mapper.GuideMapper;
+import com.cilogi.ds.guide.meta.MetaData;
 import com.cilogi.ds.guide.pages.Page;
-import com.cilogi.util.MetaUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.SetMultimap;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.experimental.Accessors;
-import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,7 +71,7 @@ public class Listing implements Serializable {
     private String description;
     private String background;
     private Set<String> tags;
-    private SetMultimap<String,Object> metaData;
+    private MetaData metaData;
     private transient Set<Integer> pageIds;
 
     @SuppressWarnings({"unused"})
@@ -89,15 +86,13 @@ public class Listing implements Serializable {
         type = Type.text;
         tags = new LinkedHashSet<>();
         pageIds = new HashSet<>();
-        metaData = HashMultimap.create();
+        metaData = new MetaData();
     }
 
     public Listing(@NonNull String id, @NonNull Set<String> tags) {
+        this();
         this.id = id;
-        type = Type.text;
         this.tags = new LinkedHashSet<>(tags);
-        this.pageIds = new HashSet<>();
-        metaData = HashMultimap.create();
     }
 
     public Listing init(@NonNull IGuide guide) {
@@ -123,11 +118,11 @@ public class Listing implements Serializable {
 
     @JsonIgnore
     public Integer getIndex() {
-        return MetaUtil.getIndex(getMetaData());
+        return getMetaData().getIndex();
     }
 
     public void setIndex(Integer index) {
-        MetaUtil.setIndex(index, getMetaData());
+        getMetaData().setIndex(index);
     }
 
     @JsonDeserialize(as=LinkedHashSet.class)

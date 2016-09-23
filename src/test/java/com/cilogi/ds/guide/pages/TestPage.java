@@ -22,6 +22,7 @@ package com.cilogi.ds.guide.pages;
 
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.Location;
+import com.cilogi.ds.guide.meta.MetaData;
 import com.cilogi.util.Digest;
 import com.cilogi.util.IOUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,7 +34,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.LinkedHashSet;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -73,8 +73,8 @@ public class TestPage {
     @Test
     public void pageWithMeta() throws IOException {
         Page page = page();
-        Map<String,String> map = ImmutableMap.of("key1", "value1", "key2", "value2");
-        page.getMetaData().putAll(Multimaps.forMap(map));
+        MetaData data = new MetaData().put("key1", "value1").put("key2", "value2");
+        page.setMetaData(data);
         String out = page.toJSONString();
         Page back = Page.parse(out);
         assertEquals(page, back);
@@ -151,7 +151,7 @@ public class TestPage {
     }
 
     private Page page() {
-        HashMultimap<String,Object> map = HashMultimap.create();
+        MetaData map = new MetaData();
         map.put("tag", "a");
         map.put("marker", "cafe");
 

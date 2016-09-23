@@ -20,9 +20,8 @@
 
 package com.cilogi.ds.guide.media;
 
+import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
 import lombok.Data;
 import lombok.NonNull;
@@ -32,13 +31,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Accessors(chain=true)
+@SuppressWarnings({"unused"})
 public class GuideAudio implements Serializable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(GuideAudio.class);
@@ -50,10 +48,10 @@ public class GuideAudio implements Serializable {
     private String description;
     private int duration;
     private String digest;
-    private SetMultimap<String,Object> metaData;
+    private MetaData metaData;
 
     private GuideAudio() {
-        metaData = HashMultimap.create();
+        metaData = new MetaData();
     }
 
     public GuideAudio(@NonNull String id) {
@@ -68,7 +66,7 @@ public class GuideAudio implements Serializable {
         description = audio.description;
         duration = audio.duration;
         digest = audio.digest;
-        metaData = HashMultimap.create(audio.metaData);
+        metaData = new MetaData(audio.metaData);
     }
 
     public Set<String> getTags() {
@@ -81,10 +79,8 @@ public class GuideAudio implements Serializable {
     }
 
 
-    public GuideAudio setTags(@NonNull Collection<String> tags) {
-        SetMultimap<String,Object> map = getMetaData();
-        map.removeAll("tag");
-        map.putAll("tag", tags);
+    public GuideAudio setTags(@NonNull Set<String> tags) {
+        getMetaData().setTags(tags);
         return this;
     }
 }

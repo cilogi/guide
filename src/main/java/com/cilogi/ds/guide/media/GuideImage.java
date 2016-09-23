@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.media;
 
+import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.HashMultimap;
@@ -52,10 +53,10 @@ public class GuideImage implements Serializable {
     private int width;
     private int height;
     private String digest;
-    private SetMultimap<String,Object> metaData;
+    private MetaData metaData;
 
     private GuideImage() {
-        metaData = HashMultimap.create();
+        metaData = new MetaData();
     }
 
     public GuideImage(@NonNull String id, int width, int height) {
@@ -78,7 +79,7 @@ public class GuideImage implements Serializable {
         width = image.width;
         height = image.height;
         digest = image.digest;
-        metaData = HashMultimap.create(image.metaData);
+        metaData = new MetaData(image.metaData);
     }
 
     public Set<String> getTags() {
@@ -90,10 +91,8 @@ public class GuideImage implements Serializable {
         return out;
     }
 
-    public GuideImage setTags(@NonNull Collection<String> tags) {
-        SetMultimap<String,Object> map = getMetaData();
-        map.removeAll("tag");
-        map.putAll("tag", tags);
+    public GuideImage setTags(@NonNull Set<String> tags) {
+        getMetaData().setTags(tags);
         return this;
     }
 }

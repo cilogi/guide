@@ -23,6 +23,7 @@ package com.cilogi.ds.guide.meta;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import com.google.common.collect.SetMultimap;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -30,6 +31,7 @@ import lombok.ToString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,12 +40,13 @@ import java.util.Set;
  */
 @EqualsAndHashCode
 @ToString
-public class MetaData {
+public class MetaData implements Serializable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(MetaData.class);
 
     private static final String TAG_KEY = "tag";
     private static final String INDEX_KEY = "index";
+    private static final long serialVersionUID = 5123700827418471368L;
 
     private HashMultimap<String,Object> data;
 
@@ -65,6 +68,11 @@ public class MetaData {
 
     public MetaData put(@NonNull String key, Object val) {
         data.put(key, val);
+        return this;
+    }
+
+    public MetaData putAll(@NonNull Multimap<String,Object> map) {
+        data.putAll(map);
         return this;
     }
 
@@ -100,6 +108,11 @@ public class MetaData {
     public boolean hasTag(@NonNull String tag) {
         Set<String> tags = getTags();
         return tags.contains(tag);
+    }
+
+    public void setTags(@NonNull Set<String> tags) {
+        data.removeAll(TAG_KEY);
+        addTags(tags);
     }
 
     @JsonIgnore

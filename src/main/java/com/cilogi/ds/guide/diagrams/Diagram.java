@@ -21,16 +21,13 @@
 package com.cilogi.ds.guide.diagrams;
 
 import com.cilogi.ds.guide.mapper.GuideMapper;
-import com.cilogi.util.MetaUtil;
+import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
-import com.google.common.collect.SetMultimap;
 import lombok.Data;
 import lombok.NonNull;
-import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,7 +56,7 @@ public class Diagram implements Serializable {
     private boolean showLocation;
     private boolean cluster;
     private boolean listed;
-    private SetMultimap<String,Object> metaData;
+    private MetaData metaData;
 
 
     public static Diagram fromJSON(String data) throws IOException {
@@ -70,7 +67,7 @@ public class Diagram implements Serializable {
     public Diagram() {
         markers = Lists.newArrayList();
         items = Lists.newArrayList();
-        metaData = HashMultimap.create();
+        metaData = new MetaData();
     }
 
     public Diagram copy() {
@@ -90,11 +87,11 @@ public class Diagram implements Serializable {
 
     @JsonIgnore
     public Integer getIndex() {
-        return MetaUtil.getIndex(getMetaData());
+        return getMetaData().getIndex();
     }
 
     public void setIndex(Integer index) {
-        MetaUtil.setIndex(index, getMetaData());
+        getMetaData().setIndex(index);
     }
 
     public String toJSONString() {

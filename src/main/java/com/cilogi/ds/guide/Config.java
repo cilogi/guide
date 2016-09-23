@@ -23,6 +23,7 @@ package com.cilogi.ds.guide;
 import com.cilogi.ds.guide.diagrams.MapDescription;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.LatLng;
+import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -30,10 +31,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
 import lombok.Data;
 import lombok.NonNull;
-import org.hjson.JsonValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -103,8 +102,7 @@ public class Config implements Serializable {
     /* Bounds of the site (can be null) */
     private LatLng.Bounds bounds;
 
-    @JsonDeserialize(as=HashMultimap.class)
-    private Multimap<String,Object> metaData;
+    private MetaData metaData;
 
     public static Config fromJSON(String data) throws IOException {
         GuideMapper mapper = new GuideMapper();
@@ -132,7 +130,7 @@ public class Config implements Serializable {
         imageDisplay = IMAGE_DISPLAY_CONTAIN;
         mapDescription = null;
         bounds = null;
-        metaData = HashMultimap.create();
+        metaData = new MetaData();
     }
 
     public Config(Config config) {
@@ -158,7 +156,7 @@ public class Config implements Serializable {
         this.mapDescription = config.mapDescription;
         this.mapTitle = config.mapTitle;
         this.bounds = config.bounds;
-        this.metaData = HashMultimap.create(config.getMetaData());
+        this.metaData = new MetaData(config.getMetaData());
     }
 
     @Data
