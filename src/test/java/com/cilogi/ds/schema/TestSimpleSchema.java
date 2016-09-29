@@ -1,6 +1,6 @@
 // Copyright (c) 2016 Cilogi. All Rights Reserved.
 //
-// File:        DemoSchema.java  (9/15/16)
+// File:        TestSimpleSchema.java  (9/15/16)
 // Author:      tim
 //
 // Copyright in the whole and every part of this source file belongs to
@@ -18,46 +18,61 @@
 //
 
 
-package com.cilogi.com.cilogi.ds.schema;
+package com.cilogi.ds.schema;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.reinert.jjschema.JsonSchemaGenerator;
 import com.github.reinert.jjschema.SchemaGeneratorBuilder;
+import com.github.reinert.jjschema.exception.TypeException;
 import com.google.common.collect.Multimap;
 import lombok.Data;
+import org.junit.Before;
+import org.junit.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-/** Trying out stuff to see what we can generate */
-@SuppressWarnings({"unused"})
-public class DemoSchema {
-    @SuppressWarnings("unused")
-    static final Logger LOG = LoggerFactory.getLogger(DemoSchema.class);
+import static org.junit.Assert.*;
 
-    public DemoSchema() {
+public class TestSimpleSchema {
+    @SuppressWarnings("unused")
+    static final Logger LOG = LoggerFactory.getLogger(TestSimpleSchema.class);
+
+
+    public TestSimpleSchema() {
+    }
+
+    @Before
+    public void setUp() {
 
     }
 
-    public static void main(String[] args) {
-        try {
-            JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
-            JsonNode productSchema = v4generator.generateSchema(TypedMultiMap.class);
-            System.out.println(productSchema);
+    @Test
+    public void testMap() throws TypeException {
+        JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
+        JsonNode productSchema = v4generator.generateSchema(MapTest.class);
+        assertEquals(productSchema.toString(), "{\"type\":\"object\",\"properties\":{\"map\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}");
 
-        } catch (Exception e) {
-            LOG.error("oops", e);
-        }
+    }
+
+    @Test
+    public void testMultimap() throws TypeException {
+        JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
+        JsonNode productSchema = v4generator.generateSchema(MultimapTest.class);
+        String s = productSchema.toString();
+        assertEquals(productSchema.toString(), "{\"type\":\"object\",\"properties\":{\"map\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}");
+
     }
 
     @Data
-    static class TypedMap {
+    static class MapTest {
         Map<String,String> map;
     }
 
     @Data
-    static class TypedMultiMap {
+    static class MultimapTest {
         Multimap<String,Object> map;
     }
 }

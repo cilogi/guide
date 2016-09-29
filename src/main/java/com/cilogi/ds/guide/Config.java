@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.github.reinert.jjschema.Attributes;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -43,6 +44,7 @@ import java.util.*;
 
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Data
+@Attributes(title = "Configuration", description = "Information about the Guide, used to categorize and compile")
 public class Config implements Serializable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Config.class);
@@ -51,11 +53,14 @@ public class Config implements Serializable {
     public static String IMAGE_DISPLAY_COVER = "image-display:cover";
     public static String IMAGE_DISPLAY_CONTAIN = "image-display:contain";
 
-    /** Title of the map */
+    /** Title of the guide */
+    @Attributes(description = "Title of the Guide", required = true)
     private String title;
     /** Description of the guide.  Goes to its meta-data. */
+    @Attributes(description = "Description of the Guide")
     private String description;
     /** The latlng of the guide, the central or start point */
+    @Attributes(description = "The geo location of the guide for inclusion in maps and other look-ups")
     private LatLng latlng;
     /** Is this guide shared, so that others can make mixtrails */
     private boolean shared;

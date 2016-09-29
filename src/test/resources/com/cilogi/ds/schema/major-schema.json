@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Demo Schema",
+    "description": "Just a test",
+    "type": "object",
+    "properties": {
+        "age": {
+            "type": "integer"
+        },
+        "link": {
+            "$ref": "minor-schema.json/#"
+        }
+    }
+}

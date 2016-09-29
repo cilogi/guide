@@ -22,6 +22,7 @@ package com.cilogi.ds.guide.meta;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.reinert.jjschema.SchemaIgnore;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.SetMultimap;
@@ -49,6 +50,7 @@ public class MetaData implements Serializable {
     private static final String INDEX_KEY = "index";
     private static final long serialVersionUID = 5123700827418471368L;
 
+    @SchemaIgnore
     private SetMultimap<String,Object> data;
 
     public MetaData() {

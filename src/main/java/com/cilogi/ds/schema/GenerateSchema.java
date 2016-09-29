@@ -23,10 +23,17 @@ package com.cilogi.ds.schema;
 import com.cilogi.ds.guide.GuideJson;
 import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.github.reinert.jjschema.Attributes;
 import com.github.reinert.jjschema.JsonSchemaGenerator;
 import com.github.reinert.jjschema.SchemaGeneratorBuilder;
+import com.github.reinert.jjschema.SchemaIgnore;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.HashMultiset;
+import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
 
 
 public class GenerateSchema {
@@ -39,11 +46,25 @@ public class GenerateSchema {
 
     public static void main(String[] args) {
         try {
+            HashMultimap<String,Object> map = HashMultimap.create();
             JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
-            JsonNode productSchema = v4generator.generateSchema(MetaData.class);
+            JsonNode productSchema = v4generator.generateSchema(GuideJson.class);
             System.out.println(productSchema);
         } catch (Exception e) {
             LOG.error("oops", e);
         }
+    }
+
+    @Data
+    static class Demo {
+        private Opaque hidden;
+        @Attributes(title = "MetaData", description = "Object MetaData")
+        private HashMap<String,Object> map;
+    }
+
+    @Data
+    static class Opaque {
+        @SchemaIgnore
+        int val;
     }
 }

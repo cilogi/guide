@@ -1,0 +1,11 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Minor Schema",
+    "description": "To be included",
+    "type": "object",
+    "properties": {
+        "linkType": {
+            "type": "string"
+        }
+    }
+}

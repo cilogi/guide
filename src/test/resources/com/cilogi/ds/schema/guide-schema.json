@@ -30,6 +30,9 @@
     },
     "config": {
         "type": "object",
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "description": "Information about the Guide, used to categorize and compile",
+        "title": "Configuration",
         "properties": {
             "analyticsKey": {
                 "type": "string"
@@ -173,18 +176,12 @@
                 "type": "object",
                 "properties": {
                     "permissions": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
+                        "type": "object"
                     }
                 }
             },
             "templates": {
-                "type": "array",
-                "items": {
-                    "type": "string"
-                }
+                "type": "object"
             },
             "theme": {
                 "type": "string"
@@ -395,10 +392,7 @@
         }
     },
     "etags": {
-        "type": "array",
-        "items": {
-            "type": "string"
-        }
+        "type": "object"
     },
     "galleries": {
         "type": "array",
@@ -520,10 +514,7 @@
         "type": "string"
     },
     "pageDigests": {
-        "type": "array",
-        "items": {
-            "type": "string"
-        }
+        "type": "object"
     },
     "pages": {
         "type": "array",
