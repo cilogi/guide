@@ -1,6 +1,6 @@
 // Copyright (c) 2016 Cilogi. All Rights Reserved.
 //
-// File:        DemoSchema.java  (9/15/16)
+// File:        TestDollarRefGeneration.java  (9/30/16)
 // Author:      tim
 //
 // Copyright in the whole and every part of this source file belongs to
@@ -22,42 +22,52 @@ package com.cilogi.ds.schema;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jackson.JacksonUtils;
-import com.github.reinert.jjschema.JsonSchemaGenerator;
-import com.github.reinert.jjschema.SchemaGeneratorBuilder;
-import com.google.common.collect.Multimap;
+import com.github.reinert.jjschema.*;
 import lombok.Data;
+import org.junit.Before;
+import org.junit.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
+import java.io.File;
 
-/** Trying out stuff to see what we can generate */
-@SuppressWarnings({"unused"})
-public class DemoSchema {
+import static org.junit.Assert.*;
+
+public class TestDollarRefGeneration {
     @SuppressWarnings("unused")
-    static final Logger LOG = LoggerFactory.getLogger(DemoSchema.class);
+    static final Logger LOG = LoggerFactory.getLogger(TestDollarRefGeneration.class);
 
-    public DemoSchema() {
+
+    public TestDollarRefGeneration() {
+    }
+
+    @Before
+    public void setUp() {
 
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void testDollarRef() {
         try {
             JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
-            JsonNode productSchema = v4generator.generateSchema(TypedMultiMap.class);
+            JsonNode productSchema = v4generator.generateSchema(DollarRef.class);
             System.out.println(JacksonUtils.prettyPrint(productSchema));
+            Util.saveClass(DollarRef.class, new File("C:\\tmp"));
         } catch (Exception e) {
             LOG.error("oops", e);
         }
     }
 
     @Data
-    static class TypedMap {
-        Map<String,String> map;
+    @SchemaFileName("DollarRef")
+    static class DollarRef {
+        @JsonReference("reference.json/#")
+        Opaque ref;
     }
 
     @Data
-    static class TypedMultiMap {
-        Multimap<String,Object> map;
+    static class Opaque {
+        int val;
     }
 }

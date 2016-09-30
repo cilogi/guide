@@ -56,8 +56,7 @@ public class TestDemoValidate {
 
     @Test
     public void testValidate() throws ProcessingException, IOException {
-        final URITranslatorConfiguration translatorCfg
-                = URITranslatorConfiguration.newBuilder()
+        final URITranslatorConfiguration translatorCfg = URITranslatorConfiguration.newBuilder()
                 .setNamespace(NAMESPACE).freeze();
         final LoadingConfiguration cfg = LoadingConfiguration.newBuilder()
                 .setURITranslatorConfiguration(translatorCfg).freeze();
