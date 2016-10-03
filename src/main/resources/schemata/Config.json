@@ -1,0 +1,128 @@
+{
+  "type" : "object",
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "description" : "Information about the Guide, used to categorize and compile",
+  "title" : "Configuration",
+  "properties" : {
+    "analyticsKey" : {
+      "type" : "string"
+    },
+    "attribution" : {
+      "type" : "string"
+    },
+    "blogs" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "bounds" : {
+      "type" : "object",
+      "properties" : {
+        "br" : {
+          "$ref" : "/schemata/LatLng.json"
+        },
+        "tl" : {
+          "$ref" : "/schemata/LatLng.json"
+        }
+      }
+    },
+    "compile" : {
+      "type" : "object"
+    },
+    "copyright" : {
+      "type" : "string"
+    },
+    "defaultTour" : {
+      "type" : "string"
+    },
+    "description" : {
+      "type" : "string",
+      "description" : "Description of the Guide"
+    },
+    "email" : {
+      "type" : "string"
+    },
+    "filesize" : {
+      "type" : "object",
+      "properties" : {
+        "except" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "max" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "guideImage" : {
+      "type" : "string"
+    },
+    "imageDisplay" : {
+      "type" : "string"
+    },
+    "latlng" : {
+      "$ref" : "/schemata/LatLng.json",
+      "description" : "The geo location of the guide for inclusion in maps and other look-ups"
+    },
+    "listview" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "mapDescription" : {
+      "type" : "object",
+      "properties" : {
+        "br" : {
+          "$ref" : "/schemata/LatLng.json"
+        },
+        "center" : {
+          "$ref" : "/schemata/LatLng.json"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "tl" : {
+          "$ref" : "/schemata/LatLng.json"
+        }
+      }
+    },
+    "mapTitle" : {
+      "type" : "string"
+    },
+    "metaData" : {
+      "type" : "object"
+    },
+    "permissions" : {
+      "type" : "object",
+      "properties" : {
+        "permissions" : {
+          "type" : "object"
+        }
+      }
+    },
+    "templates" : {
+      "type" : "object"
+    },
+    "theme" : {
+      "type" : "string"
+    },
+    "title" : {
+      "type" : "string",
+      "description" : "Title of the Guide"
+    },
+    "uiTheme" : {
+      "type" : "string"
+    },
+    "shared" : {
+      "type" : "boolean"
+    },
+    "showKeypad" : {
+      "type" : "boolean"
+    }
+  },
+  "required" : [ "title" ]
+}

@@ -1,6 +1,6 @@
 // Copyright (c) 2016 Cilogi. All Rights Reserved.
 //
-// File:        TestDemoValidate.java  (9/29/16)
+// File:        ValidateSchema.java  (10/3/16)
 // Author:      tim
 //
 // Copyright in the whole and every part of this source file belongs to
@@ -20,70 +20,61 @@
 
 package com.cilogi.ds.schema;
 
-import com.cilogi.util.IOUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jackson.JsonLoader;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import com.github.fge.jsonschema.core.load.configuration.LoadingConfiguration;
+import com.github.fge.jsonschema.core.load.uri.URITranslatorConfiguration;
 import com.github.fge.jsonschema.core.report.ProcessingReport;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.github.fge.jsonschema.main.JsonSchemaFactory;
-import com.github.fge.jsonschema.core.load.uri.URITranslatorConfiguration;
-import org.junit.Before;
-import org.junit.Test;
-
+import com.google.common.base.Charsets;
+import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
 import java.io.IOException;
-import java.net.URL;
 
-import static org.junit.Assert.*;
-
-public class TestDemoValidate {
+/**
+ * Validate schemata for Guides, and other components which can be stand-alone in a resource store.
+ * <p></p>The other components are currently
+ * <ul>
+ *     <li>Config.</li>
+ *     <li>Listing.</li>
+ *     <li>Shop.</li>
+ *     <li>Tour.</li>
+ * </ul>
+ *
+ */
+public class ValidateSchema {
     @SuppressWarnings("unused")
-    static final Logger LOG = LoggerFactory.getLogger(TestDemoValidate.class);
+    static final Logger LOG = LoggerFactory.getLogger(ValidateSchema.class);
 
-    private static final String NAMESPACE = "resource:/com/cilogi/ds/schema/";
+    private static final String NAMESPACE = "resource:/schemata/";
 
-    public TestDemoValidate() {
+
+    public enum Component {
+        GuideJson, Config, Listing, Shop, Tour
     }
 
-    @Before
-    public void setUp() {
+    private final JsonSchema schema;
 
-    }
-
-    @Test
-    public void testValidate() throws ProcessingException, IOException {
+    public ValidateSchema(@NonNull Component component) throws ProcessingException {
         final URITranslatorConfiguration translatorCfg = URITranslatorConfiguration.newBuilder()
                 .setNamespace(NAMESPACE).freeze();
         final LoadingConfiguration cfg = LoadingConfiguration.newBuilder()
                 .setURITranslatorConfiguration(translatorCfg).freeze();
-
         final JsonSchemaFactory factory = JsonSchemaFactory.newBuilder()
                 .setLoadingConfiguration(cfg).freeze();
+        schema = factory.getJsonSchema(component.name() + ".json");
 
-        final JsonSchema schema = factory.getJsonSchema("major-schema.json");
-        LOG.info("schema loaded OK");
-
-        URL url = getClass().getResource("major-sample.json");
-        JsonNode sample = JsonLoader.fromURL(getClass().getResource("major-sample.json"));
-        LOG.info("sample loaded");
-
-        ProcessingReport report = schema.validate(sample);
-        assertTrue(report.isSuccess());
     }
 
-    @Test
-    public void testGuideJson() throws IOException, ProcessingException {
-        byte[] data = IOUtil.loadBytes(getClass().getResource("guideJson-sample.json"));
-        ValidateSchema validator = new ValidateSchema(ValidateSchema.Component.GuideJson);
-        ProcessingReport report = validator.validate(data);
-        if (!report.isSuccess()) {
-            LOG.warn("Failure: " + report.toString());
-        }
-        assertTrue(report.isSuccess());
+    public ProcessingReport validate(@NonNull byte[] data) throws IOException, ProcessingException {
+        String s = new String(data, Charsets.UTF_8);
+        JsonNode sample = JsonLoader.fromString(s);
+        LOG.info("sample loaded");
+
+        return schema.validate(sample);
     }
 }

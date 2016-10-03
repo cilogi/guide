@@ -20,15 +20,23 @@
 
 package com.cilogi.ds.schema;
 
+import com.cilogi.ds.guide.Config;
+import com.cilogi.ds.guide.GuideJson;
+import com.cilogi.ds.guide.listings.Listing;
+import com.cilogi.ds.guide.shop.Shop;
+import com.cilogi.ds.guide.tours.Tour;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jackson.JacksonUtils;
 import com.github.reinert.jjschema.JsonSchemaGenerator;
 import com.github.reinert.jjschema.SchemaGeneratorBuilder;
+import com.github.reinert.jjschema.Util;
 import com.google.common.collect.Multimap;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 /** Trying out stuff to see what we can generate */
@@ -42,10 +50,21 @@ public class DemoSchema {
     }
 
     public static void main(String[] args) {
+        File root = new File("C:\\work\\projects\\cilogi\\libs\\guide\\src\\main\\resources\\schemata");
+        Class[] classes = {
+                Config.class,
+                Tour.class,
+                Listing.class,
+                Shop.class,
+                GuideJson.class
+        };
         try {
             JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
-            JsonNode productSchema = v4generator.generateSchema(TypedMultiMap.class);
-            System.out.println(JacksonUtils.prettyPrint(productSchema));
+            for (Class clazz : classes) {
+                Util.saveClass(clazz, root);
+                JsonNode productSchema = v4generator.generateSchema(clazz);
+                System.out.println(JacksonUtils.prettyPrint(productSchema));
+            }
         } catch (Exception e) {
             LOG.error("oops", e);
         }

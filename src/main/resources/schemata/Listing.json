@@ -1,0 +1,35 @@
+{
+  "type" : "object",
+  "properties" : {
+    "background" : {
+      "type" : "string"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "metaData" : {
+      "type" : "object"
+    },
+    "pageIds" : {
+      "type" : "array",
+      "items" : {
+        "type" : "integer"
+      }
+    },
+    "tags" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "title" : {
+      "type" : "string"
+    },
+    "type" : {
+      "enum" : [ "text", "hybrid", "image" ]
+    }
+  }
+}

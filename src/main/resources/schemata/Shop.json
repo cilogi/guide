@@ -1,0 +1,65 @@
+{
+  "type" : "object",
+  "properties" : {
+    "skus" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "image" : {
+            "type" : "object",
+            "properties" : {
+              "height" : {
+                "type" : "integer"
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "width" : {
+                "type" : "integer"
+              }
+            }
+          },
+          "tags" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "thumb" : {
+            "type" : "object",
+            "properties" : {
+              "height" : {
+                "type" : "integer"
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "width" : {
+                "type" : "integer"
+              }
+            }
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "unitPrice" : {
+            "type" : "number"
+          }
+        }
+      }
+    },
+    "storeCurrency" : {
+      "type" : "string"
+    },
+    "storeName" : {
+      "type" : "string"
+    }
+  }
+}

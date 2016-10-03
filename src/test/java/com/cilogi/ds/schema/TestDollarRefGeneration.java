@@ -31,6 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -60,10 +61,10 @@ public class TestDollarRefGeneration {
     }
 
     @Data
-    @SchemaFileName("DollarRef")
+    //@SchemaFileName("DollarRef")
     static class DollarRef {
         @JsonReference("reference.json/#")
-        Opaque ref;
+        List<Opaque> refs;
     }
 
     @Data

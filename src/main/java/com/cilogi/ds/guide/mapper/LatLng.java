@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.mapper;
 
+import com.github.reinert.jjschema.SchemaFileName;
 import com.google.common.base.Preconditions;
 import lombok.*;
 import org.slf4j.Logger;
@@ -30,6 +31,7 @@ import java.util.Collection;
 
 @EqualsAndHashCode
 @ToString
+@SchemaFileName("/schemata/LatLng.json")
 public class LatLng implements Serializable {
     static final Logger LOG = LoggerFactory.getLogger(LatLng.class);
     private static final long serialVersionUID = 6843840948228234483L;

@@ -40,6 +40,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.github.reinert.jjschema.JsonReference;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import lombok.*;
@@ -73,6 +74,7 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
 
     private final String guideSpecVersion;
 
+    @JsonReference("Config.json/#")
     private Config config;
 
     private String title;
@@ -89,16 +91,19 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
 
     private Set<GuideAudio> audioClips;
 
+    @JsonReference("Tour.json/#")
     private List<Tour> tours;
 
     private List<Gallery> galleries;
 
+    @JsonReference("Listing.json/#")
     private List<Listing> listings;
 
     private List<WikiPageInfo> wikiPages;
 
     private Map<String,byte[]> etags;
 
+    @JsonReference("Shop.json/#")
     private Shop shop;
 
     public static Set<String> localGuides() {

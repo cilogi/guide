@@ -1,0 +1,442 @@
+{
+  "type" : "object",
+  "properties" : {
+    "audioClips" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "type" : "string"
+          },
+          "digest" : {
+            "type" : "string"
+          },
+          "duration" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "metaData" : {
+            "type" : "object"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "config" : {
+      "$ref" : "Config.json/#"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "diagrams" : {
+      "type" : "object",
+      "properties" : {
+        "diagrams" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "bounds" : {
+                "type" : "object",
+                "properties" : {
+                  "br" : {
+                    "type" : "object"
+                  },
+                  "center" : {
+                    "type" : "object"
+                  },
+                  "tl" : {
+                    "type" : "object"
+                  }
+                }
+              },
+              "guideName" : {
+                "type" : "string"
+              },
+              "image" : {
+                "type" : "object",
+                "properties" : {
+                  "locates" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                        "latlng" : {
+                          "type" : "object"
+                        },
+                        "pixel" : {
+                          "type" : "object"
+                        },
+                        "tag" : {
+                          "type" : "string"
+                        }
+                      }
+                    }
+                  },
+                  "opacity" : {
+                    "type" : "number"
+                  },
+                  "src" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "items" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "description" : {
+                      "type" : "string"
+                    },
+                    "icon" : {
+                      "type" : "string"
+                    },
+                    "id" : {
+                      "type" : "string"
+                    },
+                    "latlng" : {
+                      "type" : "object"
+                    },
+                    "marker" : {
+                      "type" : "string"
+                    },
+                    "pixel" : {
+                      "type" : "object"
+                    },
+                    "text" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              },
+              "markers" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "color" : {
+                      "type" : "string"
+                    },
+                    "icon" : {
+                      "type" : "string"
+                    },
+                    "iconColor" : {
+                      "type" : "string"
+                    },
+                    "id" : {
+                      "type" : "string"
+                    },
+                    "shape" : {
+                      "type" : "string"
+                    },
+                    "theme" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              },
+              "metaData" : {
+                "type" : "object"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "provider" : {
+                "type" : "string"
+              },
+              "sizes" : {
+                "type" : "object",
+                "properties" : {
+                  "max" : {
+                    "type" : "number"
+                  },
+                  "min" : {
+                    "type" : "number"
+                  },
+                  "threshold" : {
+                    "type" : "number"
+                  }
+                }
+              },
+              "title" : {
+                "type" : "string"
+              },
+              "zoom" : {
+                "type" : "object",
+                "properties" : {
+                  "max" : {
+                    "type" : "integer"
+                  },
+                  "min" : {
+                    "type" : "integer"
+                  },
+                  "start" : {
+                    "type" : "integer"
+                  }
+                }
+              },
+              "cluster" : {
+                "type" : "boolean"
+              },
+              "listed" : {
+                "type" : "boolean"
+              },
+              "showLocation" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        },
+        "markers" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "color" : {
+                "type" : "string"
+              },
+              "icon" : {
+                "type" : "string"
+              },
+              "iconColor" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "shape" : {
+                "type" : "string"
+              },
+              "theme" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "etags" : {
+      "type" : "object"
+    },
+    "galleries" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "images" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "description" : {
+                  "type" : "string"
+                },
+                "imageId" : {
+                  "type" : "string"
+                },
+                "path" : {
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "metaData" : {
+            "type" : "object"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "guideSpecVersion" : {
+      "type" : "string"
+    },
+    "images" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "type" : "string"
+          },
+          "digest" : {
+            "type" : "string"
+          },
+          "guideName" : {
+            "type" : "string"
+          },
+          "height" : {
+            "type" : "integer"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "metaData" : {
+            "type" : "object"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          },
+          "width" : {
+            "type" : "integer"
+          }
+        }
+      }
+    },
+    "listings" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "Listing.json/#"
+      }
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "pageDigests" : {
+      "type" : "object"
+    },
+    "pages" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "etag" : {
+            "type" : "string"
+          },
+          "guideName" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "integer"
+          },
+          "images" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "alt" : {
+                  "type" : "string"
+                },
+                "src" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "location" : {
+            "type" : "object",
+            "properties" : {
+              "image" : {
+                "type" : "string"
+              },
+              "x" : {
+                "type" : "number"
+              },
+              "y" : {
+                "type" : "number"
+              }
+            }
+          },
+          "metaData" : {
+            "type" : "object"
+          },
+          "pageLinks" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "guideName" : {
+                  "type" : "string"
+                },
+                "title" : {
+                  "type" : "string"
+                },
+                "type" : {
+                  "enum" : [ "audio", "image", "listing", "map", "page", "thumb", "tour", "gallery", "url" ]
+                },
+                "value" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "text" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "shop" : {
+      "$ref" : "Shop.json/#"
+    },
+    "title" : {
+      "type" : "string"
+    },
+    "tours" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "Tour.json/#"
+      }
+    },
+    "wikiPages" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "imageCaption" : {
+            "type" : "string"
+          },
+          "index" : {
+            "type" : "integer"
+          },
+          "location" : {
+            "$ref" : "/schemata/LatLng.json"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "tags" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "wikiPageIndex" : {
+            "type" : "integer"
+          }
+        }
+      }
+    }
+  }
+}

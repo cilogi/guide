@@ -1,0 +1,74 @@
+{
+  "type" : "object",
+  "properties" : {
+    "background" : {
+      "type" : "string"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "location" : {
+      "type" : "object",
+      "properties" : {
+        "image" : {
+          "type" : "string"
+        },
+        "x" : {
+          "type" : "number"
+        },
+        "y" : {
+          "type" : "number"
+        }
+      }
+    },
+    "metaData" : {
+      "type" : "object"
+    },
+    "stops" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "extro" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "intro" : {
+            "type" : "string"
+          },
+          "location" : {
+            "type" : "object",
+            "properties" : {
+              "image" : {
+                "type" : "string"
+              },
+              "x" : {
+                "type" : "number"
+              },
+              "y" : {
+                "type" : "number"
+              }
+            }
+          },
+          "metaData" : {
+            "type" : "object"
+          },
+          "path" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "title" : {
+      "type" : "string"
+    }
+  }
+}
