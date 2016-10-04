@@ -20,7 +20,9 @@
 
 package com.cilogi.ds.guide.pages;
 
+import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.util.Pickle;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,5 +59,23 @@ public class TestPageImage {
         ArrayList<PageImage> back = Pickle.unpickle(data, ArrayList.class);
         assertEquals(back, pages);
 
+    }
+
+    @Test
+    public void testReadCompact() throws IOException {
+        final String src = "image/one.jpg";
+        final String srcJson = "\""+src+"\"";
+        PageImage image = new GuideMapper().readValue(srcJson, PageImage.class);
+        assertEquals(src, image.getSrc());
+        assertNull(image.getAlt());
+    }
+
+    @Test
+    public void testReadCompactArray() throws IOException {
+        final String src = "image/one.jpg";
+        final String srcArray = "[\""+src+"\"]";
+        List<PageImage> images = new GuideMapper().readValue(srcArray, new TypeReference<List<PageImage>>() {});
+        assertEquals(src, images.get(0).getSrc());
+        assertNull(images.get(0).getAlt());
     }
 }

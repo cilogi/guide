@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.schema;
 
+import com.cilogi.ds.guide.GuideJson;
 import com.cilogi.util.IOUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jackson.JsonLoader;
@@ -86,4 +87,11 @@ public class TestDemoValidate {
         }
         assertTrue(report.isSuccess());
     }
+
+    @Test
+    public void testGuideJsonLoads() throws IOException {
+        String s = IOUtil.loadStringUTF8(getClass().getResource("guideJson-sample.json"));
+        GuideJson guide = GuideJson.fromJSON(s);
+    }
+
 }

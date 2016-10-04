@@ -23,8 +23,11 @@ package com.cilogi.ds.schema;
 import com.cilogi.ds.guide.Config;
 import com.cilogi.ds.guide.GuideJson;
 import com.cilogi.ds.guide.listings.Listing;
+import com.cilogi.ds.guide.mapper.Location;
+import com.cilogi.ds.guide.pages.PageImage;
 import com.cilogi.ds.guide.shop.Shop;
 import com.cilogi.ds.guide.tours.Tour;
+import com.cilogi.geometry.LatLng;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jackson.JacksonUtils;
 import com.github.reinert.jjschema.JsonSchemaGenerator;
@@ -35,7 +38,9 @@ import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.vecmath.Point2d;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,10 +63,16 @@ public class DemoSchema {
                 Shop.class,
                 GuideJson.class
         };
+        Map<Class,String> refs = new HashMap<>();
+        refs.put(Point2d.class, "/schemata/Point2d.json");
+        refs.put(Location.class, "/schemata/Location.json");
+        refs.put(PageImage.class, "/schemata/PageImage.json");
         try {
-            JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
+            JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema()
+                    .referenceMap(refs)
+                    .build();
             for (Class clazz : classes) {
-                Util.saveClass(clazz, root);
+                Util.saveClass(v4generator, clazz, root);
                 JsonNode productSchema = v4generator.generateSchema(clazz);
                 System.out.println(JacksonUtils.prettyPrint(productSchema));
             }

@@ -11,18 +11,7 @@
       "type" : "string"
     },
     "location" : {
-      "type" : "object",
-      "properties" : {
-        "image" : {
-          "type" : "string"
-        },
-        "x" : {
-          "type" : "number"
-        },
-        "y" : {
-          "type" : "number"
-        }
-      }
+      "$ref" : "/schemata/Location.json"
     },
     "metaData" : {
       "type" : "object"
@@ -42,18 +31,7 @@
             "type" : "string"
           },
           "location" : {
-            "type" : "object",
-            "properties" : {
-              "image" : {
-                "type" : "string"
-              },
-              "x" : {
-                "type" : "number"
-              },
-              "y" : {
-                "type" : "number"
-              }
-            }
+            "$ref" : "/schemata/Location.json"
           },
           "metaData" : {
             "type" : "object"

@@ -48,13 +48,13 @@
                 "type" : "object",
                 "properties" : {
                   "br" : {
-                    "type" : "object"
+                    "$ref" : "/schemata/Point2d.json"
                   },
                   "center" : {
-                    "type" : "object"
+                    "$ref" : "/schemata/Point2d.json"
                   },
                   "tl" : {
-                    "type" : "object"
+                    "$ref" : "/schemata/Point2d.json"
                   }
                 }
               },
@@ -70,10 +70,10 @@
                       "type" : "object",
                       "properties" : {
                         "latlng" : {
-                          "type" : "object"
+                          "$ref" : "/schemata/Point2d.json"
                         },
                         "pixel" : {
-                          "type" : "object"
+                          "$ref" : "/schemata/Point2d.json"
                         },
                         "tag" : {
                           "type" : "string"
@@ -104,13 +104,13 @@
                       "type" : "string"
                     },
                     "latlng" : {
-                      "type" : "object"
+                      "$ref" : "/schemata/Point2d.json"
                     },
                     "marker" : {
                       "type" : "string"
                     },
                     "pixel" : {
-                      "type" : "object"
+                      "$ref" : "/schemata/Point2d.json"
                     },
                     "text" : {
                       "type" : "string"
@@ -334,30 +334,11 @@
           "images" : {
             "type" : "array",
             "items" : {
-              "type" : "object",
-              "properties" : {
-                "alt" : {
-                  "type" : "string"
-                },
-                "src" : {
-                  "type" : "string"
-                }
-              }
+              "$ref" : "/schemata/PageImage.json"
             }
           },
           "location" : {
-            "type" : "object",
-            "properties" : {
-              "image" : {
-                "type" : "string"
-              },
-              "x" : {
-                "type" : "number"
-              },
-              "y" : {
-                "type" : "number"
-              }
-            }
+            "$ref" : "/schemata/Location.json"
           },
           "metaData" : {
             "type" : "object"

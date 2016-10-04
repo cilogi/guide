@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.schema;
 
+import com.cilogi.ds.guide.diagrams.Item;
+import com.cilogi.ds.guide.mapper.Location;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.reinert.jjschema.JsonSchemaGenerator;
 import com.github.reinert.jjschema.SchemaGeneratorBuilder;
@@ -32,6 +34,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.vecmath.Point2d;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -66,6 +71,18 @@ public class TestSimpleSchema {
 
     }
 
+    @Test
+    public void testPixel() throws TypeException {
+        Map<Class,String> refs = new HashMap<>();
+        refs.put(Point2d.class, "/schemata/Point2d.json");
+        refs.put(Location.class, "/schemata/Location.json");
+
+        JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().referenceMap(refs).build();
+        JsonNode productSchema = v4generator.generateSchema(TopContainer.class);
+        String s = productSchema.toString();
+        assertTrue(s.contains("Point2d.json"));
+    }
+
     @Data
     static class MapTest {
         Map<String,String> map;
@@ -74,5 +91,15 @@ public class TestSimpleSchema {
     @Data
     static class MultimapTest {
         Multimap<String,Object> map;
+    }
+
+    @Data
+    static class TopContainer {
+        List<ItemContainer> items;
+    }
+
+    @Data
+    static class ItemContainer {
+        List<Item> items;
     }
 }
