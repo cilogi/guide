@@ -73,8 +73,6 @@ public class ValidateSchema {
     public ProcessingReport validate(@NonNull byte[] data) throws IOException, ProcessingException {
         String s = new String(data, Charsets.UTF_8);
         JsonNode sample = JsonLoader.fromString(s);
-        LOG.info("sample loaded");
-
         return schema.validate(sample);
     }
 }

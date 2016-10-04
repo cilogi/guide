@@ -80,14 +80,4 @@ public class DemoSchema {
             LOG.error("oops", e);
         }
     }
-
-    @Data
-    static class TypedMap {
-        Map<String,String> map;
-    }
-
-    @Data
-    static class TypedMultiMap {
-        Multimap<String,Object> map;
-    }
 }
