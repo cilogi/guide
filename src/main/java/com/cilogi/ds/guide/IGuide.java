@@ -64,17 +64,12 @@ public interface IGuide extends Serializable {
     public List<Tour> getTours();
     public void setTours(List<Tour> tours);
 
-    public List<Gallery> getGalleries();
-    public void setGalleries(List<Gallery> galleries);
-
     public Set<GuideImage> getImages();
     public void setImages(Set<GuideImage> guideImages);
 
     public Set<GuideAudio> getAudioClips();
     public void setAudioClips(Set<GuideAudio> guideAudioClips);
 
-    public Map<String, byte[]> getEtags();
-    public void setEtags(Map<String, byte[]> etags);
 
     public Shop getShop();
     public void setShop(Shop shop);

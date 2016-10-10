@@ -122,12 +122,7 @@ public class Page implements Serializable, Comparable<Page> {
 
     @JsonIgnore
     public Set<String> getTags() {
-        Collection<Object> obj = getMetaData().get("tag");
-        Set<String> out = new HashSet<>();
-        for (Object o : obj) {
-            out.add(o.toString());
-        }
-        return out;
+        return getMetaData().getTags();
     }
 
     @JsonIgnore

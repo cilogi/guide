@@ -21,8 +21,17 @@
 package com.cilogi.ds.schema;
 
 import com.cilogi.ds.guide.diagrams.Item;
+import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.Location;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.github.fge.jackson.JsonLoader;
+import com.github.fge.jsonschema.core.exceptions.ProcessingException;
+import com.github.fge.jsonschema.core.load.configuration.LoadingConfiguration;
+import com.github.fge.jsonschema.core.report.ProcessingReport;
+import com.github.fge.jsonschema.main.JsonSchema;
+import com.github.fge.jsonschema.main.JsonSchemaFactory;
+import com.github.reinert.jjschema.Attributes;
 import com.github.reinert.jjschema.JsonSchemaGenerator;
 import com.github.reinert.jjschema.SchemaGeneratorBuilder;
 import com.github.reinert.jjschema.exception.TypeException;
@@ -35,6 +44,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.vecmath.Point2d;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +68,7 @@ public class TestSimpleSchema {
     public void testMap() throws TypeException {
         JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
         JsonNode productSchema = v4generator.generateSchema(MapTest.class);
-        assertEquals(productSchema.toString(), "{\"type\":\"object\",\"properties\":{\"map\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}");
+        assertEquals(productSchema.toString(), "{\"type\":\"object\",\"properties\":{\"map\":{\"type\":\"object\"}}}");
 
     }
 
@@ -67,8 +77,7 @@ public class TestSimpleSchema {
         JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
         JsonNode productSchema = v4generator.generateSchema(MultimapTest.class);
         String s = productSchema.toString();
-        assertEquals(productSchema.toString(), "{\"type\":\"object\",\"properties\":{\"map\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}");
-
+        assertEquals(productSchema.toString(), "{\"type\":\"object\",\"properties\":{\"map\":{\"type\":\"object\"}}}");
     }
 
     @Test
@@ -81,6 +90,24 @@ public class TestSimpleSchema {
         JsonNode productSchema = v4generator.generateSchema(TopContainer.class);
         String s = productSchema.toString();
         assertTrue(s.contains("Point2d.json"));
+    }
+
+    @Test
+    public void testRequiredArray() throws Exception {
+        JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
+        JsonNode productSchema = v4generator.generateSchema(ItemContainer.class);
+        String schemaString = productSchema.toString();
+
+        final LoadingConfiguration cfg = LoadingConfiguration.newBuilder().freeze();
+        final JsonSchemaFactory factory = JsonSchemaFactory.newBuilder().setLoadingConfiguration(cfg).freeze();
+        final JsonSchema schema = factory.getJsonSchema(productSchema);
+
+        ItemContainer ic = new ItemContainer();
+        String s = new GuideMapper().writeValueAsString(ic);
+        JsonNode sample = JsonLoader.fromString(s);
+        ProcessingReport report = schema.validate(sample);
+        assertTrue(report.isSuccess());
+
     }
 
     @Data
@@ -99,7 +126,9 @@ public class TestSimpleSchema {
     }
 
     @Data
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     static class ItemContainer {
-        List<Item> items;
+        @Attributes(required=true)
+        List<Item> items = new ArrayList<>();
     }
 }

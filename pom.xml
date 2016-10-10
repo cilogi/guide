@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cilogi</groupId>
     <artifactId>guide</artifactId>
-    <version>1.13.0</version>
+    <version>1.14.0</version>
     <packaging>jar</packaging>
     <url>https://github.com/cilogi/guide</url>
     <developers>
@@ -89,7 +89,7 @@
         <dependency>
           <groupId>com.github.reinert</groupId>
           <artifactId>jjschema</artifactId>
-          <version>0.9-SNAPSHOT</version>
+          <version>0.9-CILOGI</version>
         </dependency>
 
 

@@ -53,7 +53,7 @@ public class TestDollarRefGeneration {
         try {
             JsonSchemaGenerator v4generator = SchemaGeneratorBuilder.draftV4Schema().build();
             JsonNode productSchema = v4generator.generateSchema(DollarRef.class);
-            System.out.println(JacksonUtils.prettyPrint(productSchema));
+            //System.out.println(JacksonUtils.prettyPrint(productSchema));
             Util.saveClass(v4generator, DollarRef.class, new File("C:\\tmp"));
         } catch (Exception e) {
             LOG.error("oops", e);

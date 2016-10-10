@@ -67,11 +67,11 @@ public class TestDemoValidate {
                 .setLoadingConfiguration(cfg).freeze();
 
         final JsonSchema schema = factory.getJsonSchema("major-schema.json");
-        LOG.info("schema loaded OK");
+        //LOG.info("schema loaded OK");
 
         URL url = getClass().getResource("major-sample.json");
         JsonNode sample = JsonLoader.fromURL(getClass().getResource("major-sample.json"));
-        LOG.info("sample loaded");
+        //LOG.info("sample loaded");
 
         ProcessingReport report = schema.validate(sample);
         assertTrue(report.isSuccess());

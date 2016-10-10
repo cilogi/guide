@@ -40,6 +40,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.github.reinert.jjschema.Attributes;
 import com.github.reinert.jjschema.JsonReference;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
@@ -52,7 +53,9 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
-
+/**
+ * Implementation of a Guide.  It is specified in a JSON schema to allow for simple validation
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode
 @ToString
@@ -70,17 +73,23 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
             "stop"
     );
 
+    @Attributes(required = true, description = "The unique string that distinguishes this guide in URLs")
     private java.lang.String name;
 
+    @Attributes(required = true, description = "Allows different versions to coexist")
     private final String guideSpecVersion;
 
     @JsonReference("Config.json/#")
+    @Attributes(required = true, description = "Configuration information")
     private Config config;
 
+    @Attributes(required = true, description = "Human readable title for the Guide, used as HTML title element")
     private String title;
 
+    @Attributes(description = "Longer description of the guide")
     private String description;
 
+    @Attributes(required = true)
     private List<Page> pages;
 
     private Map<String,String> pageDigests;
@@ -94,14 +103,11 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
     @JsonReference("Tour.json/#")
     private List<Tour> tours;
 
-    private List<Gallery> galleries;
 
     @JsonReference("Listing.json/#")
     private List<Listing> listings;
 
     private List<WikiPageInfo> wikiPages;
-
-    private Map<String,byte[]> etags;
 
     @JsonReference("Shop.json/#")
     private Shop shop;
@@ -131,10 +137,8 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         images = Sets.newConcurrentHashSet();
         audioClips = Sets.newConcurrentHashSet();
         tours = new ArrayList<>();
-        galleries = new ArrayList<>();
         listings = new ArrayList<>();
         wikiPages = new ArrayList<>();
-        etags = new java.util.HashMap<>();
     }
 
     public GuideJson(@NonNull String name) {
@@ -157,10 +161,8 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         this.images = Sets.newConcurrentHashSet(guide.getImages());
         this.audioClips = Sets.newConcurrentHashSet(guide.getAudioClips());
         this.tours = new ArrayList<>(guide.getTours());
-        this.galleries = new ArrayList<>(guide.getGalleries());
         this.listings = new ArrayList<>(guide.getListings());
         this.wikiPages = new ArrayList<>(guide.getWikiPages());
-        this.etags = new java.util.HashMap<>(guide.getEtags());
         this.config = (guide.getConfig() == null) ? null : new Config(guide.getConfig());
 
         if (this.config != null && this.title != null) {
