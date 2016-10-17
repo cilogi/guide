@@ -1,0 +1,6 @@
+Some links to test.
+First we have a page [Page](page:101), then an image ![Image](image:101.jpg).
+
+Finally, let's have an internal URL [URL](../fred.html) and then external [URLe](https://en.wikipedia.org/wiki/Oak).
+
+That will do.

@@ -33,6 +33,7 @@ import java.util.Set;
 
 import static org.junit.Assert.*;
 
+@SuppressWarnings({"unchecked"})
 public class TestGuideMapper {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(TestGuideMapper.class);

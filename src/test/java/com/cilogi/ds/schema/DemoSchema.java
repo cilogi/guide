@@ -54,6 +54,7 @@ public class DemoSchema {
 
     }
 
+    @SuppressWarnings({"unchecked"})
     public static void main(String[] args) {
         File root = new File("C:\\work\\projects\\cilogi\\libs\\guide\\src\\main\\resources\\schemata");
         Class[] classes = {
