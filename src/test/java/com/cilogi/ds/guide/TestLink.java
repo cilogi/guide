@@ -20,8 +20,8 @@
 
 package com.cilogi.ds.guide;
 
-import com.cilogi.ds.guide.links.Link;
-import com.cilogi.ds.guide.links.LinkType;
+import com.cilogi.ds.guide.sourcerepository.SourceRepository;
+import com.cilogi.ds.guide.sourcerepository.SourceRepositoryType;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -44,7 +44,7 @@ public class TestLink {
 
     @Test
     public void testGithub() {
-        Link link = new Link(LinkType.Github, "tim.niblett@cilogi.com")
+        SourceRepository link = new SourceRepository(SourceRepositoryType.Github, "tim.niblett@cilogi.com")
                 .url("https://github.com/cilogi/gaeshiro.git");
         String ok = link.validate();
         assertEquals(null, ok);
@@ -52,7 +52,7 @@ public class TestLink {
 
     @Test
     public void testBitbucket() {
-        Link link = new Link(LinkType.Bitbucket, "tim@timniblett.net")
+        SourceRepository link = new SourceRepository(SourceRepositoryType.Bitbucket, "tim@timniblett.net")
                 .url("https://timniblett@bitbucket.org/timniblett/xstatic.git");
         String ok = link.validate();
         assertEquals(null, ok);
@@ -60,7 +60,7 @@ public class TestLink {
 
     @Test
     public void testGithubFail() {
-        Link link = new Link(LinkType.Github, "tim.niblett@cilogi.com")
+        SourceRepository link = new SourceRepository(SourceRepositoryType.Github, "tim.niblett@cilogi.com")
                 .url("https://github.org/cilogi/gaeshiro.git");
         String ok = link.validate();
         assertNotEquals(null, ok);

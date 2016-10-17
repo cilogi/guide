@@ -18,8 +18,8 @@
 //
 
 
-package com.cilogi.ds.guide.links;
+package com.cilogi.ds.guide.sourcerepository;
 
-public enum LinkType {
+public enum SourceRepositoryType {
     Online, Dropbox, Github, Bitbucket
 }

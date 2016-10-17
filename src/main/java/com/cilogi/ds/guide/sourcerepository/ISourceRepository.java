@@ -18,13 +18,13 @@
 //
 
 
-package com.cilogi.ds.guide.links;
+package com.cilogi.ds.guide.sourcerepository;
 
 import java.io.Serializable;
 
-public interface ILink extends Serializable {
+public interface ISourceRepository extends Serializable {
    public String getGuideName();
-   public LinkType getLinkType();
+   public SourceRepositoryType getLinkType();
    public String getToken();
    public Long getUserID();
    public String getUrl();

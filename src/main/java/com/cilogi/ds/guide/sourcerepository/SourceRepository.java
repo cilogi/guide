@@ -18,7 +18,7 @@
 //
 
 
-package com.cilogi.ds.guide.links;
+package com.cilogi.ds.guide.sourcerepository;
 
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -41,9 +41,9 @@ import java.util.regex.Pattern;
 @EqualsAndHashCode
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
-public class Link implements ILink {
+public class SourceRepository implements ISourceRepository {
     @SuppressWarnings({"unused"})
-    static final Logger LOG = LoggerFactory.getLogger(Link.class);
+    static final Logger LOG = LoggerFactory.getLogger(SourceRepository.class);
     private static final long serialVersionUID = -7959265416318563235L;
 
     /**
@@ -53,7 +53,7 @@ public class Link implements ILink {
     private String guideName;
 
     @Getter
-    private LinkType linkType;
+    private SourceRepositoryType linkType;
 
     /**
      * The Dropbox token (maybe others later).  This is private and so
@@ -80,28 +80,28 @@ public class Link implements ILink {
     @Getter
     private String userName;
 
-    public static Link fromJSONString(@NonNull String json) {
+    public static SourceRepository fromJSONString(@NonNull String json) {
         try {
-            return new GuideMapper().readValueHjson(json, Link.class);
+            return new GuideMapper().readValueHjson(json, SourceRepository.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @SuppressWarnings({"unused"})
-    public static LinkType gitType(@NonNull String url) {
+    public static SourceRepositoryType gitType(@NonNull String url) {
         if (validateGithub(url) == null) {
-            return LinkType.Github;
+            return SourceRepositoryType.Github;
         } else if (validateBitbucket(url) == null) {
-            return LinkType.Bitbucket;
+            return SourceRepositoryType.Bitbucket;
         } else {
             return null;
         }
     }
 
-    private Link() {}
+    private SourceRepository() {}
 
-    public Link(Link link) {
+    public SourceRepository(SourceRepository link) {
         this.guideName = link.guideName;
         this.linkType = link.linkType;
         this.token = link.token;
@@ -110,7 +110,7 @@ public class Link implements ILink {
         this.userName = link.userName;
     }
 
-    public Link(@NonNull LinkType linkType, @NonNull String userName) {
+    public SourceRepository(@NonNull SourceRepositoryType linkType, @NonNull String userName) {
         this();
         this.linkType = linkType;
         this.userName = userName.trim();
@@ -121,24 +121,24 @@ public class Link implements ILink {
         return validate() == null;
     }
 
-    public Link guideName(String guideName) {
+    public SourceRepository guideName(String guideName) {
         this.guideName = guideName; return this;
     }
 
-    public Link token(String token) {
+    public SourceRepository token(String token) {
         this.token = token; return this;
     }
 
-    public Link userID(long userID) {
+    public SourceRepository userID(long userID) {
         this.userID = userID; return this;
     }
 
-    public Link url(String url) {
+    public SourceRepository url(String url) {
         this.url = url; return this;
     }
 
-    public Link safe() {
-        Link copy = new Link(this);
+    public SourceRepository safe() {
+        SourceRepository copy = new SourceRepository(this);
         copy.userID = (userID == null || userID == 0L) ? 0L : -1L;
         copy.token = (token == null) ? null : "**set**";
         return copy;

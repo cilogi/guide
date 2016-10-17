@@ -18,7 +18,7 @@
 //
 
 
-package com.cilogi.ds.guide.links;
+package com.cilogi.ds.guide.sourcerepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,12 +28,12 @@ import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.*;
 
-public class TestLink {
+public class TestSourceRepository {
     @SuppressWarnings("unused")
-    static final Logger LOG = LoggerFactory.getLogger(TestLink.class);
+    static final Logger LOG = LoggerFactory.getLogger(TestSourceRepository.class);
 
 
-    public TestLink() {
+    public TestSourceRepository() {
     }
 
     @Before
@@ -43,12 +43,12 @@ public class TestLink {
 
     @Test
     public void testJSON() {
-        Link link = new Link(LinkType.Dropbox, "guideName")
+        SourceRepository link = new SourceRepository(SourceRepositoryType.Dropbox, "guideName")
                 .token("token")
                 .userID(1)
                 .url("url");
         String s = link.toJSONString();
-        Link back = Link.fromJSONString(s);
+        SourceRepository back = SourceRepository.fromJSONString(s);
         assertEquals(link, back);
     }
 }
