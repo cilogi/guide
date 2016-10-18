@@ -21,25 +21,28 @@
 package com.cilogi.ds.guide.link;
 
 public enum URNType {
-    audio("media/audios/", false),
-    image("media/images/", false),
-    listing("listings/", true),
-    map("diagrams/", true),
-    page( "contents/pages/", true),
-    tour("tours/", true),
-    url(null, false);
+    audio("media/audios/", null),
+    image("media/images/", null),
+    thumb("media/thumbs", null),
+    listing("listings/", "html"),
+    map("diagrams/", "html"),
+    page( "contents/pages/", "html"),
+    tour("tours/", "html"),
+    url(null, null);
 
     private String path;
-    private boolean stripExtension;
+    private String defaultExtension;
 
-    URNType(String path, boolean stripExtension) {
+    URNType(String path, String defaultExtension) {
         this.path = path;
-        this.stripExtension = stripExtension;
+        this.defaultExtension = defaultExtension;
     }
+
     public String path() {
         return path;
     }
-    boolean stripExtension() {
-        return stripExtension;
+
+    String defaultExtension() {
+        return defaultExtension;
     }
 }

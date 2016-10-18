@@ -69,6 +69,14 @@ public class GuideLink {
         this.urn = urn;
     }
 
+    public String path() {
+        return getUrn().path();
+    }
+
+    public String path(String extension) {
+        return getUrn().path(extension);
+    }
+
     @Override
     public String toString() {
         boolean isImage = urn.getType() == URNType.image;

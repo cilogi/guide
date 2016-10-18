@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.link;
 
+import com.cilogi.util.path.PathUtil;
 import lombok.NonNull;
 import lombok.Value;
 import org.slf4j.Logger;
@@ -101,6 +102,30 @@ public class GuideURN {
         this.type = type;
         this.id = id.replaceAll(COLON_CODED, ":");
         this.revision = revision;
+    }
+
+    public String path() {
+        return path(getType().defaultExtension());
+    }
+
+    public String path(String extension) {
+        String id = PathUtil.name(getId());
+        switch (getType()) {
+            case audio:   return type.path() + id;
+            case image:   return type.path() + id;
+            case listing: return type.path() + clean(id, extension);
+            case map:     return type.path() + clean(id, extension);
+            case page:    return type.path() + clean(id, extension);
+            case thumb:   return type.path() + id;
+            case tour:    return type.path() + clean(id, extension);
+            case url:
+            default:      return getId();
+        }
+    }
+
+    private static String clean(String id, String extension) {
+        String name = PathUtil.name(id);
+        return PathUtil.changeExtension(name, extension);
     }
 
     @Override

@@ -128,4 +128,28 @@ public class TestGuideURN {
         GuideURN back = GuideURN.parse(link.toString());
         assertEquals(link, back);
     }
+
+    @Test
+    public void testListingPath() {
+        String id = "listing:trail";
+        GuideURN link = GuideURN.parse(id);
+        String path = link.path();
+        assertEquals("listings/trail.html", path);
+    }
+
+    @Test
+    public void testPagePath() {
+        String id = "page:501";
+        GuideURN link = GuideURN.parse(id);
+        String path = link.path();
+        assertEquals("contents/pages/501.html", path);
+    }
+
+    @Test
+    public void testWildPagePath() {
+        String id = "../foo/page.html";
+        GuideURN link = GuideURN.parse(id);
+        String path = link.path();
+        assertEquals("../foo/page.html", path);
+    }
 }
