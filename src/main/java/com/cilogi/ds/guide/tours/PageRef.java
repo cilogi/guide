@@ -22,14 +22,13 @@ package com.cilogi.ds.guide.tours;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
-@Data
+@Value
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PageRef implements Serializable {
     @SuppressWarnings("unused")
@@ -61,10 +60,15 @@ public class PageRef implements Serializable {
         }
     }
 
+    public PageRef(int pageIndex) {
+        this("", pageIndex);
+    }
+
     public PageRef(@NonNull String guideName, int pageIndex) {
         this.guideName = guideName;
         this.pageIndex = pageIndex;
     }
+
 
     @JsonIgnore
     public boolean isCompatibleGuide(@NonNull String name) {
