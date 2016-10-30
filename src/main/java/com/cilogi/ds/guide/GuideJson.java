@@ -74,7 +74,7 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
     );
 
     @Attributes(required = true, description = "The unique string that distinguishes this guide in URLs")
-    private java.lang.String name;
+    private String name;
 
     @Attributes(required = true, description = "Allows different versions to coexist")
     private final String guideSpecVersion;
@@ -122,7 +122,7 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         return mapper.readValueHjson(data, GuideJson.class);
     }
 
-    public  String getConfigName() {
+    public String getConfigName() {
         return CONFIG_NAME;
     }
 
