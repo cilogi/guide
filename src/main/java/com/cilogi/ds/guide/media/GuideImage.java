@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.media;
 
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.base.Preconditions;
@@ -40,7 +42,7 @@ import java.util.Set;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Accessors(chain=true)
-public class GuideImage implements Serializable {
+public class GuideImage implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(GuideImage.class);
     private static final long serialVersionUID = -8735763701383324241L;
@@ -94,5 +96,11 @@ public class GuideImage implements Serializable {
     public GuideImage setTags(@NonNull Set<String> tags) {
         getMetaData().setTags(tags);
         return this;
+    }
+
+    @Override
+    public void filter(ITextFilter filter) {
+        title = filter.filter(title);
+        description = filter.filter(description);
     }
 }

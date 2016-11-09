@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.diagrams;
 
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -33,7 +35,7 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Accessors(chain = true)
 @Data
-public class Item implements Serializable {
+public class Item implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Item.class);
     private static final long serialVersionUID = 2019024085803422279L;
@@ -60,5 +62,12 @@ public class Item implements Serializable {
         latlng = null;
         marker = null;
         text = null;
+    }
+
+
+    @Override
+    public void filter(ITextFilter filter) {
+        text = filter.filter(text);
+        description = filter.filter(description);
     }
 }

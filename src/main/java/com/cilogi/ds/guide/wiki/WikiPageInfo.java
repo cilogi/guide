@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.wiki;
 
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.cilogi.ds.guide.mapper.LatLng;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -36,7 +38,7 @@ import java.util.List;
 @Data
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class WikiPageInfo {
+public class WikiPageInfo implements ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(WikiPageInfo.class);
 
@@ -75,5 +77,10 @@ public class WikiPageInfo {
         } catch (IOException e) {
             return "{}";
         }
+    }
+
+    @Override
+    public void filter(ITextFilter filter) {
+        title = filter.filter(title);
     }
 }

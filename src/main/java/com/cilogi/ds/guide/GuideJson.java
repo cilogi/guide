@@ -404,6 +404,33 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         }
     }
 
+    @Override
+    public void filter(ITextFilter filter) {
+        title = filter.filter(title);
+        description = filter.filter(description);
+
+        for (Page page : pages) {
+            page.filter(filter);
+        }
+        for (Tour tour : tours) {
+            tour.filter(filter);
+        }
+        for (Listing listing : listings) {
+            listing.filter(filter);
+        }
+        diagrams.filter(filter);
+        for (WikiPageInfo wikiPage : wikiPages) {
+            wikiPage.filter(filter);
+        }
+        for (GuideAudio  audio : audioClips) {
+            audio.filter(filter);
+        }
+        for (GuideImage image : images) {
+            image.filter(filter);
+        }
+    }
+
+
 
     public String toJSONString() {
         try {

@@ -21,6 +21,8 @@
 package com.cilogi.ds.guide.listings;
 
 import com.cilogi.ds.guide.IGuide;
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.meta.MetaData;
 import com.cilogi.ds.guide.pages.Page;
@@ -53,7 +55,7 @@ import java.util.Set;
 @Data
 @Accessors(chain = true)
 @JsonIgnoreProperties({"pageIds"})
-public class Listing implements Serializable {
+public class Listing implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Listing.class);
     private static final long serialVersionUID = -2489263313762667827L;
@@ -175,5 +177,12 @@ public class Listing implements Serializable {
             LOG.warn("Can't convert listing " + this + " to JSON");
             return "{}";
         }
+    }
+
+
+    @Override
+    public void filter(ITextFilter filter) {
+        title = filter.filter(title);
+        description = filter.filter(description);
     }
 }

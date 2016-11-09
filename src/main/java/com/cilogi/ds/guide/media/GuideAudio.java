@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.media;
 
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.collect.Sets;
@@ -37,7 +39,7 @@ import java.util.Set;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Accessors(chain=true)
 @SuppressWarnings({"unused"})
-public class GuideAudio implements Serializable {
+public class GuideAudio implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(GuideAudio.class);
     private static final long serialVersionUID = -3642718837956551455L;
@@ -82,5 +84,11 @@ public class GuideAudio implements Serializable {
     public GuideAudio setTags(@NonNull Set<String> tags) {
         getMetaData().setTags(tags);
         return this;
+    }
+
+    @Override
+    public void filter(ITextFilter filter) {
+        title = filter.filter(title);
+        description = filter.filter(description);
     }
 }

@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.pages;
 
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.LatLng;
 import com.cilogi.ds.guide.mapper.Location;
@@ -46,7 +48,7 @@ import java.util.*;
 @JsonIgnoreProperties(ignoreUnknown=true)
 @Data
 @SuppressWarnings({"unused"})
-public class Page implements Serializable, Comparable<Page> {
+public class Page implements Serializable, Comparable<Page>, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Page.class);
     private static final long serialVersionUID = 1396319511865459378L;
@@ -219,5 +221,14 @@ public class Page implements Serializable, Comparable<Page> {
 
     public String digest() {
         return Digest.digestHex(this.toJSONString(), Digest.Algorithm.MD5);
+    }
+
+    @Override
+    public void filter(ITextFilter filter) {
+        title = filter.filter(title);
+        text = filter.filter(text);
+        for (ITextFilterable image : images) {
+            image.filter(filter);
+        }
     }
 }

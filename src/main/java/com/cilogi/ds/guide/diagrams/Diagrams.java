@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.diagrams;
 
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.common.collect.Lists;
@@ -36,7 +38,7 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class Diagrams implements Serializable {
+public class Diagrams implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Diagrams.class);
     private static final long serialVersionUID = -8478735908728862084L;
@@ -122,5 +124,13 @@ public class Diagrams implements Serializable {
     public String toJSONString() throws IOException {
         GuideMapper mapper = new GuideMapper();
         return mapper.writeValueAsString(this);
+    }
+
+
+    @Override
+    public void filter(ITextFilter filter) {
+        for (ITextFilterable diagram : diagrams) {
+            diagram.filter(filter);
+        }
     }
 }

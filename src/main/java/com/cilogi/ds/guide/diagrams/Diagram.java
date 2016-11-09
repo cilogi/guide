@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.diagrams;
 
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,7 +40,7 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class Diagram implements Serializable {
+public class Diagram implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Diagram.class);
     private static final long serialVersionUID = 1079861823817675837L;
@@ -82,6 +84,14 @@ public class Diagram implements Serializable {
         this.markers = Lists.newArrayListWithCapacity(markers.size());
         for (Marker marker : markers) {
             this.markers.add(new Marker(marker));
+        }
+    }
+
+    @Override
+    public void filter(ITextFilter filter) {
+        title = filter.filter(title);
+        for (ITextFilterable item : items) {
+            item.filter(filter);
         }
     }
 

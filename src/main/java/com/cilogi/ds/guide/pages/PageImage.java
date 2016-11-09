@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.pages;
 
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.slf4j.Logger;
@@ -29,7 +31,7 @@ import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class PageImage implements Serializable {
+public class PageImage implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(PageImage.class);
 
@@ -50,5 +52,12 @@ public class PageImage implements Serializable {
     public PageImage(@NonNull String src, String alt) {
         this.src = src;
         this.alt = alt;
+    }
+
+    @Override
+    public void filter(ITextFilter filter) {
+        if (alt != null) {
+            alt = filter.filter(alt);
+        }
     }
 }

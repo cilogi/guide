@@ -20,6 +20,8 @@
 
 package com.cilogi.ds.guide.tours;
 
+import com.cilogi.ds.guide.ITextFilter;
+import com.cilogi.ds.guide.ITextFilterable;
 import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,7 +35,7 @@ import java.io.Serializable;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TourStop implements Serializable {
+public class TourStop implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(TourStop.class);
     private static final long serialVersionUID = 7365232721304149894L;
@@ -118,5 +120,13 @@ public class TourStop implements Serializable {
     @SuppressWarnings({"unused"})
     public boolean isNoRef() {
         return NO_REF_GUIDE.equals(getGuideName());
+    }
+
+
+    @Override
+    public void filter(ITextFilter filter) {
+        title = filter.filter(title);
+        intro = filter.filter(intro);
+        extro = filter.filter(extro);
     }
 }

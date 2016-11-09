@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public interface IGuide extends Serializable {
+public interface IGuide extends Serializable, ITextFilterable {
     public String MEDIA_IMAGE_PATH = "media/images/";
 
     public String getName();
@@ -85,6 +85,9 @@ public interface IGuide extends Serializable {
     public Page findPage(int pageId);
 
     public void updatePage(Page page);
+
+    @Override
+    public void filter(ITextFilter filter);
 
     public String toJSONString();
 
