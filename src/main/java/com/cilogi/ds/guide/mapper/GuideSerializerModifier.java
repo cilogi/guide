@@ -22,6 +22,7 @@ package com.cilogi.ds.guide.mapper;
 
 import com.cilogi.ds.guide.meta.MetaData;
 import com.cilogi.ds.guide.meta.MetaDataSerializer;
+import com.cilogi.ds.guide.tours.TourStop;
 import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializationConfig;
@@ -40,6 +41,8 @@ public class GuideSerializerModifier extends BeanSerializerModifier {
     public JsonSerializer<?> modifySerializer(SerializationConfig config, BeanDescription beanDesc, JsonSerializer<?> serializer) {
         if (beanDesc.getBeanClass() == MetaData.class) {
             return new MetaDataSerializer((JsonSerializer<Object>) serializer);
+        } else if (false && beanDesc.getBeanClass() == TourStop.class) {
+            return new TourStopSerializer((JsonSerializer<Object>)serializer);
         }
         return serializer;
     }

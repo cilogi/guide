@@ -21,8 +21,8 @@
 package com.cilogi.ds.guide.tours;
 
 import com.cilogi.ds.guide.GuideJson;
-import com.cilogi.ds.guide.ITextFilter;
-import com.cilogi.ds.guide.ITextFilterable;
+import com.cilogi.ds.guide.filter.ITextFilter;
+import com.cilogi.ds.guide.filter.ITextFilterable;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.ds.guide.meta.MetaData;

@@ -18,7 +18,7 @@
 //
 
 
-package com.cilogi.ds.guide;
+package com.cilogi.ds.guide.filter;
 
 public interface ITextFilterable {
     public void filter(ITextFilter filter);

@@ -20,8 +20,8 @@
 
 package com.cilogi.ds.guide.pages;
 
-import com.cilogi.ds.guide.ITextFilter;
-import com.cilogi.ds.guide.ITextFilterable;
+import com.cilogi.ds.guide.filter.ITextFilter;
+import com.cilogi.ds.guide.filter.ITextFilterable;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.mapper.LatLng;
 import com.cilogi.ds.guide.mapper.Location;
@@ -33,8 +33,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.google.common.collect.HashMultimap;
 import lombok.Data;
 import lombok.NonNull;
 import org.slf4j.Logger;

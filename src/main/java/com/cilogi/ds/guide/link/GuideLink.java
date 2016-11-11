@@ -36,7 +36,7 @@ public class GuideLink {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(GuideLink.class);
 
-    private static final Pattern EMBEDDED_LINK_PATTERN = Pattern.compile("!?\\[([^\\]]*)\\]\\s*\\(([^\\)]*)\\)");
+    static final Pattern EMBEDDED_LINK_PATTERN = Pattern.compile("!?\\[([^\\]]*)\\]\\s*\\(([^\\)]*)\\)");
 
     private final String title;
     private final GuideURN urn;

@@ -20,8 +20,8 @@
 
 package com.cilogi.ds.guide.tours;
 
-import com.cilogi.ds.guide.ITextFilter;
-import com.cilogi.ds.guide.ITextFilterable;
+import com.cilogi.ds.guide.filter.ITextFilter;
+import com.cilogi.ds.guide.filter.ITextFilterable;
 import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,9 +32,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
+import java.util.Map;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class TourStop implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(TourStop.class);

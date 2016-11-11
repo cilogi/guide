@@ -20,8 +20,8 @@
 
 package com.cilogi.ds.guide.diagrams;
 
-import com.cilogi.ds.guide.ITextFilter;
-import com.cilogi.ds.guide.ITextFilterable;
+import com.cilogi.ds.guide.filter.ITextFilter;
+import com.cilogi.ds.guide.filter.ITextFilterable;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

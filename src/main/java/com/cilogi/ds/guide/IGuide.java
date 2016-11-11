@@ -21,7 +21,8 @@
 package com.cilogi.ds.guide;
 
 import com.cilogi.ds.guide.diagrams.Diagrams;
-import com.cilogi.ds.guide.galleries.Gallery;
+import com.cilogi.ds.guide.filter.ITextFilter;
+import com.cilogi.ds.guide.filter.ITextFilterable;
 import com.cilogi.ds.guide.listings.Listing;
 import com.cilogi.ds.guide.media.GuideAudio;
 import com.cilogi.ds.guide.media.GuideImage;

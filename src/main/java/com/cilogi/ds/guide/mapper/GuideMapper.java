@@ -21,6 +21,7 @@
 package com.cilogi.ds.guide.mapper;
 
 import com.cilogi.ds.guide.pages.PageImage;
+import com.cilogi.ds.guide.tours.TourStop;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,6 +60,8 @@ public class GuideMapper extends ObjectMapper {
 
         module.setSerializerModifier(new GuideSerializerModifier());
         module.setDeserializerModifier(new GuideDeserializerModifier());
+
+        //module.addDeserializer(TourStop.class, new TourStopDeserializer());
 
         registerModule(module);
         setVisibility(getVisibilityChecker().withFieldVisibility(JsonAutoDetect.Visibility.ANY));

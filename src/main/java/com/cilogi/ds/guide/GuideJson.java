@@ -21,8 +21,8 @@
 package com.cilogi.ds.guide;
 
 import com.cilogi.ds.guide.diagrams.Diagrams;
+import com.cilogi.ds.guide.filter.ITextFilter;
 import com.cilogi.ds.guide.mapper.GuideMapper;
-import com.cilogi.ds.guide.galleries.Gallery;
 import com.cilogi.ds.guide.listings.Listing;
 import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.ds.guide.media.GuideAudio;
@@ -45,7 +45,6 @@ import com.github.reinert.jjschema.JsonReference;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import lombok.*;
-import org.hjson.JsonValue;
 
 import java.io.IOException;
 import java.io.Serializable;

@@ -21,8 +21,8 @@
 package com.cilogi.ds.guide.listings;
 
 import com.cilogi.ds.guide.IGuide;
-import com.cilogi.ds.guide.ITextFilter;
-import com.cilogi.ds.guide.ITextFilterable;
+import com.cilogi.ds.guide.filter.ITextFilter;
+import com.cilogi.ds.guide.filter.ITextFilterable;
 import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.meta.MetaData;
 import com.cilogi.ds.guide.pages.Page;
