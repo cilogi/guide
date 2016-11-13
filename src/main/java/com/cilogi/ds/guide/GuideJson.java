@@ -171,6 +171,15 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         this.shop = (guide.getShop() == null) ? null : new Shop(guide.getShop());
     }
 
+    public GuideJson deepCopy() {
+        try {
+            return fromJSON(toJSONString());
+        } catch (IOException e) {
+            LOG.warning("Deep copy via JSON fails: " + e.getMessage());
+            return null;
+        }
+    }
+
     /**
      * Can this guide be saved properly?
      * @return true iff its OK to save
