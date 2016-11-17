@@ -22,6 +22,7 @@ package com.cilogi.ds.guide.link;
 
 import com.cilogi.ds.guide.filter.ITextFilter;
 import com.cilogi.ds.guide.pages.PageLink;
+import com.cilogi.util.path.PathBetween;
 import com.cilogi.util.path.PathUtil;
 import lombok.NonNull;
 import org.slf4j.Logger;
@@ -46,6 +47,28 @@ public class GuideLinkTranslator implements ITextFilter {
         this.paths = paths;
     }
 
+    public String translateRelative(@NonNull String path) {
+        String abs = translateAbsolute(path);
+        return isAbsolute(abs) ? abs : new PathBetween(resourcePath, abs).compute();
+    }
+
+
+    public String translateAbsolute(@NonNull String path) {
+        GuideURN urn = GuideURN.parse(path);
+        switch (urn.getType()) {
+            case url:
+                if (isAbsolute(urn.getId()))  {
+                    return urn.getId();
+                } else {
+                    String absPath = PathUtil.changeRelative(resourcePath, urn.getId());
+                    GuideURN absURN = paths.get(makeCanonical(absPath));
+                    return (absURN == null) ? absPath : absURN.path();
+                }
+            default:
+                return urn.path();
+        }
+    }
+
     public String filter(String text) {
         StringBuilder out = new StringBuilder();
         int current = 0;
@@ -68,8 +91,6 @@ public class GuideLinkTranslator implements ITextFilter {
             }
             String newPath = url.path();
 
-            //String replace = changePath(link, srcPath, dstPath);
-            //out.append(replace);
             current = end;
         }
         out.append(text.substring(current));
@@ -81,5 +102,10 @@ public class GuideLinkTranslator implements ITextFilter {
             return false;
         }
         return url.charAt(0) == '/' || url.matches("^\\w+://.+$");
+    }
+
+    public static final String makeCanonical(@NonNull String path) {
+        String lc = path.toLowerCase();
+        return (lc.endsWith(".md") || lc.endsWith(".html")) ? PathUtil.changeExtension(path, "") : path;
     }
 }
