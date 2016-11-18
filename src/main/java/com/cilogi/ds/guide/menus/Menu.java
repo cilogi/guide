@@ -20,13 +20,21 @@
 
 package com.cilogi.ds.guide.menus;
 
+import com.cilogi.ds.guide.mapper.GuideMapper;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown=true)
 
 @Data
 public class Menu implements Serializable {
@@ -34,10 +42,25 @@ public class Menu implements Serializable {
     static final Logger LOG = LoggerFactory.getLogger(Menu.class);
     private static final long serialVersionUID = 5666874012675336559L;
 
+    public static Menu parse(String s) throws IOException {
+        GuideMapper mapper = new GuideMapper();
+        return mapper.readValueHjson(s, Menu.class);
+    }
+
+
     private String title;
     private List<MenuLink> links;
 
     public Menu() {
         links = new ArrayList<>();
+    }
+
+    public String toJSONString() {
+        ObjectMapper mapper = new GuideMapper();
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (IOException e) {
+            return "";
+        }
     }
 }
