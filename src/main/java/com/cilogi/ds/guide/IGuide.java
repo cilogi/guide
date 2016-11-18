@@ -26,6 +26,7 @@ import com.cilogi.ds.guide.filter.ITextFilterable;
 import com.cilogi.ds.guide.listings.Listing;
 import com.cilogi.ds.guide.media.GuideAudio;
 import com.cilogi.ds.guide.media.GuideImage;
+import com.cilogi.ds.guide.menus.Menu;
 import com.cilogi.ds.guide.pages.Page;
 import com.cilogi.ds.guide.shop.Shop;
 import com.cilogi.ds.guide.tours.Tour;
@@ -82,6 +83,9 @@ public interface IGuide extends Serializable, ITextFilterable {
 
     public List<WikiPageInfo> getWikiPages();
     public void setWikiPages(List<WikiPageInfo> wikiPages);
+
+    public Map<String,Menu> getMenus();
+    public void setMenus(Map<String,Menu> guideMenus);
 
     public Page findPage(int pageId);
 

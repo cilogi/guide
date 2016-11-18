@@ -27,6 +27,7 @@ import com.cilogi.ds.guide.listings.Listing;
 import com.cilogi.ds.guide.mapper.Location;
 import com.cilogi.ds.guide.media.GuideAudio;
 import com.cilogi.ds.guide.media.GuideImage;
+import com.cilogi.ds.guide.menus.Menu;
 import com.cilogi.ds.guide.pages.Page;
 import com.cilogi.ds.guide.pages.PageImage;
 import com.cilogi.ds.guide.shop.Shop;
@@ -108,6 +109,8 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
 
     private List<WikiPageInfo> wikiPages;
 
+    private Map<String,Menu> menus;
+
     @JsonReference("Shop.json/#")
     private Shop shop;
 
@@ -138,6 +141,7 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         tours = new ArrayList<>();
         listings = new ArrayList<>();
         wikiPages = new ArrayList<>();
+        menus = new HashMap<>();
     }
 
     public GuideJson(@NonNull String name) {
@@ -162,6 +166,7 @@ public class GuideJson implements Serializable, IGuide, IPageTitler {
         this.tours = new ArrayList<>(guide.getTours());
         this.listings = new ArrayList<>(guide.getListings());
         this.wikiPages = new ArrayList<>(guide.getWikiPages());
+        this.menus = new HashMap<>(guide.getMenus());
         this.config = (guide.getConfig() == null) ? null : new Config(guide.getConfig());
 
         if (this.config != null && this.title != null) {
