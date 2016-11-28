@@ -26,6 +26,7 @@ import com.cilogi.ds.guide.mapper.GuideMapper;
 import com.cilogi.ds.guide.meta.MetaData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.collect.Lists;
 import lombok.Data;
@@ -40,6 +41,7 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
+@JsonPropertyOrder(alphabetic=true)
 public class Diagram implements Serializable, ITextFilterable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Diagram.class);

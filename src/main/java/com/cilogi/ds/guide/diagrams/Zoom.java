@@ -32,8 +32,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@EqualsAndHashCode
-@ToString
 @Data
 public class Zoom implements Serializable {
     @SuppressWarnings("unused")

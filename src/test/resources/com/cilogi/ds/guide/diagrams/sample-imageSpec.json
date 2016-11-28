@@ -1,0 +1,39 @@
+{
+  "src": "images/botanics1200optpsCOL.png",
+  "opacity": 0.49999999999,
+  "locates": [
+    {
+      "pixel": [
+        6,
+        42
+      ],
+      "latlng": [
+        55.881681,
+        -4.293718
+      ],
+      "tag": "top gate"
+    },
+    {
+      "pixel": [
+        1139,
+        241
+      ],
+      "latlng": [
+        55.878952,
+        -4.287736
+      ],
+      "tag": "side gate"
+    },
+    {
+      "pixel": [
+        1009,
+        603
+      ],
+      "latlng": [
+        55.878045,
+        -4.289697
+      ],
+      "tag": "main gate"
+    }
+  ]
+}

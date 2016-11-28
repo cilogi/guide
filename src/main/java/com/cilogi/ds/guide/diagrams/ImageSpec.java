@@ -21,6 +21,7 @@
 package com.cilogi.ds.guide.diagrams;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -31,9 +32,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonPropertyOrder(alphabetic=true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@EqualsAndHashCode
-@ToString
 @Data
 public class ImageSpec implements Serializable {
     @SuppressWarnings("unused")
