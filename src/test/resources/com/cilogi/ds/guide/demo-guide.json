@@ -2,8 +2,12 @@
     "name": "demo-guide",
     "title": "Demo Guide",
     "owner": "tim@timniblett.net",
-    "servingVersion" : "1",
-    "versions" : ["1", "2", "3"],
+    "servingVersion": "1",
+    "versions": [
+        "1",
+        "2",
+        "3"
+    ],
     "link": {
         "linkType": "Github",
         "userID": "100",
@@ -11,100 +15,464 @@
         "userName": "cilogi"
     },
     "shop": {
-        "storeName" : "shop",
-        "storeCurrency" : "GBP",
+        "storeName": "shop",
+        "storeCurrency": "GBP",
         "skus": [
             {
-                "id" : "wildplaces",
-                "title" : "2013 Scotland - the Wild Places",
-                "description" : "Pictures of wild scotland",
-                "thumb" : "wildplaces_t.jpg",
+                "id": "wildplaces",
+                "title": "2013 Scotland - the Wild Places",
+                "description": "Pictures of wild scotland",
+                "thumb": "wildplaces_t.jpg",
                 "image": "wildplaces.jpg",
                 "unitPrice": "5.99"
             }
         ]
     },
     "pages": [
-        {"id": 1, "title": "Page Title", "guideName" : "sample-guide", "images": ["image1"]}
+        {
+            "id": 1,
+            "title": "Page Title",
+            "guideName": "sample-guide",
+            "images": [
+                "image1"
+            ]
+        }
     ],
     "listings": {
         "title": "title",
         "description": "description",
         "listings": [
-            {"title":"Listing A", "description": "description", "background": "background",
-              "tags" : ["one", "two:", ":three"], "metaData": {"tag": ["one","two","three"]}},
-            {"title":"Listing B", "description": "description", "tags" : ["one", "two:", ":four"],"metaData": {"tag": ["one","two","three"]}}
+            {
+                "title": "Listing A",
+                "description": "description",
+                "background": "background",
+                "tags": [
+                    "one",
+                    "two:",
+                    ":three"
+                ],
+                "metaData": {
+                    "tag": [
+                        "one",
+                        "two",
+                        "three"
+                    ]
+                }
+            },
+            {
+                "title": "Listing B",
+                "description": "description",
+                "tags": [
+                    "one",
+                    "two:",
+                    ":four"
+                ],
+                "metaData": {
+                    "tag": [
+                        "one",
+                        "two",
+                        "three"
+                    ]
+                }
+            }
         ]
     },
     "wikiPages": [
-        {"pageIndex": 49970256, "index": 9001},
-        {"name": "Kelvingrove_Art_Gallery_and_Museum", "index": 9002}
-    ],
-     "menus": {
-        "main": {
-          "title": "Main Menu",
-          "links": [
-            {"text": "Home", "url": "index.html"},
-            {"text": "Kibble", "url": "page:5"}
-          ]
+        {
+            "pageIndex": 49970256,
+            "index": 9001
+        },
+        {
+            "name": "Kelvingrove_Art_Gallery_and_Museum",
+            "index": 9002
         }
-     },
-    "maps" : {
+    ],
+    "menus": {
+        "main": {
+            "title": "Main Menu",
+            "links": [
+                {
+                    "text": "Home",
+                    "url": "index.html"
+                },
+                {
+                    "text": "Kibble",
+                    "url": "page:5"
+                }
+            ]
+        }
+    },
+    "diagrams": {
         "markers": [
-            {"id" : "green", "color": "green", "icon": "star", "font": "iconic", "theme": "Botanics Trail"},
-            {"id" : "red", "color": "red", "icon": "fa-eye", "theme": "Historical Site"},
-            {"id" : "blue", "color": "blue", "icon": "fa-eye", "theme": "Botanics Trail"},
-            {"id" : "news", "color": "blue", "icon": "fa-bullseye", "theme": "What's New"}
-        ],
-        "maps": [{
-            "name"   : "map1",
-            "title"  : "Gardens & River Walk",
-            "markers": [{"id" : "green", "color": "green", "icon": "star", "font": "iconic", "theme": "Botanics Trail"},
-                      {"id" : "red", "color": "red", "icon": "fa-eye", "theme": "Historical Site"},
-                      {"id" : "blue", "color": "blue", "icon": "fa-eye", "theme": "Botanics Trail"},
-                      {"id" : "news", "color": "blue", "icon": "fa-bullseye", "theme": "What's New"}
-            ],
-            "provider"    : "mapnik",
-            "image"  : {"src" : "images/botanics1200optpsCOL.png",
-                        "locates": [
-                            {"pixel": [6, 42], "latlng": [55.881681,-4.293718], "tag": "top gate"},
-                            {"pixel": [1139, 241], "latlng": [55.878952,-4.287736], "tag": "side gate"},
-                            {"pixel": [1009, 603], "latlng": [55.878045,-4.289697], "tag": "main gate"}
-                         ]
+            {
+                "id": "green",
+                "color": "green",
+                "icon": "star",
+                "font": "iconic",
+                "theme": "Botanics Trail"
             },
-            "items": [{ "id": 1,  "description": "Curator's House", "pixel": [878, 224], "marker": "red"},
-                      { "id": 2,  "description": "Peter Walker Memorial", "pixel": [903, 329]},
-                      { "id": 3,  "description": "Main Range of Glasshouses", "pixel": [755, 347]},
-                      { "id": 4,  "description": "Sundial", "pixel": [880, 359],  "marker": "blue"},
-                      { "id": 5,  "description": "Kibble Palace", "pixel": [980, 363]},
-                      { "id": 6,  "description": "Main Gates", "text":  "There's an ice cream stand here in the summer.", "pixel": [1001, 590]},
-                      { "id": 7,  "description": "Weeping Ash", "pixel": [775, 487]},
-                      { "id": 8,  "description": "Botanic Garden Station (disused)", "pixel": [758 , 536]},
-                      { "id": 9,  "description": "New Herb Garden", "pixel": [463, 536]},
-                      { "id": 10, "description": "Herbaceous Border", "pixel": [477, 446]},
-                      { "id": 11, "description": "Chronological Border", "pixel": [269, 486]},
-                      { "id": 12, "description": "Flagpole", "pixel": [299, 356]},
-                      { "id": 13, "description": "World Rose Garden", "pixel": [428, 375]},
-                      { "id": 14, "description": "Memorial Plaques", "pixel": [333, 287]},
-                      { "id": 15, "description": "Kirklee Gate.", "text": "You can park here if you like.  No cost as its residential.", "pixel": [6, 42]},
-                      {           "description": "Margaret Drive Gate", "pixel": [1140, 243]},
-                      { "id": 50, "description": "Toilets.", "text":  "Disabled and nursing.  Open 9:00-4:45 in summer, 9:00-4:15 winter", "pixel": [1111, 209], "icon": "icons/toilet.svg"},
-                      { "id": 16, "description": "Arboretum", "latlng": [55.883429,-4.289101]},
-                      { "id": 17, "description": "Garrioch Footbridge", "latlng": [55.88417,-4.289775]},
-                      { "id": 19, "description": "Kirklee Bridge", "latlng": [55.882611,-4.289905]},
-                      { "id": 20, "description": "Kelvin Walkway", "latlng": [55.882136,-4.29056]},
-                      { "id": 21, "description": "Halfpenny Bridge House", "latlng": [55.882136,-4.29056]},
-                      { "id": 22, "description": "Halfpenny Bridge", "latlng": [55.88157,-4.29203]},
-                      { "id": 23, "description": "Queen Margaret Bridge", "latlng": [55.879572,-4.286236]},
-                      { "id": 24, "description": "Old Queen Margaret Bridge", "latlng": [55.878747,-4.284552]},
-                      { "id": 25, "description": "Flint Mill Bridge", "latlng": [55.877863,-4.281332]},
-                      { "id": 26, "description": "Belmont Street Bridge", "latlng": [55.877556,-4.279623]},
-                      { "id": 27, "description": "North Woodside Flint Mill", "latlng": [55.877964,-4.281943]},
-                      { "id": 28, "description": "Weir and Mill Lade", "latlng": [55.878468,-4.283945]},
-                      { "id": 29, "description": "Humpback Bridge", "latlng": [55.879873,-4.287989]}],
-            "zoom"  : {"min" : 16, "max": 18, "start": 17},
-            "sizes" : {"min": 0.5, "max": 2.0, "threshold": 1.0} ,
-            "bounds": {"tl": [55.884759,-4.294045], "br": [55.874589,-4.277612]}
-        }]
+            {
+                "id": "red",
+                "color": "red",
+                "icon": "fa-eye",
+                "theme": "Historical Site"
+            },
+            {
+                "id": "blue",
+                "color": "blue",
+                "icon": "fa-eye",
+                "theme": "Botanics Trail"
+            },
+            {
+                "id": "news",
+                "color": "blue",
+                "icon": "fa-bullseye",
+                "theme": "What's New"
+            }
+        ],
+        "maps": [
+            {
+                "name": "map1",
+                "title": "Gardens & River Walk",
+                "markers": [
+                    {
+                        "id": "green",
+                        "color": "green",
+                        "icon": "star",
+                        "font": "iconic",
+                        "theme": "Botanics Trail"
+                    },
+                    {
+                        "id": "red",
+                        "color": "red",
+                        "icon": "fa-eye",
+                        "theme": "Historical Site"
+                    },
+                    {
+                        "id": "blue",
+                        "color": "blue",
+                        "icon": "fa-eye",
+                        "theme": "Botanics Trail"
+                    },
+                    {
+                        "id": "news",
+                        "color": "blue",
+                        "icon": "fa-bullseye",
+                        "theme": "What's New"
+                    }
+                ],
+                "overlay": {
+                    "bounds": {
+                        "tl": [
+                            55.884759,
+                            -4.294045
+                        ],
+                        "br": [
+                            55.874589,
+                            -4.277612
+                        ]
+                    },
+                    "images": [
+                        {
+                            "src": "images/botanics1200optpsCOL.png",
+                            "locates": [
+                                {
+                                    "pixel": [
+                                        6,
+                                        42
+                                    ],
+                                    "latlng": [
+                                        55.881681,
+                                        -4.293718
+                                    ],
+                                    "tag": "top gate"
+                                },
+                                {
+                                    "pixel": [
+                                        1139,
+                                        241
+                                    ],
+                                    "latlng": [
+                                        55.878952,
+                                        -4.287736
+                                    ],
+                                    "tag": "side gate"
+                                },
+                                {
+                                    "pixel": [
+                                        1009,
+                                        603
+                                    ],
+                                    "latlng": [
+                                        55.878045,
+                                        -4.289697
+                                    ],
+                                    "tag": "main gate"
+                                }
+                            ]
+                        }
+                    ]
+                ,
+                    "provider": "mapnik",
+                    "zoom": {
+                        "min": 16,
+                        "max": 18,
+                        "start": 17
+                    }
+                },
+                "items": [
+                    {
+                        "id": 1,
+                        "description": "Curator's House",
+                        "pixel": [
+                            878,
+                            224
+                        ],
+                        "marker": "red"
+                    },
+                    {
+                        "id": 2,
+                        "description": "Peter Walker Memorial",
+                        "pixel": [
+                            903,
+                            329
+                        ]
+                    },
+                    {
+                        "id": 3,
+                        "description": "Main Range of Glasshouses",
+                        "pixel": [
+                            755,
+                            347
+                        ]
+                    },
+                    {
+                        "id": 4,
+                        "description": "Sundial",
+                        "pixel": [
+                            880,
+                            359
+                        ],
+                        "marker": "blue"
+                    },
+                    {
+                        "id": 5,
+                        "description": "Kibble Palace",
+                        "pixel": [
+                            980,
+                            363
+                        ]
+                    },
+                    {
+                        "id": 6,
+                        "description": "Main Gates",
+                        "text": "There's an ice cream stand here in the summer.",
+                        "pixel": [
+                            1001,
+                            590
+                        ]
+                    },
+                    {
+                        "id": 7,
+                        "description": "Weeping Ash",
+                        "pixel": [
+                            775,
+                            487
+                        ]
+                    },
+                    {
+                        "id": 8,
+                        "description": "Botanic Garden Station (disused)",
+                        "pixel": [
+                            758,
+                            536
+                        ]
+                    },
+                    {
+                        "id": 9,
+                        "description": "New Herb Garden",
+                        "pixel": [
+                            463,
+                            536
+                        ]
+                    },
+                    {
+                        "id": 10,
+                        "description": "Herbaceous Border",
+                        "pixel": [
+                            477,
+                            446
+                        ]
+                    },
+                    {
+                        "id": 11,
+                        "description": "Chronological Border",
+                        "pixel": [
+                            269,
+                            486
+                        ]
+                    },
+                    {
+                        "id": 12,
+                        "description": "Flagpole",
+                        "pixel": [
+                            299,
+                            356
+                        ]
+                    },
+                    {
+                        "id": 13,
+                        "description": "World Rose Garden",
+                        "pixel": [
+                            428,
+                            375
+                        ]
+                    },
+                    {
+                        "id": 14,
+                        "description": "Memorial Plaques",
+                        "pixel": [
+                            333,
+                            287
+                        ]
+                    },
+                    {
+                        "id": 15,
+                        "description": "Kirklee Gate.",
+                        "text": "You can park here if you like.  No cost as its residential.",
+                        "pixel": [
+                            6,
+                            42
+                        ]
+                    },
+                    {
+                        "description": "Margaret Drive Gate",
+                        "pixel": [
+                            1140,
+                            243
+                        ]
+                    },
+                    {
+                        "id": 50,
+                        "description": "Toilets.",
+                        "text": "Disabled and nursing.  Open 9:00-4:45 in summer, 9:00-4:15 winter",
+                        "pixel": [
+                            1111,
+                            209
+                        ],
+                        "icon": "icons/toilet.svg"
+                    },
+                    {
+                        "id": 16,
+                        "description": "Arboretum",
+                        "latlng": [
+                            55.883429,
+                            -4.289101
+                        ]
+                    },
+                    {
+                        "id": 17,
+                        "description": "Garrioch Footbridge",
+                        "latlng": [
+                            55.88417,
+                            -4.289775
+                        ]
+                    },
+                    {
+                        "id": 19,
+                        "description": "Kirklee Bridge",
+                        "latlng": [
+                            55.882611,
+                            -4.289905
+                        ]
+                    },
+                    {
+                        "id": 20,
+                        "description": "Kelvin Walkway",
+                        "latlng": [
+                            55.882136,
+                            -4.29056
+                        ]
+                    },
+                    {
+                        "id": 21,
+                        "description": "Halfpenny Bridge House",
+                        "latlng": [
+                            55.882136,
+                            -4.29056
+                        ]
+                    },
+                    {
+                        "id": 22,
+                        "description": "Halfpenny Bridge",
+                        "latlng": [
+                            55.88157,
+                            -4.29203
+                        ]
+                    },
+                    {
+                        "id": 23,
+                        "description": "Queen Margaret Bridge",
+                        "latlng": [
+                            55.879572,
+                            -4.286236
+                        ]
+                    },
+                    {
+                        "id": 24,
+                        "description": "Old Queen Margaret Bridge",
+                        "latlng": [
+                            55.878747,
+                            -4.284552
+                        ]
+                    },
+                    {
+                        "id": 25,
+                        "description": "Flint Mill Bridge",
+                        "latlng": [
+                            55.877863,
+                            -4.281332
+                        ]
+                    },
+                    {
+                        "id": 26,
+                        "description": "Belmont Street Bridge",
+                        "latlng": [
+                            55.877556,
+                            -4.279623
+                        ]
+                    },
+                    {
+                        "id": 27,
+                        "description": "North Woodside Flint Mill",
+                        "latlng": [
+                            55.877964,
+                            -4.281943
+                        ]
+                    },
+                    {
+                        "id": 28,
+                        "description": "Weir and Mill Lade",
+                        "latlng": [
+                            55.878468,
+                            -4.283945
+                        ]
+                    },
+                    {
+                        "id": 29,
+                        "description": "Humpback Bridge",
+                        "latlng": [
+                            55.879873,
+                            -4.287989
+                        ]
+                    }
+                ],
+                "sizes": {
+                    "min": 0.5,
+                    "max": 2.0,
+                    "threshold": 1.0
+                }
+            }
+        ]
     }
 }

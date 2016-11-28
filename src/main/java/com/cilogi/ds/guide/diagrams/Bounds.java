@@ -21,6 +21,7 @@
 package com.cilogi.ds.guide.diagrams;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ import javax.vecmath.Point2d;
 import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder(alphabetic=true)
 @Data
 public class Bounds implements Serializable {
     @SuppressWarnings("unused")

@@ -43,7 +43,7 @@ public class Diagrams implements Serializable, ITextFilterable {
     private static final long serialVersionUID = -8478735908728862084L;
 
     private List<Marker> markers;
-    private List<Diagram> diagrams;
+    private List<Diagram> maps;
 
 
     public static Diagrams parse(String s) throws IOException {
@@ -53,12 +53,12 @@ public class Diagrams implements Serializable, ITextFilterable {
 
     public Diagrams() {
         markers = Lists.newArrayList(new Marker("default"));
-        diagrams = Lists.newArrayList();
+        maps = Lists.newArrayList();
     }
 
     public List<Diagram> listed() {
-        List<Diagram> out = new ArrayList<>(diagrams.size());
-        for (Diagram diagram: diagrams) {
+        List<Diagram> out = new ArrayList<>(maps.size());
+        for (Diagram diagram: maps) {
             if (diagram.isListed()) {
                 out.add(diagram);
             }
@@ -69,11 +69,11 @@ public class Diagrams implements Serializable, ITextFilterable {
     public Diagrams(@NonNull Diagrams diagrams) {
         this();
         this.markers = Lists.newArrayList(diagrams.getMarkers());
-        this.diagrams = Lists.newArrayList(diagrams.getDiagrams());
+        this.maps = Lists.newArrayList(diagrams.getMaps());
     }
 
     public Diagram findDiagram(@NonNull String name) {
-        for (Diagram diagram : diagrams) {
+        for (Diagram diagram : maps) {
             if (name.equals(diagram.getName())) {
                 return diagram;
             }
@@ -99,9 +99,9 @@ public class Diagrams implements Serializable, ITextFilterable {
         String name = diagram.getName();
         Diagram already  =findDiagram(name);
         if (already != null) {
-            diagrams.remove(already);
+            maps.remove(already);
         }
-        diagrams.add(diagram);
+        maps.add(diagram);
     }
 
 
@@ -112,9 +112,9 @@ public class Diagrams implements Serializable, ITextFilterable {
         if (name != null) {
             Diagram current = findDiagram(name);
             if (current != null) {
-                diagrams.remove(current);
+                maps.remove(current);
             }
-            diagrams.add(diagram);
+            maps.add(diagram);
         } else {
             throw new NullPointerException("The map has no name");
         }
@@ -128,7 +128,7 @@ public class Diagrams implements Serializable, ITextFilterable {
 
     @Override
     public void filter(ITextFilter filter) {
-        for (ITextFilterable diagram : diagrams) {
+        for (ITextFilterable diagram : maps) {
             diagram.filter(filter);
         }
     }

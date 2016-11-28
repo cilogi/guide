@@ -21,6 +21,7 @@
 package com.cilogi.ds.guide.diagrams;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -32,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder(alphabetic=true)
 @Data
 public class Zoom implements Serializable {
     @SuppressWarnings("unused")

@@ -50,12 +50,9 @@ public class Diagram implements Serializable, ITextFilterable {
     private String name;
     private String guideName;
     private String title;
-    private String provider;
-    private ImageSpec image;
+    private Overlay overlay;
     private List<Marker> markers;
     private List<Item> items;
-    private Bounds bounds;
-    private Zoom zoom;
     private Sizes sizes;
     private boolean showLocation;
     private boolean cluster;

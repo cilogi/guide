@@ -2,13 +2,20 @@
     "guideSpecVersion": "1",
     "name": "demo-guide",
     "title": "Demo Guide",
-    "descirption": "What is the point of this guide?",
+    "description": "What is the point of this guide?",
     "mapTitle": "Map Title",
     "owner": "tim@timniblett.net",
     "servingVersion": "1",
-    "latlng": [55.879813,-4.291162],
+    "latlng": [
+        55.879813,
+        -4.291162
+    ],
     "shortURL": "shortURL",
-    "versions": ["1", "2", "3"],
+    "versions": [
+        "1",
+        "2",
+        "3"
+    ],
     "link": {
         "linkType": "Github",
         "userID": "100",
@@ -17,7 +24,9 @@
     },
     "config": {
         "title": "Demo Guide",
-        "blogs": ["blogs/"],
+        "blogs": [
+            "blogs/"
+        ],
         "theme": "jqm",
         "analyticsKey": "analyticsKey",
         "copyright": "copyright",
@@ -29,27 +38,42 @@
         },
         "filesize": {
             "max": 120,
-            "except": ["*.html", "scripts/*", "styles/*"]
+            "except": [
+                "*.html",
+                "scripts/*",
+                "styles/*"
+            ]
         },
         "mapDescription": {
             "title": "title",
-            "tl": [55, 44],
-            "br": [77, 66],
-            "center": [66,55]
+            "tl": [
+                55,
+                44
+            ],
+            "br": [
+                77,
+                66
+            ],
+            "center": [
+                66,
+                55
+            ]
         },
         "metaData": {
-            "meta": ["meta"]
+            "meta": [
+                "meta"
+            ]
         }
     },
     "shop": {
-        "storeName" : "shop",
-        "storeCurrency" : "GBP",
+        "storeName": "shop",
+        "storeCurrency": "GBP",
         "skus": [
             {
-                "id" : "wildplaces",
-                "title" : "2013 Scotland - the Wild Places",
-                "description" : "Pictures of wild scotland",
-                "thumb" : {
+                "id": "wildplaces",
+                "title": "2013 Scotland - the Wild Places",
+                "description": "Pictures of wild scotland",
+                "thumb": {
                     "url": "wildplaces_t.jpg"
                 },
                 "image": "wildplaces.jpg",
@@ -63,7 +87,13 @@
             "description": "description",
             "width": 64,
             "height": 64,
-            "metaData": {"tag": [ "one", "two", "three"]},
+            "metaData": {
+                "tag": [
+                    "one",
+                    "two",
+                    "three"
+                ]
+            },
             "digest": "digest"
         }
     ],
@@ -72,87 +102,162 @@
             "id": "fred.mp3",
             "description": "description",
             "duration": 120,
-            "metaData": {"tag": [ "one", "two", "three"]},
+            "metaData": {
+                "tag": [
+                    "one",
+                    "two",
+                    "three"
+                ]
+            },
             "digest": "digest"
         }
     ],
     "listings": [
-        {"id": "listingA", "title":"Listing A", "description": "description", "background": "background",
-          "tags" : ["one", "two:", ":three"], "metaData": {"tag": ["one","two","three"]}},
-        {"id": "listingB", "title":"Listing B", "description": "description", "tags" : ["one", "two:", ":four"],"metaData": {"tag": ["one","two","three"]}}
+        {
+            "id": "listingA",
+            "title": "Listing A",
+            "description": "description",
+            "background": "background",
+            "tags": [
+                "one",
+                "two:",
+                ":three"
+            ],
+            "metaData": {
+                "tag": [
+                    "one",
+                    "two",
+                    "three"
+                ]
+            }
+        },
+        {
+            "id": "listingB",
+            "title": "Listing B",
+            "description": "description",
+            "tags": [
+                "one",
+                "two:",
+                ":four"
+            ],
+            "metaData": {
+                "tag": [
+                    "one",
+                    "two",
+                    "three"
+                ]
+            }
+        }
     ],
-
     "pages": [
         {
             "id": 0,
             "title": "Home Page",
-            "images": ["images/page0.jpg"],
+            "images": [
+                "images/page0.jpg"
+            ],
             "pageLinks": [
-                { "type": "page", "value": "1"  },
-                { "type": "page", "value": "2"  },
-                { "type": "page", "value": "3"  },
-                { "type": "page", "value": "4"  },
-                { "type": "map", "value": "map1"}
+                {
+                    "type": "page",
+                    "value": "1"
+                },
+                {
+                    "type": "page",
+                    "value": "2"
+                },
+                {
+                    "type": "page",
+                    "value": "3"
+                },
+                {
+                    "type": "page",
+                    "value": "4"
+                },
+                {
+                    "type": "map",
+                    "value": "map1"
+                }
             ]
         },
         {
             "id": 1,
             "title": "Page Title 1",
-            "images": ["images/page1.jpg"]
+            "images": [
+                "images/page1.jpg"
+            ]
         },
         {
             "id": 2,
             "title": "Page Title 2",
-            "images": ["images/page2.jpg"]
+            "images": [
+                "images/page2.jpg"
+            ]
         },
         {
             "id": 3,
             "title": "Page Title 3",
-            "images": ["images/page3.jpg"]
+            "images": [
+                "images/page3.jpg"
+            ]
         },
         {
             "id": 4,
             "title": "Page Title 4",
-            "images": ["images/page4.jpg"]
+            "images": [
+                "images/page4.jpg"
+            ]
         },
         {
             "id": 5,
             "title": "Page Title 5",
-            "images": ["images/page5.jpg"]
+            "images": [
+                "images/page5.jpg"
+            ]
         },
         {
             "id": 6,
             "title": "Page Title 6",
-            "images": ["images/page6.jpg"]
+            "images": [
+                "images/page6.jpg"
+            ]
         },
         {
             "id": 7,
             "title": "Page Title 7",
-            "images": ["images/page7.jpg"]
+            "images": [
+                "images/page7.jpg"
+            ]
         },
         {
             "id": 8,
             "title": "Page Title 8",
-            "images": ["images/page8.jpg"]
+            "images": [
+                "images/page8.jpg"
+            ]
         },
         {
             "id": 9,
             "title": "Page Title 9",
-            "images": ["images/page9.jpg"]
+            "images": [
+                "images/page9.jpg"
+            ]
         },
         {
             "id": 10,
             "title": "Page Title 10",
-            "images": ["images/page10.jpg"]
+            "images": [
+                "images/page10.jpg"
+            ]
         },
         {
             "id": 11,
             "title": "Page Title 11",
-            "images": ["images/page11.jpg"]
+            "images": [
+                "images/page11.jpg"
+            ]
         }
     ],
     "diagrams": {
-
         "markers": [
             {
                 "id": "green",
@@ -222,200 +327,324 @@
                         "theme": "Default"
                     }
                 ],
-                "provider": "osm",
-                "image": {
-                    "src": "images/botanics1200optpsCOL.png",
-                    "opacity": 0.5,
-                    "locates": [
+                "overlay": {
+                    "bounds": {
+                        "tl": [
+                            55.884759,
+                            -4.294045
+                        ],
+                        "br": [
+                            55.874589,
+                            -4.277612
+                        ]
+                    },
+                    "images": [
                         {
-                            "pixel": [0, 0],
-                            "latlng": [55.8818253, -4.2936141]
-                        },
-                        {
-                            "pixel": [1200, 0],
-                            "latlng": [55.8796031, -4.2865802]
-                        },
-                        {
-                            "pixel": [1200, 650],
-                            "latlng": [55.8775423, -4.2887331]
-                        },
-                        {
-                            "pixel": [0, 650],
-                            "latlng": [55.8797645, -4.295767]
+                            "src": "images/botanics1200optpsCOL.png",
+                            "opacity": 0.5,
+                            "locates": [
+                                {
+                                    "pixel": [
+                                        0,
+                                        0
+                                    ],
+                                    "latlng": [
+                                        55.8818253,
+                                        -4.2936141
+                                    ]
+                                },
+                                {
+                                    "pixel": [
+                                        1200,
+                                        0
+                                    ],
+                                    "latlng": [
+                                        55.8796031,
+                                        -4.2865802
+                                    ]
+                                },
+                                {
+                                    "pixel": [
+                                        1200,
+                                        650
+                                    ],
+                                    "latlng": [
+                                        55.8775423,
+                                        -4.2887331
+                                    ]
+                                },
+                                {
+                                    "pixel": [
+                                        0,
+                                        650
+                                    ],
+                                    "latlng": [
+                                        55.8797645,
+                                        -4.295767
+                                    ]
+                                }
+                            ]
                         }
-                    ]
+                    ],
+                    "provider": "osm",
+                    "zoom": {
+                        "min": 16,
+                        "max": 18,
+                        "start": 16
+                    }
                 },
                 "items": [
                     {
                         "id": 1,
                         "description": "Curator's House",
-                        "pixel": [878, 224],
+                        "pixel": [
+                            878,
+                            224
+                        ],
                         "marker": "red"
                     },
                     {
                         "id": 2,
                         "description": "Peter Walker Memorial",
-                        "pixel": [903, 329],
+                        "pixel": [
+                            903,
+                            329
+                        ],
                         "marker": "green"
                     },
                     {
                         "id": 3,
                         "description": "Main Range of Glasshouses",
-                        "pixel": [755, 347]
+                        "pixel": [
+                            755,
+                            347
+                        ]
                     },
                     {
                         "id": 4,
                         "description": "Sundial",
-                        "pixel": [880, 359],
+                        "pixel": [
+                            880,
+                            359
+                        ],
                         "marker": "blue"
                     },
                     {
                         "id": 5,
                         "description": "Kibble Palace",
-                        "pixel": [980, 363]
+                        "pixel": [
+                            980,
+                            363
+                        ]
                     },
                     {
                         "id": 6,
                         "description": "Main Gates",
                         "text": "There's an ice cream stand here in the summer.",
-                        "pixel": [1001, 590]
+                        "pixel": [
+                            1001,
+                            590
+                        ]
                     },
                     {
                         "id": 7,
                         "description": "Weeping Ash",
-                        "pixel": [775, 487]
+                        "pixel": [
+                            775,
+                            487
+                        ]
                     },
                     {
                         "id": 8,
                         "description": "Botanic Garden Station (disused)",
-                        "pixel": [758 , 536]
+                        "pixel": [
+                            758,
+                            536
+                        ]
                     },
                     {
                         "id": 9,
                         "description": "New Herb Garden",
-                        "pixel": [463, 536]
+                        "pixel": [
+                            463,
+                            536
+                        ]
                     },
                     {
                         "id": 10,
                         "description": "Herbaceous Border",
-                        "pixel": [477, 446]
+                        "pixel": [
+                            477,
+                            446
+                        ]
                     },
                     {
                         "id": 11,
                         "description": "Chronological Border",
-                        "pixel": [269, 486]
+                        "pixel": [
+                            269,
+                            486
+                        ]
                     },
                     {
                         "id": 12,
                         "description": "Flagpole",
-                        "pixel": [299, 356]
+                        "pixel": [
+                            299,
+                            356
+                        ]
                     },
                     {
                         "id": 13,
                         "description": "World Rose Garden",
-                        "pixel": [428, 375]
+                        "pixel": [
+                            428,
+                            375
+                        ]
                     },
                     {
                         "id": 14,
                         "description": "Memorial Plaques",
-                        "pixel": [333, 287]
+                        "pixel": [
+                            333,
+                            287
+                        ]
                     },
                     {
                         "id": 15,
                         "description": "Kirklee Gate.",
                         "text": "You can park here if you like.  No cost as its residential.",
-                        "pixel": [6, 42]
+                        "pixel": [
+                            6,
+                            42
+                        ]
                     },
                     {
                         "description": "Margaret Drive Gate",
-                        "pixel": [1140, 243]
+                        "pixel": [
+                            1140,
+                            243
+                        ]
                     },
                     {
                         "id": 50,
                         "description": "Toilets.",
                         "text": "Disabled and nursing.  Open 9:00-4:45 in summer, 9:00-4:15 winter",
-                        "pixel": [1111, 209],
+                        "pixel": [
+                            1111,
+                            209
+                        ],
                         "icon": "icons/toilet.svg"
                     },
                     {
                         "id": 16,
                         "description": "Arboretum",
-                        "latlng": [55.883429, -4.289101]
+                        "latlng": [
+                            55.883429,
+                            -4.289101
+                        ]
                     },
                     {
                         "id": 17,
                         "description": "Garrioch Footbridge",
-                        "latlng": [55.88417, -4.289775]
+                        "latlng": [
+                            55.88417,
+                            -4.289775
+                        ]
                     },
                     {
                         "id": 19,
                         "description": "Kirklee Bridge",
-                        "latlng": [55.882611, -4.289905]
+                        "latlng": [
+                            55.882611,
+                            -4.289905
+                        ]
                     },
                     {
                         "id": 20,
                         "description": "Kelvin Walkway",
-                        "latlng": [55.882136, -4.29056]
+                        "latlng": [
+                            55.882136,
+                            -4.29056
+                        ]
                     },
                     {
                         "id": 21,
                         "description": "Halfpenny Bridge House",
-                        "latlng": [55.882136, -4.29056]
+                        "latlng": [
+                            55.882136,
+                            -4.29056
+                        ]
                     },
                     {
                         "id": 22,
                         "description": "Halfpenny Bridge",
-                        "latlng": [55.88157, -4.29203]
+                        "latlng": [
+                            55.88157,
+                            -4.29203
+                        ]
                     },
                     {
                         "id": 23,
                         "description": "Queen Margaret Bridge",
-                        "latlng": [55.879572, -4.286236]
+                        "latlng": [
+                            55.879572,
+                            -4.286236
+                        ]
                     },
                     {
                         "id": 24,
                         "description": "Old Queen Margaret Bridge",
-                        "latlng": [55.878747, -4.284552]
+                        "latlng": [
+                            55.878747,
+                            -4.284552
+                        ]
                     },
                     {
                         "id": 25,
                         "description": "Flint Mill Bridge",
-                        "latlng": [55.877863, -4.281332]
+                        "latlng": [
+                            55.877863,
+                            -4.281332
+                        ]
                     },
                     {
                         "id": 26,
                         "description": "Belmont Street Bridge",
-                        "latlng": [55.877556, -4.279623]
+                        "latlng": [
+                            55.877556,
+                            -4.279623
+                        ]
                     },
                     {
                         "id": 27,
                         "description": "North Woodside Flint Mill",
-                        "latlng": [55.877964, -4.281943]
+                        "latlng": [
+                            55.877964,
+                            -4.281943
+                        ]
                     },
                     {
                         "id": 28,
                         "description": "Weir and Mill Lade",
-                        "latlng": [55.878468, -4.283945]
+                        "latlng": [
+                            55.878468,
+                            -4.283945
+                        ]
                     },
                     {
                         "id": 29,
                         "description": "Humpback Bridge",
-                        "latlng": [55.879873, -4.287989]
+                        "latlng": [
+                            55.879873,
+                            -4.287989
+                        ]
                     }
                 ],
-                "zoom": {
-                    "min": 16,
-                    "max": 18,
-                    "start": 16
-                },
                 "sizes": {
                     "min": 0.5,
                     "max": 2.0,
                     "threshold": 1.0
-                },
-                "bounds": {
-                    "tl": [55.884759, -4.294045],
-                    "br": [55.874589, -4.277612]
                 }
             }
         ]
@@ -424,7 +653,10 @@
         {
             "id": "botanics-trail",
             "title": "The Botanics Trail",
-            "location": [55.884759, -4.294045],
+            "location": [
+                55.884759,
+                -4.294045
+            ],
             "stops": [
                 {
                     "id": "204",
@@ -432,7 +664,10 @@
                 },
                 {
                     "id": "1",
-                    "location": [55.884760, -4.29405]
+                    "location": [
+                        55.884760,
+                        -4.29405
+                    ]
                 },
                 {
                     "id": "2"
@@ -459,6 +694,8 @@
         }
     ],
     "compileAuth": {
-        "user": "user", "tag": "tag", "token": "token"
+        "user": "user",
+        "tag": "tag",
+        "token": "token"
     }
 }

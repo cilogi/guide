@@ -20,6 +20,7 @@
 
 package com.cilogi.ds.guide.diagrams;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
@@ -58,6 +59,7 @@ public class ImageSpec implements Serializable {
         return locates != null && locates.size() > 0;
     }
 
+    @JsonIgnore
     public boolean isEmpty() {
         return src == null || "".equals(src);
     }
