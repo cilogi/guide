@@ -60,6 +60,8 @@ public class Overlay implements Serializable {
 
     public Overlay() {
         images = new ArrayList<>();
+        bounds = new Bounds();
+        zoom = new Zoom();
     }
 
     public String digest() {
