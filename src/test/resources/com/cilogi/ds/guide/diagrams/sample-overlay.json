@@ -56,6 +56,7 @@
         ]
     }],
     "provider": "osm",
+    "tileSize": 512,
     "zoom": {
         "min": 16,
         "max": 18,

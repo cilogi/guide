@@ -46,11 +46,13 @@ public class Overlay implements Serializable {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(Overlay.class);
     private static final long serialVersionUID = 4722505605640837010L;
+    private static final int DEFAULT_TILESIZE = 256;
 
     private Bounds bounds;
     private List<ImageSpec> images;
     private String provider;
     private Zoom zoom;
+    private int tileSize;
 
     public static Overlay fromJSON(String data) throws IOException {
          GuideMapper mapper = new GuideMapper();
@@ -62,6 +64,7 @@ public class Overlay implements Serializable {
         images = new ArrayList<>();
         bounds = new Bounds();
         zoom = new Zoom();
+        tileSize = DEFAULT_TILESIZE;
     }
 
     public String digest() {

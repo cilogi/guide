@@ -55,7 +55,7 @@ public class TestOverlay {
     public void testDigest() throws IOException {
         String spec = IOUtil.loadStringUTF8(getClass().getResource("sample-overlay.json"));
         Overlay overlay = Overlay.fromJSON(spec);
-        assertEquals("3939a918395d41aa828e7bbf4fa42daf", overlay.digest());  // if this fails we've changed something (and this could be bad)
+        assertEquals("cddf93952650cb7f43220b33050cd902", overlay.digest());  // if this fails we've changed something (and this could be bad)
     }
 
     @Test
