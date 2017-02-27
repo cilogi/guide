@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonPropertyOrder(alphabetic=true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @Data
 public class ImageSpec implements Serializable {
     @SuppressWarnings("unused")
@@ -42,6 +42,8 @@ public class ImageSpec implements Serializable {
     private static final long serialVersionUID = -6288395652378246150L;
 
     private String src;
+    private int width;
+    private int height;
     private double opacity;
     private List<Locate> locates;
 

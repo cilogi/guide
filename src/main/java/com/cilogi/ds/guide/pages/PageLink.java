@@ -48,7 +48,7 @@ public class PageLink implements Serializable {
     static final Pattern EMBEDDED_LINK_PATTERN = Pattern.compile("!?\\[([^\\]]*)\\]\\s*\\(([^\\)]*)\\)");
     static final Pattern EXTERNAL_GUIDE_PATTERN = Pattern.compile("\\s*(?:\\{([^\\}]+)\\}/)?(.+)\\s*");
 
-    public static enum Type {
+    public enum Type {
         audio("audios/", "media/audios/", false),
         image("images/", "media/images/", false),
         listing("listings/", "listings/", true),
