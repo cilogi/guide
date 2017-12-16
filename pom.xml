@@ -7,7 +7,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cilogi</groupId>
     <artifactId>guide</artifactId>
-    <version>1.16.0</version>
+    <version>1.16.1</version>
     <packaging>jar</packaging>
     <url>https://github.com/cilogi/guide</url>
     <developers>
@@ -27,41 +27,29 @@
         <url>http://www.opensource.org/licenses/mit-license.php</url>
       </license>
     </licenses>
-    <scm>
-        <connection>scm:git:git@github.com:cilogi/cilogi-base.git</connection>
-        <developerConnection>scm:git:git@github.com:cilogi/cilogi-base.git</developerConnection>
-        <url>git@github.com:cilogi/cilogi-base.git</url>
-    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <net.spy.log.LoggerImpl>net.spy.memcached.compat.log.SunLogger</net.spy.log.LoggerImpl>
         <jackson.version>2.8.4</jackson.version>
-        <slf4j.version>1.7.21</slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
             <groupId>com.cilogi</groupId>
             <artifactId>cilogi-base</artifactId>
-            <version>1.5.0</version>
+            <version>1.6.1</version>
         </dependency>
         <dependency>
             <groupId>com.cilogi</groupId>
             <artifactId>qr</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0</version>
+            <version>23.0</version>
         </dependency>
         <dependency>
             <groupId>java3d</groupId>
@@ -82,7 +70,7 @@
         <dependency>
           <groupId>org.hjson</groupId>
           <artifactId>hjson</artifactId>
-          <version>1.1.4</version>
+          <version>3.0.0</version>
         </dependency>
 
         <!-- JSON schema -->
